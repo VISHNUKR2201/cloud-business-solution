@@ -1,0 +1,1626 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us Stackly Cloud Business Solutions</title>
+  <meta name="description" content="Stackly was founded to replace cloud chaos with clear operating routes. Architecting quiet systems for loud growth.">
+  
+  <!-- Instant Position Restoration (Prevents Section Flash) -->
+  <script>
+    (function() {
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var restoreScroll = urlParams.get('restore_scroll');
+        var isRestoring = (sessionStorage.getItem('stackly_instant_restore') === 'true' || restoreScroll !== null) && 
+                          (document.referrer.indexOf('404.html') !== -1 || restoreScroll !== null);
+        if (isRestoring) {
+          document.documentElement.classList.add('instant-restoring');
+          document.documentElement.style.scrollBehavior = 'auto';
+          var sVal = restoreScroll || sessionStorage.getItem('stackly_target_scroll') || sessionStorage.getItem('stackly_last_scroll');
+          if (sVal !== null && sVal !== '' && parseInt(sVal, 10) >= 0) {
+            window.scrollTo(0, parseInt(sVal, 10));
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- AOS (Animate On Scroll) CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body class="about-page">
+
+  <!-- ==========================================================================
+       Futuristic 3D GSAP Animated Loading Page
+       ========================================================================== -->
+  <div id="siteLoader" class="site-loader" aria-label="Loading Stackly">
+    <!-- Ambient Background Lighting & Mesh -->
+    <div class="loader-ambient-glow cyan-ambient" aria-hidden="true"></div>
+    <div class="loader-ambient-glow indigo-ambient" aria-hidden="true"></div>
+    <div class="loader-grid-mesh" aria-hidden="true"></div>
+
+    <div class="loader-container">
+      <!-- 1. Brand Logo with 3D Float & Ambient Halo -->
+      <div class="loader-brand" id="loaderBrand">
+        <div class="loader-logo-halo" aria-hidden="true"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="loader-logo-img">
+        <div class="loader-tagline">
+          <span class="loader-tag-dot" aria-hidden="true"></span>
+          <span>CLOUD BUSINESS SOLUTIONS</span>
+        </div>
+      </div>
+
+      <!-- 2. 3D Gyroscope Video Core Stage -->
+      <div class="loader-stage-3d" id="loaderStage3D">
+        <!-- Concentric 3D Gyroscope Rings -->
+        <div class="loader-gyro-ring ring-outer" aria-hidden="true">
+          <div class="gyro-dot dot-1"></div>
+          <div class="gyro-dot dot-2"></div>
+        </div>
+        <div class="loader-gyro-ring ring-middle" aria-hidden="true">
+          <div class="gyro-dot dot-3"></div>
+        </div>
+        <div class="loader-gyro-ring ring-inner" aria-hidden="true"></div>
+
+        <!-- Spherical Looping Video Core with Holographic Glare -->
+        <div class="loader-video-orb" id="loaderVideoOrb">
+          <div class="loader-orb-aura" aria-hidden="true"></div>
+          <div class="loader-orb-rim" aria-hidden="true"></div>
+          <video 
+            class="loader-core-video" 
+            src="images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="auto"
+          ></video>
+          <div class="loader-orb-glare" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- 3. Cyber HUD Progress Counter & Status -->
+      <div class="loader-hud" id="loaderHud">
+        <div class="loader-counter-wrap">
+          <span class="loader-counter-num" id="loaderCounter">0</span>
+          <span class="loader-counter-pct">%</span>
+        </div>
+
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar" id="loaderProgressBar">
+            <span class="loader-progress-glow"></span>
+          </div>
+        </div>
+
+        <div class="loader-status" id="loaderStatus">
+          <span class="status-indicator"></span>
+          <span class="status-text" id="loaderStatusText">INITIALIZING CLOUD INFRASTRUCTURE...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Global Background & Mesh Grid -->
+  <div class="bg-gradient-glow top-glow" aria-hidden="true"></div>
+  <div class="bg-gradient-glow bottom-glow" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       1. HEADER / NAVIGATION (Consistent with Index & Service pages)
+       ========================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      
+      <!-- Logo wrapped in anchor tag linking to index.html -->
+      <a href="index.html" class="logo-link" aria-label="Stackly Homepage">
+        <img 
+          src="images/logo.webp" 
+          alt="Stackly Logo" 
+          class="logo-img" 
+          onerror="this.src='images/logo.webp'">
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link magnetic-nav-item">Home</a></li>
+          <li class="nav-item"><a href="service.html" class="nav-link magnetic-nav-item">Services</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link magnetic-nav-item active">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link magnetic-nav-item">Contact</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link magnetic-nav-item">Blogs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult">
+          <span class="btn-consult-text">Book a consult</span>
+          <span class="pulse-aura" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="service.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="about.html" class="mobile-nav-link active">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blogs</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <a href="login.html" class="mobile-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult mobile-consult">
+          <span class="btn-consult-text">Book a consult</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. ABOUT HERO SECTION: Bidirectional "Meet in the Middle" 3D Hero
+       ========================================================================== -->
+  <main class="about-hero-section" id="aboutHero">
+    
+    <!-- Animated Background Mesh & Floating Subtle Grid -->
+    <div class="about-hero-bg" aria-hidden="true">
+      <div class="about-mesh-blob about-mesh-blob-1"></div>
+      <div class="about-mesh-blob about-mesh-blob-2"></div>
+      <div class="about-mesh-blob about-mesh-blob-3"></div>
+      <div class="about-grid-texture"></div>
+    </div>
+
+    <div class="about-hero-container">
+      <div class="about-hero-grid">
+
+        <!-- Left Column: Content & Typography (~50% width) -->
+        <div class="about-hero-left" id="aboutHeroLeft">
+          
+          <!-- Overline with Pulsing Orange Radar Dot -->
+          <div class="about-overline" id="aboutOverline">
+            <span class="about-pulse-dot" aria-hidden="true">
+              <span class="about-dot-ping"></span>
+              <span class="about-dot-core"></span>
+            </span>
+            <span class="about-overline-text">OUR STORY &amp; PHILOSOPHY</span>
+          </div>
+
+          <!-- Main Heading: Clip-path Masked Staggered Words -->
+          <h1 class="about-main-heading" id="aboutHeading" aria-label="Architecting quiet systems for loud growth.">
+            <span class="about-word-mask"><span class="about-word">Architecting</span></span>
+            <span class="about-word-mask"><span class="about-word">quiet</span></span>
+            <span class="about-word-mask"><span class="about-word">systems</span></span>
+            <span class="about-word-mask"><span class="about-word">for</span></span>
+            <span class="about-word-mask"><span class="about-word highlight-gradient">loud</span></span>
+            <span class="about-word-mask"><span class="about-word highlight-gradient">growth.</span></span>
+          </h1>
+
+          <!-- Subheading Paragraph -->
+          <p class="about-subheading" id="aboutSubheading">
+            Stackly was founded to replace cloud chaos with clear operating routes. We design, secure, and operate enterprise infrastructure so teams can move fast without carrying more risk.
+          </p>
+
+          <!-- Glassmorphic Button Group -->
+          <div class="about-btn-group" id="aboutBtnGroup">
+            <a href="404.html?from=our-services&amp;return_page=about.html" class="about-btn-glass about-btn-primary" aria-label="Our services">
+              <span class="about-btn-text">Our services</span>
+              <i class="fa-solid fa-compass about-btn-icon" aria-hidden="true"></i>
+              <span class="about-btn-border-glow" aria-hidden="true"></span>
+            </a>
+            <a href="404.html?from=meet-the-team&amp;return_page=about.html" class="about-btn-glass about-btn-secondary" aria-label="Meet the team">
+              <span class="about-btn-text">Meet the team</span>
+              <i class="fa-solid fa-users about-btn-icon" aria-hidden="true"></i>
+              <span class="about-btn-border-glow" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <!-- Trust Badges (Below buttons) -->
+          <div class="about-trust-badges" id="aboutTrustBadges">
+            <div class="about-trust-item">
+              <span class="trust-dot trust-dot-emerald" aria-hidden="true"></span>
+              <span class="trust-text">SOC 2 aligned</span>
+            </div>
+            <span class="trust-separator" aria-hidden="true">â€¢</span>
+            <div class="about-trust-item">
+              <span class="trust-dot trust-dot-blue" aria-hidden="true"></span>
+              <span class="trust-text">24/7 operations</span>
+            </div>
+            <span class="trust-separator" aria-hidden="true">â€¢</span>
+            <div class="about-trust-item">
+              <span class="trust-dot trust-dot-orange" aria-hidden="true"></span>
+              <span class="trust-text">180+ migrations</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: 3D Animated Hero Image (~50% width) -->
+        <div class="about-hero-right" id="aboutHeroRight">
+          <div class="about-image-card" id="aboutImageCard">
+            <div class="about-card-glare" id="aboutCardGlare" aria-hidden="true"></div>
+            
+            <div class="about-img-wrapper">
+              <img 
+                src="images/3 (2).webp" 
+                alt="Cloud Infrastructure Team" 
+                class="about-hero-img"
+                id="aboutHeroImg"
+                onerror="this.onerror=null;this.src='images/3 (2).webp';">
+              <div class="about-img-overlay-gradient" aria-hidden="true"></div>
+            </div>
+
+            <!-- Spatial Floating Chips on Card -->
+            <div class="about-floating-chip chip-top" aria-hidden="true">
+              <span class="chip-pulse"></span>
+              <span>Zero-Drift Architecture</span>
+            </div>
+            <div class="about-floating-chip chip-bottom" aria-hidden="true">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Multi-Cloud Fabric Verified</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       3. ABOUT PURPOSE & CORE SIGNAL SECTION ("Why We Exist")
+       ========================================================================== -->
+  <section class="about-purpose-section" id="aboutPurpose">
+    <div class="about-purpose-ambient" aria-hidden="true"></div>
+    <div class="about-purpose-container">
+      
+      <!-- Wide Panoramic Cinema Stage (1440px max-width, rounded 28px, overflow: hidden) -->
+      <div class="purpose-cinema-stage" id="purposeCinemaStage">
+        
+        <!-- Background Panorama Image -->
+        <div class="purpose-bg-wrap">
+          <img 
+            src="images/about.s1.webp" 
+            alt="Cloud Command Center Operations" 
+            class="purpose-bg-img"
+            id="purposeBgImg"
+            onerror="this.onerror=null;this.src='images/about.s1.webp';">
+          <div class="purpose-overlay-gradient" aria-hidden="true"></div>
+        </div>
+
+        <!-- Two Floating Glassmorphic Cards Layer -->
+        <div class="purpose-cards-overlay">
+
+          <!-- Card 1: Top-Left Card ("Why We Exist") -->
+          <article class="purpose-card purpose-card-left" id="purposeCardLeft">
+            <div class="purpose-card-glare" aria-hidden="true"></div>
+            <div class="purpose-card-glow-border" aria-hidden="true"></div>
+            <div class="purpose-card-content">
+              
+              <!-- Overline Badge with Pulsing Red/Orange Dot -->
+              <div class="purpose-overline">
+                <span class="purpose-dot" aria-hidden="true">â—</span>
+                <span>WHY WE EXIST</span>
+              </div>
+
+              <!-- Card Heading with Staggered Word Wrappers -->
+              <h2 class="purpose-heading" id="purposeHeading">
+                <span class="pword-wrap"><span class="pword">We</span></span>
+                <span class="pword-wrap"><span class="pword">remove</span></span>
+                <span class="pword-wrap"><span class="pword">cloud</span></span>
+                <span class="pword-wrap"><span class="pword">guesswork</span></span>
+                <span class="pword-wrap"><span class="pword">before</span></span>
+                <span class="pword-wrap"><span class="pword">it</span></span>
+                <span class="pword-wrap"><span class="pword">becomes</span></span>
+                <span class="pword-wrap"><span class="pword">a</span></span>
+                <span class="pword-wrap"><span class="pword">business</span></span>
+                <span class="pword-wrap"><span class="pword">risk.</span></span>
+              </h2>
+
+              <!-- Card Paragraph -->
+              <p class="purpose-desc">
+                Architecture, migration, security, cost, and operations are connected into one accountable delivery model.
+              </p>
+
+            </div>
+          </article>
+
+          <!-- Card 2: Bottom-Right Card ("Core Signal 99.99%") -->
+          <article class="purpose-card purpose-card-right" id="purposeCardRight">
+            <div class="purpose-card-glare" aria-hidden="true"></div>
+            <div class="purpose-card-glow-border" aria-hidden="true"></div>
+            <div class="purpose-card-content">
+
+              <!-- Overline Badge (Purple / Lavender Accent) -->
+              <div class="purpose-signal-overline">
+                <span>CORE SIGNAL</span>
+              </div>
+
+              <!-- Animated Metric Counter (99.99%) -->
+              <div class="purpose-metric-wrap">
+                <span class="purpose-metric-val" id="purposeMetricVal">99.99%</span>
+              </div>
+
+              <!-- Card Paragraph -->
+              <p class="purpose-signal-desc">
+                uptime across managed fleets, backed by proactive SRE and observable systems.
+              </p>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. MEASURABLE IMPACT SECTION ("Proven reliability in numbers")
+       ========================================================================== -->
+  <section class="about-impact-section" id="aboutImpact">
+    <div class="impact-ambient-glow impact-ambient-1" aria-hidden="true"></div>
+    <div class="impact-ambient-glow impact-ambient-2" aria-hidden="true"></div>
+
+    <div class="impact-container">
+
+      <!-- Section Header -->
+      <div class="impact-header" id="impactHeader">
+        <div class="impact-pill-badge" id="impactBadge">
+          <span class="impact-pulse-dot" aria-hidden="true"></span>
+          <span>MEASURABLE IMPACT</span>
+        </div>
+        <h2 class="impact-main-heading" id="impactHeading" aria-label="Proven reliability in numbers">
+          <span class="iword-wrap"><span class="iword">Proven</span></span>
+          <span class="iword-wrap"><span class="iword">reliability</span></span>
+          <span class="iword-wrap"><span class="iword">in</span></span>
+          <span class="iword-wrap"><span class="iword highlight-coral">numbers</span></span>
+        </h2>
+        <p class="impact-subheading" id="impactSubheading">
+          We measure success in decimals. Here is how we've helped hyper-scale teams calm their cloud operations.
+        </p>
+      </div>
+
+      <!-- 2x2 Elevated Spatial Metric Grid -->
+      <!-- 2x2 Elevated Spatial Metric Grid (Exact 1248px x 368px Frame with 612px x 172px Cards) -->
+      <div class="impact-grid" id="impactGrid">
+
+        <!-- Card 1: 4.2x Faster deploys -->
+        <article class="impact-card" data-card="1">
+          <div class="impact-card-spotlight" aria-hidden="true"></div>
+          <div class="impact-card-glare" aria-hidden="true"></div>
+          <div class="impact-card-inner">
+            <div class="impact-top-row">
+              <div class="impact-num-wrap">
+                <span class="impact-num" id="statNum1">4.2Ã—</span>
+              </div>
+              <div class="impact-meta-badge">
+                <div class="impact-icon-box icon-coral">
+                  <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span class="impact-tag">01 / VELOCITY</span>
+              </div>
+            </div>
+            <div class="impact-bottom-content">
+              <h3 class="impact-card-title">Faster deploys</h3>
+              <p class="impact-card-desc">
+                Eliminated operational bottlenecks to accelerate shipping speed safely.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: -44% Average cost cut -->
+        <article class="impact-card" data-card="2">
+          <div class="impact-card-spotlight" aria-hidden="true"></div>
+          <div class="impact-card-glare" aria-hidden="true"></div>
+          <div class="impact-card-inner">
+            <div class="impact-top-row">
+              <div class="impact-num-wrap">
+                <span class="impact-num" id="statNum2">âˆ’44%</span>
+              </div>
+              <div class="impact-meta-badge">
+                <div class="impact-icon-box icon-cyan">
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="impact-tag">02 / FINOPS SAVINGS</span>
+              </div>
+            </div>
+            <div class="impact-bottom-content">
+              <h3 class="impact-card-title">Average cost cut</h3>
+              <p class="impact-card-desc">
+                We find and eradicate idle resource wastage within 30 days.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: 99.99% Managed fleet uptime -->
+        <article class="impact-card" data-card="3">
+          <div class="impact-card-spotlight" aria-hidden="true"></div>
+          <div class="impact-card-glare" aria-hidden="true"></div>
+          <div class="impact-card-inner">
+            <div class="impact-top-row">
+              <div class="impact-num-wrap">
+                <span class="impact-num" id="statNum3">99.99%</span>
+              </div>
+              <div class="impact-meta-badge">
+                <div class="impact-icon-box icon-purple">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <span class="impact-tag">03 / HIGH AVAILABILITY</span>
+              </div>
+            </div>
+            <div class="impact-bottom-content">
+              <h3 class="impact-card-title">Managed fleet uptime</h3>
+              <p class="impact-card-desc">
+                We stand behind our SLAs with 24/7 proactive site reliability engineering.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: 180+ Migrations shipped -->
+        <article class="impact-card" data-card="4">
+          <div class="impact-card-spotlight" aria-hidden="true"></div>
+          <div class="impact-card-glare" aria-hidden="true"></div>
+          <div class="impact-card-inner">
+            <div class="impact-top-row">
+              <div class="impact-num-wrap">
+                <span class="impact-num" id="statNum4">180+</span>
+              </div>
+              <div class="impact-meta-badge">
+                <div class="impact-icon-box icon-orange">
+                  <i class="fa-solid fa-rocket"></i>
+                </div>
+                <span class="impact-tag">04 / TRANSFERS</span>
+              </div>
+            </div>
+            <div class="impact-bottom-content">
+              <h3 class="impact-card-title">Migrations shipped</h3>
+              <p class="impact-card-desc">
+                Zero-downtime cutovers across complex hybrid and multi-cloud footprints.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. OPERATING PRINCIPLES SECTION ("Our Values")
+       ========================================================================== -->
+  <section class="about-principles-section" id="aboutPrinciples">
+    <div class="principles-ambient-glow" aria-hidden="true"></div>
+    <div class="principles-container">
+
+      <!-- Section Header -->
+      <div class="principles-header" id="principlesHeader">
+        <div class="principles-pill-badge" id="principlesBadge">
+          <span class="principles-pulse-dot" aria-hidden="true"></span>
+          <span>OUR VALUES</span>
+        </div>
+        <h2 class="principles-main-heading" id="principlesHeading" aria-label="Operating principles we live by">
+          <span class="vword-wrap"><span class="vword">Operating</span></span>
+          <span class="vword-wrap"><span class="vword">principles</span></span>
+          <span class="vword-wrap"><span class="vword">we</span></span>
+          <span class="vword-wrap"><span class="vword highlight-gradient-purple">live</span></span>
+          <span class="vword-wrap"><span class="vword highlight-gradient-purple">by</span></span>
+        </h2>
+        <p class="principles-subheading" id="principlesSubheading">
+          We don't do hype. We build robust systems that respect developers, security teams, and the bottom line.
+        </p>
+      </div>
+
+      <!-- 3-Column Bento Principles Grid with Hover Spotlight & 3D Spatial Tilt -->
+      <div class="principles-grid" id="principlesGrid">
+
+        <!-- Principle Card 1: Accountability Over Tools -->
+        <article class="principle-card" data-principle="1">
+          <div class="principle-spotlight" aria-hidden="true"></div>
+          <div class="principle-card-glare" aria-hidden="true"></div>
+          <div class="principle-card-inner">
+            <!-- Top Row: Index + Orange Icon Badge (Layers) -->
+            <div class="principle-top-row">
+              <span class="principle-num">01</span>
+              <div class="principle-icon-badge">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+            </div>
+
+            <!-- Principle Title -->
+            <h3 class="principle-title">Accountability Over Tools</h3>
+
+            <!-- Principle Description -->
+            <p class="principle-desc">
+              A toolshelf doesn't solve problems. We accept end-to-end operational accountability for your system metrics, from latency to the monthly invoice.
+            </p>
+
+            <!-- Technical Commitment Feature Tag -->
+            <div class="principle-meta-pill">
+              <span class="principle-meta-dot"></span>
+              <span>Full-Stack Operational Responsibility</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Principle Card 2: Quiet Infrastructure -->
+        <article class="principle-card" data-principle="2">
+          <div class="principle-spotlight" aria-hidden="true"></div>
+          <div class="principle-card-glare" aria-hidden="true"></div>
+          <div class="principle-card-inner">
+            <!-- Top Row: Index + Orange Icon Badge (Pulse Waveform) -->
+            <div class="principle-top-row">
+              <span class="principle-num">02</span>
+              <div class="principle-icon-badge">
+                <i class="fa-solid fa-heart-pulse"></i>
+              </div>
+            </div>
+
+            <!-- Principle Title -->
+            <h3 class="principle-title">Quiet Infrastructure</h3>
+
+            <!-- Principle Description -->
+            <p class="principle-desc">
+              The best systems are the ones you forget exist. We design self-healing, signal-rich infrastructures that keep operational noise to an absolute minimum.
+            </p>
+
+            <!-- Technical Commitment Feature Tag -->
+            <div class="principle-meta-pill">
+              <span class="principle-meta-dot"></span>
+              <span>Automated Drift Self-Healing</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Principle Card 3: Zero-Trust Baseline -->
+        <article class="principle-card" data-principle="3">
+          <div class="principle-spotlight" aria-hidden="true"></div>
+          <div class="principle-card-glare" aria-hidden="true"></div>
+          <div class="principle-card-inner">
+            <!-- Top Row: Index + Orange Icon Badge (Shield) -->
+            <div class="principle-top-row">
+              <span class="principle-num">03</span>
+              <div class="principle-icon-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+            </div>
+
+            <!-- Principle Title -->
+            <h3 class="principle-title">Zero-Trust Baseline</h3>
+
+            <!-- Principle Description -->
+            <p class="principle-desc">
+              Security is never retrofitted. We bake compliance controls, network segmentation, and audit readiness into the first line of code we deliver.
+            </p>
+
+            <!-- Technical Commitment Feature Tag -->
+            <div class="principle-meta-pill">
+              <span class="principle-meta-dot"></span>
+              <span>SOC 2 &amp; CIS Audit Readiness</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. COMPANY EVOLUTION & TIMELINE SECTION ("A journey from rescue work...")
+       ========================================================================== -->
+  <section class="about-evolution-section" id="aboutEvolution">
+    <div class="evolution-ambient-glow evolution-ambient-1" aria-hidden="true"></div>
+    <div class="evolution-ambient-glow evolution-ambient-2" aria-hidden="true"></div>
+
+    <div class="evolution-container">
+
+      <!-- Section Header -->
+      <div class="evolution-header" id="evolutionHeader">
+        <div class="evolution-pill-badge" id="evolutionBadge">
+          <span class="evolution-pulse-dot" aria-hidden="true"></span>
+          <span>EVOLUTION OF THE COMPANY</span>
+        </div>
+        <h2 class="evolution-main-heading" id="evolutionHeading" aria-label="A journey from rescue work to a full operating platform">
+          <span class="eword-wrap"><span class="eword">A</span></span>
+          <span class="eword-wrap"><span class="eword">journey</span></span>
+          <span class="eword-wrap"><span class="eword">from</span></span>
+          <span class="eword-wrap"><span class="eword">rescue</span></span>
+          <span class="eword-wrap"><span class="eword">work</span></span>
+          <span class="eword-wrap"><span class="eword">to</span></span>
+          <span class="eword-wrap"><span class="eword">a</span></span>
+          <span class="eword-wrap"><span class="eword">full</span></span>
+          <span class="eword-wrap"><span class="eword highlight-gradient-coral">operating</span></span>
+          <span class="eword-wrap"><span class="eword highlight-gradient-coral">platform</span></span>
+        </h2>
+        <p class="evolution-subheading" id="evolutionSubheading">
+          Our capabilities expanded in response to real customer pressure. Each milestone added more depth to the route we now deliver end to end.
+        </p>
+      </div>
+
+      <!-- Two-Column Interactive Layout: Sticky Visuals (Left) + Timeline Journey (Right) -->
+      <div class="evolution-layout">
+
+        <!-- Left Column: Sticky Anchor Cards with Image ab3.webp -->
+        <div class="evolution-visual-col" id="evolutionVisualCol">
+          <div class="evolution-sticky-wrap">
+
+            <!-- Visual Card 1: What Changed (Server Corridor ab3.webp) -->
+            <article class="evolution-feature-card card-visual" id="evoCard1">
+              <div class="evo-card-spotlight" aria-hidden="true"></div>
+              <div class="evo-card-glare" aria-hidden="true"></div>
+              
+              <!-- Server Corridor Image -->
+              <div class="evo-img-frame">
+                <img 
+                  src="images/ab3.webp" 
+                  alt="High-Density Cloud Server Corridor" 
+                  class="evo-img"
+                  onerror="this.onerror=null;this.src='images/ab3.webp';">
+                <div class="evo-img-gradient"></div>
+              </div>
+
+              <!-- Overlaid Glass Content Box -->
+              <div class="evo-glass-content">
+                <div class="evo-overline overline-coral">
+                  <span class="evo-dot coral-dot" aria-hidden="true">â—</span>
+                  <span>WHAT CHANGED</span>
+                </div>
+                <h3 class="evo-card-title">From one-off fixes to a repeatable delivery model.</h3>
+                <p class="evo-card-desc">
+                  Our team grew from tactical cloud support into a full-service architecture, migration, security, and managed operations partner.
+                </p>
+                <div class="evo-status-chip">
+                  <i class="fa-solid fa-server"></i>
+                  <span>End-to-End Operational Ownership</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Visual Card 2: Today (Strategy to Steady-State) -->
+            <article class="evolution-feature-card card-today" id="evoCard2">
+              <div class="evo-card-spotlight" aria-hidden="true"></div>
+              <div class="evo-card-glare" aria-hidden="true"></div>
+              <div class="evo-card-inner">
+                <div class="evo-overline overline-purple">
+                  <span class="evo-dot purple-dot" aria-hidden="true">â—</span>
+                  <span>TODAY</span>
+                </div>
+                <h3 class="evo-card-title">One accountable route from strategy to steady-state operations.</h3>
+                <p class="evo-card-desc">
+                  We now support architecture design, migration execution, compliance readiness, FinOps discipline, observability, and 24/7 managed operations.
+                </p>
+                <div class="evo-tag-row">
+                  <span class="evo-tag"><i class="fa-solid fa-check"></i> Architecture</span>
+                  <span class="evo-tag"><i class="fa-solid fa-check"></i> Migration</span>
+                  <span class="evo-tag"><i class="fa-solid fa-check"></i> 24/7 SRE</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Timeline Milestones -->
+        <div class="evolution-timeline-col" id="evolutionTimelineCol">
+          
+          <!-- Continuous Timeline Rail -->
+          <div class="timeline-rail" aria-hidden="true">
+            <div class="timeline-rail-progress" id="timelineRailProgress"></div>
+          </div>
+
+          <!-- Timeline Items Container -->
+          <div class="timeline-list">
+
+            <!-- Milestone 1: 2018 -->
+            <div class="timeline-item" data-year="2018">
+              <div class="timeline-pin">
+                <span class="pin-ring"></span>
+                <span class="pin-dot"></span>
+              </div>
+              <article class="timeline-card" data-card-year="2018">
+                <div class="timeline-card-spotlight" aria-hidden="true"></div>
+                <div class="timeline-card-glare" aria-hidden="true"></div>
+                <div class="timeline-card-inner">
+                  <div class="timeline-header-row">
+                    <span class="timeline-year-chip">2018</span>
+                    <span class="timeline-meta-text">3 core engineers Â· single-cloud migrations</span>
+                  </div>
+                  <h3 class="timeline-title">Founded to rescue teams from reactive cloud sprawl.</h3>
+                  <p class="timeline-desc">
+                    We began by stabilizing broken deployments, reducing outages, and turning fragmented cloud environments into readable, supportable systems.
+                  </p>
+                  <div class="timeline-footer-badge">
+                    <i class="fa-solid fa-life-ring"></i>
+                    <span>Emergency Recovery &amp; Triage Foundation</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Milestone 2: 2019 -->
+            <div class="timeline-item" data-year="2019">
+              <div class="timeline-pin">
+                <span class="pin-ring"></span>
+                <span class="pin-dot"></span>
+              </div>
+              <article class="timeline-card" data-card-year="2019">
+                <div class="timeline-card-spotlight" aria-hidden="true"></div>
+                <div class="timeline-card-glare" aria-hidden="true"></div>
+                <div class="timeline-card-inner">
+                  <div class="timeline-header-row">
+                    <span class="timeline-year-chip">2019</span>
+                    <span class="timeline-meta-text">Security lead added Â· 12 active customers</span>
+                  </div>
+                  <h3 class="timeline-title">Security and compliance became part of the delivery baseline.</h3>
+                  <p class="timeline-desc">
+                    We formalized landing zones, audit-ready controls, and zero-trust patterns so engineering velocity no longer came at the expense of trust.
+                  </p>
+                  <div class="timeline-footer-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Zero-Trust Baseline Integration</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Milestone 3: 2021 -->
+            <div class="timeline-item" data-year="2021">
+              <div class="timeline-pin">
+                <span class="pin-ring"></span>
+                <span class="pin-dot"></span>
+              </div>
+              <article class="timeline-card" data-card-year="2021">
+                <div class="timeline-card-spotlight" aria-hidden="true"></div>
+                <div class="timeline-card-glare" aria-hidden="true"></div>
+                <div class="timeline-card-inner">
+                  <div class="timeline-header-row">
+                    <span class="timeline-year-chip">2021</span>
+                    <span class="timeline-meta-text">40+ team members Â· multi-cloud capability</span>
+                  </div>
+                  <h3 class="timeline-title">The team scaled into Kubernetes, modernization, and FinOps.</h3>
+                  <p class="timeline-desc">
+                    New practices around rightsizing, cost mapping, and platform standardization helped clients cut waste while moving more workloads to production.
+                  </p>
+                  <div class="timeline-footer-badge">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Kubernetes Scaling &amp; FinOps Discipline</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Milestone 4: 2023 -->
+            <div class="timeline-item" data-year="2023">
+              <div class="timeline-pin">
+                <span class="pin-ring"></span>
+                <span class="pin-dot"></span>
+              </div>
+              <article class="timeline-card" data-card-year="2023">
+                <div class="timeline-card-spotlight" aria-hidden="true"></div>
+                <div class="timeline-card-glare" aria-hidden="true"></div>
+                <div class="timeline-card-inner">
+                  <div class="timeline-header-row">
+                    <span class="timeline-year-chip">2023</span>
+                    <span class="timeline-meta-text">Managed Ops launched Â· 180+ migrations shipped</span>
+                  </div>
+                  <h3 class="timeline-title">We expanded into 24/7 managed operations and observability.</h3>
+                  <p class="timeline-desc">
+                    The offering matured into an end-to-end operating model with proactive SRE, incident response, and clearer ownership after launch.
+                  </p>
+                  <div class="timeline-footer-badge">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>24/7 SRE Command Center &amp; Observability</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Milestone 5: 2026 -->
+            <div class="timeline-item" data-year="2026">
+              <div class="timeline-pin">
+                <span class="pin-ring"></span>
+                <span class="pin-dot"></span>
+              </div>
+              <article class="timeline-card" data-card-year="2026">
+                <div class="timeline-card-spotlight" aria-hidden="true"></div>
+                <div class="timeline-card-glare" aria-hidden="true"></div>
+                <div class="timeline-card-inner">
+                  <div class="timeline-header-row">
+                    <span class="timeline-year-chip active-chip">2026</span>
+                    <span class="timeline-meta-text">Platform partner model Â· enterprise-ready delivery</span>
+                  </div>
+                  <h3 class="timeline-title">Today, we deliver a repeatable route from first audit to steady state.</h3>
+                  <p class="timeline-desc">
+                    Clients now engage us for strategic planning, execution, compliance posture, cost control, and long-term operational resilience under one accountable partner.
+                  </p>
+                  <div class="timeline-footer-badge">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>Unified Enterprise Platform Model</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. THE TEAM SECTION ("The operators behind Stackly" - Automatic Moving Cards)
+       ========================================================================== -->
+  <section class="about-team-section" id="aboutTeam">
+    <!-- Ambient glowing backgrounds -->
+    <div class="team-ambient-glow team-ambient-1" aria-hidden="true"></div>
+    <div class="team-ambient-glow team-ambient-2" aria-hidden="true"></div>
+    <div class="team-ambient-grid" aria-hidden="true"></div>
+
+    <div class="team-container">
+
+      <!-- Section Header -->
+      <div class="team-header" id="teamHeader">
+        <div class="team-pill-badge" id="teamBadge">
+          <span class="team-pulse-dot" aria-hidden="true"></span>
+          <span>THE TEAM</span>
+        </div>
+        <h2 class="team-main-heading" id="teamHeading" aria-label="The operators behind Stackly">
+          <span class="tword-wrap"><span class="tword">The</span></span>
+          <span class="tword-wrap"><span class="tword">operators</span></span>
+          <span class="tword-wrap"><span class="tword">behind</span></span>
+          <span class="tword-wrap"><span class="tword highlight-gradient-team">Stackly</span></span>
+        </h2>
+        <p class="team-subheading" id="teamSubheading">
+          We are senior engineers, veteran site reliability specialists, and system designers.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- Infinite Continuous Marquee Wrapper (Moving Left to Right Automatically) -->
+    <div class="team-marquee-viewport" id="teamMarqueeViewport">
+      <div class="team-marquee-track" id="teamMarqueeTrack">
+
+        <!-- ==================== SET 1: 6 TEAM MEMBERS ==================== -->
+
+        <!-- Member 1: Zaria Chen -->
+        <article class="team-card" data-member="zaria-chen">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/team3.webp" 
+              alt="Zaria Chen - Chief Technology Officer" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/team3.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip">
+              <span class="status-pulse-dot"></span>
+              <span>KERNEL &amp; INFRA</span>
+            </div>
+            <!-- Quick Social Bar -->
+            <div class="team-social-bar">
+              <a href="404.html?member=zaria&amp;return_page=about.html" class="team-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=zaria&amp;return_page=about.html" class="team-social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=zaria&amp;return_page=about.html" class="team-social-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Zaria Chen</h3>
+              <i class="fa-solid fa-circle-check verified-badge" title="Verified Core Operator"></i>
+            </div>
+            <div class="team-role-tag">CHIEF TECHNOLOGY OFFICER</div>
+            <p class="team-card-desc">
+              Ex-Google Infrastructure, CNCF Ambassador. Spends her nights minimizing p99 latency.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Distributed Systems</span>
+              <span class="team-tag">CNCF Ambassador</span>
+              <span class="team-tag">p99 Tuning</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 2: Marcus Vance -->
+        <article class="team-card" data-member="marcus-vance">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/team1.webp" 
+              alt="Marcus Vance - Head of Security & Trust" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/team1.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-amber">
+              <span class="status-pulse-dot amber-pulse"></span>
+              <span>ZERO-TRUST LEAD</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=marcus&amp;return_page=about.html" class="team-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=marcus&amp;return_page=about.html" class="team-social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=marcus&amp;return_page=about.html" class="team-social-link" aria-label="Security Keys"><i class="fa-solid fa-key"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Marcus Vance</h3>
+              <i class="fa-solid fa-circle-check verified-badge" title="Verified Core Operator"></i>
+            </div>
+            <div class="team-role-tag">HEAD OF SECURITY &amp; TRUST</div>
+            <p class="team-card-desc">
+              Audited 200+ startups. Architected the Zero-Trust posture used inside our managed fleets.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Zero-Trust Fleet</span>
+              <span class="team-tag">SOC2 Type II</span>
+              <span class="team-tag">Cloud Forensics</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 3: Elena Rostova -->
+        <article class="team-card" data-member="elena-rostova">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/team2.webp" 
+              alt="Elena Rostova - Director of Managed Ops" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/team2.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-emerald">
+              <span class="status-pulse-dot emerald-pulse"></span>
+              <span>24/7 SRE TIER-1</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=elena&amp;return_page=about.html" class="team-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=elena&amp;return_page=about.html" class="team-social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=elena&amp;return_page=about.html" class="team-social-link" aria-label="Terminal"><i class="fa-solid fa-terminal"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Elena Rostova</h3>
+              <i class="fa-solid fa-circle-check verified-badge" title="Verified Core Operator"></i>
+            </div>
+            <div class="team-role-tag">DIRECTOR OF MANAGED OPS</div>
+            <p class="team-card-desc">
+              Ex-SRE Lead at Cloudflare. Oversees 24/7 global on-call operations and system resilience.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Incident Command</span>
+              <span class="team-tag">Chaos Testing</span>
+              <span class="team-tag">Global Edge</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 4: Devan Nair -->
+        <article class="team-card" data-member="devan-nair">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/portrait-young-indian-top-manager-t-shirt-tie-crossed-arms-smiling-white-isolated-wall.webp" 
+              alt="Devan Nair - VP of Platform Architecture" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/portrait-young-indian-top-manager-t-shirt-tie-crossed-arms-smiling-white-isolated-wall.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-cyan">
+              <span class="status-pulse-dot cyan-pulse"></span>
+              <span>PLATFORM CORE</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=devan&amp;return_page=about.html" class="team-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=devan&amp;return_page=about.html" class="team-social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=devan&amp;return_page=about.html" class="team-social-link" aria-label="Kubernetes"><i class="fa-solid fa-dharmachakra"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Devan Nair</h3>
+              <i class="fa-solid fa-circle-check verified-badge" title="Verified Core Operator"></i>
+            </div>
+            <div class="team-role-tag">VP OF PLATFORM ARCHITECTURE</div>
+            <p class="team-card-desc">
+              Former AWS Principal Architect. Guided 150+ high-scale enterprise migrations with zero downtime.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Multi-Cloud</span>
+              <span class="team-tag">Kubernetes Core</span>
+              <span class="team-tag">Terraform IaC</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 5: Julian Keller -->
+        <article class="team-card" data-member="julian-keller">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/smiling-worker-with-tie-suit.webp" 
+              alt="Julian Keller - Head of FinOps & Cloud Economics" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/smiling-worker-with-tie-suit.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-amber">
+              <span class="status-pulse-dot amber-pulse"></span>
+              <span>FINOPS STRATEGY</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=julian&amp;return_page=about.html" class="team-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=julian&amp;return_page=about.html" class="team-social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=julian&amp;return_page=about.html" class="team-social-link" aria-label="FinOps"><i class="fa-solid fa-chart-pie"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Julian Keller</h3>
+              <i class="fa-solid fa-circle-check verified-badge" title="Verified Core Operator"></i>
+            </div>
+            <div class="team-role-tag">HEAD OF FINOPS &amp; CLOUD ECONOMICS</div>
+            <p class="team-card-desc">
+              Ex-Datadog FinOps Strategist. Cut over $45M in cloud compute waste across enterprise fleets.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Cloud Arbitrage</span>
+              <span class="team-tag">FinOps Certified</span>
+              <span class="team-tag">Unit Economics</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 6: Kavita Sen -->
+        <article class="team-card" data-member="kavita-sen">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp" 
+              alt="Kavita Sen - Principal Reliability Architect" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-purple">
+              <span class="status-pulse-dot purple-pulse"></span>
+              <span>RESILIENCE MESH</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=kavita&amp;return_page=about.html" class="team-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=kavita&amp;return_page=about.html" class="team-social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=kavita&amp;return_page=about.html" class="team-social-link" aria-label="Mesh"><i class="fa-solid fa-network-wired"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Kavita Sen</h3>
+              <i class="fa-solid fa-circle-check verified-badge" title="Verified Core Operator"></i>
+            </div>
+            <div class="team-role-tag">PRINCIPAL RELIABILITY ARCHITECT</div>
+            <p class="team-card-desc">
+              Specializes in self-healing automation, eBPF telemetry, and sub-second failover orchestration.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">eBPF Telemetry</span>
+              <span class="team-tag">Autonomous Healing</span>
+              <span class="team-tag">Failover Mesh</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== SET 2: DUPLICATED FOR SEAMLESS INFINITE LOOP ==================== -->
+
+        <!-- Duplicate 1: Zaria Chen -->
+        <article class="team-card" data-member="zaria-chen-dup" aria-hidden="true">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/team3.webp" 
+              alt="Zaria Chen" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/team3.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip">
+              <span class="status-pulse-dot"></span>
+              <span>KERNEL &amp; INFRA</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=zaria&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=zaria&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=zaria&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Zaria Chen</h3>
+              <i class="fa-solid fa-circle-check verified-badge"></i>
+            </div>
+            <div class="team-role-tag">CHIEF TECHNOLOGY OFFICER</div>
+            <p class="team-card-desc">
+              Ex-Google Infrastructure, CNCF Ambassador. Spends her nights minimizing p99 latency.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Distributed Systems</span>
+              <span class="team-tag">CNCF Ambassador</span>
+              <span class="team-tag">p99 Tuning</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate 2: Marcus Vance -->
+        <article class="team-card" data-member="marcus-vance-dup" aria-hidden="true">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/team1.webp" 
+              alt="Marcus Vance" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/team1.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-amber">
+              <span class="status-pulse-dot amber-pulse"></span>
+              <span>ZERO-TRUST LEAD</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=marcus&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=marcus&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=marcus&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-solid fa-key"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Marcus Vance</h3>
+              <i class="fa-solid fa-circle-check verified-badge"></i>
+            </div>
+            <div class="team-role-tag">HEAD OF SECURITY &amp; TRUST</div>
+            <p class="team-card-desc">
+              Audited 200+ startups. Architected the Zero-Trust posture used inside our managed fleets.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Zero-Trust Fleet</span>
+              <span class="team-tag">SOC2 Type II</span>
+              <span class="team-tag">Cloud Forensics</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate 3: Elena Rostova -->
+        <article class="team-card" data-member="elena-rostova-dup" aria-hidden="true">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/team2.webp" 
+              alt="Elena Rostova" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/team2.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-emerald">
+              <span class="status-pulse-dot emerald-pulse"></span>
+              <span>24/7 SRE TIER-1</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=elena&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=elena&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=elena&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-solid fa-terminal"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Elena Rostova</h3>
+              <i class="fa-solid fa-circle-check verified-badge"></i>
+            </div>
+            <div class="team-role-tag">DIRECTOR OF MANAGED OPS</div>
+            <p class="team-card-desc">
+              Ex-SRE Lead at Cloudflare. Oversees 24/7 global on-call operations and system resilience.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Incident Command</span>
+              <span class="team-tag">Chaos Testing</span>
+              <span class="team-tag">Global Edge</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate 4: Devan Nair -->
+        <article class="team-card" data-member="devan-nair-dup" aria-hidden="true">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/portrait-young-indian-top-manager-t-shirt-tie-crossed-arms-smiling-white-isolated-wall.webp" 
+              alt="Devan Nair" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/portrait-young-indian-top-manager-t-shirt-tie-crossed-arms-smiling-white-isolated-wall.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-cyan">
+              <span class="status-pulse-dot cyan-pulse"></span>
+              <span>PLATFORM CORE</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=devan&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=devan&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=devan&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-solid fa-dharmachakra"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Devan Nair</h3>
+              <i class="fa-solid fa-circle-check verified-badge"></i>
+            </div>
+            <div class="team-role-tag">VP OF PLATFORM ARCHITECTURE</div>
+            <p class="team-card-desc">
+              Former AWS Principal Architect. Guided 150+ high-scale enterprise migrations with zero downtime.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Multi-Cloud</span>
+              <span class="team-tag">Kubernetes Core</span>
+              <span class="team-tag">Terraform IaC</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate 5: Julian Keller -->
+        <article class="team-card" data-member="julian-keller-dup" aria-hidden="true">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/smiling-worker-with-tie-suit.webp" 
+              alt="Julian Keller" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/smiling-worker-with-tie-suit.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-amber">
+              <span class="status-pulse-dot amber-pulse"></span>
+              <span>FINOPS STRATEGY</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=julian&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=julian&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=julian&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-solid fa-chart-pie"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Julian Keller</h3>
+              <i class="fa-solid fa-circle-check verified-badge"></i>
+            </div>
+            <div class="team-role-tag">HEAD OF FINOPS &amp; CLOUD ECONOMICS</div>
+            <p class="team-card-desc">
+              Ex-Datadog FinOps Strategist. Cut over $45M in cloud compute waste across enterprise fleets.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">Cloud Arbitrage</span>
+              <span class="team-tag">FinOps Certified</span>
+              <span class="team-tag">Unit Economics</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate 6: Kavita Sen -->
+        <article class="team-card" data-member="kavita-sen-dup" aria-hidden="true">
+          <div class="team-card-spotlight" aria-hidden="true"></div>
+          <div class="team-card-glare" aria-hidden="true"></div>
+          <div class="team-card-border-glow" aria-hidden="true"></div>
+
+          <div class="team-img-frame">
+            <img 
+              src="images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp" 
+              alt="Kavita Sen" 
+              class="team-photo"
+              onerror="this.onerror=null;this.src='images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp';">
+            <div class="team-img-overlay"></div>
+            <div class="team-status-chip chip-purple">
+              <span class="status-pulse-dot purple-pulse"></span>
+              <span>RESILIENCE MESH</span>
+            </div>
+            <div class="team-social-bar">
+              <a href="404.html?member=kavita&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="404.html?member=kavita&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="404.html?member=kavita&amp;return_page=about.html" class="team-social-link" tabindex="-1"><i class="fa-solid fa-network-wired"></i></a>
+            </div>
+          </div>
+
+          <div class="team-card-body">
+            <div class="team-name-row">
+              <h3 class="team-card-name">Kavita Sen</h3>
+              <i class="fa-solid fa-circle-check verified-badge"></i>
+            </div>
+            <div class="team-role-tag">PRINCIPAL RELIABILITY ARCHITECT</div>
+            <p class="team-card-desc">
+              Specializes in self-healing automation, eBPF telemetry, and sub-second failover orchestration.
+            </p>
+            <div class="team-pill-tags">
+              <span class="team-tag">eBPF Telemetry</span>
+              <span class="team-tag">Autonomous Healing</span>
+              <span class="team-tag">Failover Mesh</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==========================================================================
+       8. ABOUT PAGE: FINAL CALL TO ACTION (CTA) SECTION ("Ready to find your clear route?")
+       ========================================================================== -->
+  <section class="about-cta-section" id="aboutCta">
+    <!-- Ambient glowing light pools -->
+    <div class="about-cta-ambient-glow about-cta-glow-1" aria-hidden="true"></div>
+    <div class="about-cta-ambient-glow about-cta-glow-2" aria-hidden="true"></div>
+
+    <div class="about-cta-container">
+      <div class="about-cta-card" id="aboutCtaCard">
+        
+        <!-- Animated Fluid Wave Background Canvas & Image Layer -->
+        <div class="about-cta-wave-layer" aria-hidden="true">
+          <div 
+            class="about-cta-wave-img" 
+            id="aboutCtaWaveImg"
+            style="background-image: url('C:\\Users\\VISHNU\\Desktop\\new theme 06-07-26\\Cloud Business Solutions\\images\\main.webp'), url('images/main.webp');"
+          ></div>
+          <!-- Undulating Chromatic Sine Wave SVG Overlays -->
+          <div class="about-cta-wave-svg-overlay">
+            <svg class="about-wave-svg wave-svg-1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+              <path fill="rgba(14, 165, 233, 0.14)" d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,122.7C672,128,768,192,864,208C960,224,1056,192,1152,165.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+            <svg class="about-wave-svg wave-svg-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+              <path fill="rgba(249, 115, 22, 0.12)" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,117.3C960,107,1056,149,1152,170.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- High-Contrast Glass & Dark Vignette Gradient Overlay -->
+        <div class="about-cta-gradient-overlay" aria-hidden="true"></div>
+
+        <!-- Dynamic Traveling Light Border Beam & Spotlight -->
+        <div class="about-cta-border-beam" aria-hidden="true"></div>
+        <div class="about-cta-spotlight" aria-hidden="true"></div>
+        <div class="about-cta-glare" aria-hidden="true"></div>
+
+        <!-- Main Content Area -->
+        <div class="about-cta-content" id="aboutCtaContent">
+
+          <!-- Pulsing Live Badge -->
+          <div class="about-cta-pill-badge" id="aboutCtaBadge">
+            <span class="cta-pulse-radar" aria-hidden="true"></span>
+            <span>NEXT STEPS</span>
+          </div>
+
+          <!-- Main Heading with Words Split for GSAP Stagger Reveal -->
+          <h2 class="about-cta-heading" id="aboutCtaHeading" aria-label="Ready to find your clear route?">
+            <span class="cword-mask"><span class="cword">Ready</span></span>
+            <span class="cword-mask"><span class="cword">to</span></span>
+            <span class="cword-mask"><span class="cword">find</span></span>
+            <span class="cword-mask"><span class="cword">your</span></span>
+            <span class="cword-mask"><span class="cword highlight-gradient-route">clear</span></span>
+            <span class="cword-mask"><span class="cword highlight-gradient-route">route?</span></span>
+          </h2>
+
+          <!-- Subheading -->
+          <p class="about-cta-subheading" id="aboutCtaSubheading">
+            Book a 30-minute route audit and leave with a written plan - no strings.
+          </p>
+
+          <!-- Primary CTA Button with Calendar Icon & Radar Glow -->
+          <div class="about-cta-button-wrap" id="aboutCtaButtonWrap">
+            <a href="404.html?from=about_cta&amp;return_page=about.html" class="about-cta-pill-btn" id="aboutCtaButton" aria-label="Book a route audit">
+              <span class="btn-radar-ring" aria-hidden="true"></span>
+              <svg class="about-cta-cal-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span class="about-cta-btn-label">Book a route audit</span>
+              <i class="fa-solid fa-circle-check btn-action-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <!-- High-Signal Trust Badges / Guarantees -->
+          <div class="about-cta-trust-row" id="aboutCtaTrustRow">
+            <div class="trust-item">
+              <i class="fa-solid fa-clock"></i>
+              <span>30-Minute High-Signal Audit</span>
+            </div>
+            <div class="trust-separator">Â·</div>
+            <div class="trust-item">
+              <i class="fa-solid fa-file-shield"></i>
+              <span>Written Architecture Plan</span>
+            </div>
+            <div class="trust-separator">Â·</div>
+            <div class="trust-item">
+              <i class="fa-solid fa-unlock-keyhole"></i>
+              <span>Zero Vendor Lock-in</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. STACKLY FOOTER SECTION (Consistent Across Site)
+       ========================================================================== -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-container">
+
+      <!-- 4-Column Grid -->
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand -->
+        <div class="footer-col footer-col-brand" data-aos="fade-up" data-aos-duration="800">
+          <a href="index.html" class="footer-brand-logo" aria-label="Stackly Homepage">
+            <img 
+              src="images/logo.webp" 
+              alt="Stackly Logo" 
+              class="footer-logo-img" 
+              onerror="this.src='images/logo.webp'">
+          </a>
+          <p class="footer-brand-desc">
+            A warm signal through the cloud layer - complexity turned into a route your team can walk.
+          </p>
+        </div>
+
+        <!-- Column 2: Company -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-link-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="service.html" class="footer-link">Our Solutions</a></li>
+            <li><a href="404.html?from=footer&amp;return_page=about.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-link-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="service.html" class="footer-link">Services</a></li>
+            <li><a href="about.html" class="footer-link active">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="blog.html" class="footer-link">Blogs</a></li>
+            <li><a href="login.html" class="footer-link">Sign In</a></li>
+            <li><a href="contact.html" class="footer-link">Book a Consult</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-col footer-col-contact" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-info">
+            <a href="404.html?from=footer&amp;return_page=about.html" class="footer-contact-item">
+              <i class="fa-regular fa-envelope footer-contact-icon" aria-hidden="true"></i>
+              <span>hello@Stackly.net.in</span>
+            </a>
+            <a href="404.html?from=footer&amp;return_page=about.html" class="footer-contact-item">
+              <i class="fa-solid fa-phone footer-contact-icon" aria-hidden="true"></i>
+              <span>+91 89052 46537</span>
+            </a>
+            <div class="footer-contact-item footer-contact-address">
+              <i class="fa-solid fa-location-dot footer-contact-icon" aria-hidden="true"></i>
+              <span>MMR Complex, China Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animated Divider Line -->
+      <div class="footer-divider-wrap">
+        <div class="footer-divider-line" id="footerDivider"></div>
+      </div>
+
+      <!-- Bottom Footer: Copyright & Socials -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2026 Stackly Technologies. All rights reserved.
+        </p>
+        
+        <div class="footer-social-links" aria-label="Social Media">
+          <a href="404.html?from=footer&amp;return_page=about.html" class="footer-social-btn" aria-label="Stackly on LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=about.html" class="footer-social-btn" aria-label="Stackly on Twitter / X" title="Twitter / X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=about.html" class="footer-social-btn" aria-label="Stackly on Instagram" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Main Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+

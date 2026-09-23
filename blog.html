@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogs &amp; Insights Stackly Cloud Business Solutions</title>
+  <meta name="description" content="Expert perspectives, technical deep-dives, and best practices for scaling enterprise infrastructure securely with Stackly.">
+
+  <!-- Instant Position Restoration (Prevents Section Flash) -->
+  <script>
+    (function() {
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var restoreScroll = urlParams.get('restore_scroll');
+        var isRestoring = (sessionStorage.getItem('stackly_instant_restore') === 'true' || restoreScroll !== null) && 
+                          (document.referrer.indexOf('404.html') !== -1 || restoreScroll !== null);
+        if (isRestoring) {
+          document.documentElement.classList.add('instant-restoring');
+          document.documentElement.style.scrollBehavior = 'auto';
+          var sVal = restoreScroll || sessionStorage.getItem('stackly_target_scroll') || sessionStorage.getItem('stackly_last_scroll');
+          if (sVal !== null && sVal !== '' && parseInt(sVal, 10) >= 0) {
+            window.scrollTo(0, parseInt(sVal, 10));
+          }
+        } else {
+          window.scrollTo(0, 0);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- AOS (Animate On Scroll) CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body class="blog-page">
+
+  <!-- ==========================================================================
+       Futuristic 3D GSAP Animated Loading Page
+       ========================================================================== -->
+  <div id="siteLoader" class="site-loader" aria-label="Loading Stackly">
+    <!-- Ambient Background Lighting & Mesh -->
+    <div class="loader-ambient-glow cyan-ambient" aria-hidden="true"></div>
+    <div class="loader-ambient-glow indigo-ambient" aria-hidden="true"></div>
+    <div class="loader-grid-mesh" aria-hidden="true"></div>
+
+    <div class="loader-container">
+      <!-- 1. Brand Logo with 3D Float & Ambient Halo -->
+      <div class="loader-brand" id="loaderBrand">
+        <div class="loader-logo-halo" aria-hidden="true"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="loader-logo-img">
+        <div class="loader-tagline">
+          <span class="loader-tag-dot" aria-hidden="true"></span>
+          <span>CLOUD BUSINESS SOLUTIONS</span>
+        </div>
+      </div>
+
+      <!-- 2. 3D Gyroscope Video Core Stage -->
+      <div class="loader-stage-3d" id="loaderStage3D">
+        <!-- Concentric 3D Gyroscope Rings -->
+        <div class="loader-gyro-ring ring-outer" aria-hidden="true">
+          <div class="gyro-dot dot-1"></div>
+          <div class="gyro-dot dot-2"></div>
+        </div>
+        <div class="loader-gyro-ring ring-middle" aria-hidden="true">
+          <div class="gyro-dot dot-3"></div>
+        </div>
+        <div class="loader-gyro-ring ring-inner" aria-hidden="true"></div>
+
+        <!-- Spherical Looping Video Core with Holographic Glare -->
+        <div class="loader-video-orb" id="loaderVideoOrb">
+          <div class="loader-orb-aura" aria-hidden="true"></div>
+          <div class="loader-orb-rim" aria-hidden="true"></div>
+          <video 
+            class="loader-core-video" 
+            src="images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="auto"
+          ></video>
+          <div class="loader-orb-glare" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- 3. Cyber HUD Progress Counter & Status -->
+      <div class="loader-hud" id="loaderHud">
+        <div class="loader-counter-wrap">
+          <span class="loader-counter-num" id="loaderCounter">0</span>
+          <span class="loader-counter-pct">%</span>
+        </div>
+
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar" id="loaderProgressBar">
+            <span class="loader-progress-glow"></span>
+          </div>
+        </div>
+
+        <div class="loader-status" id="loaderStatus">
+          <span class="status-indicator"></span>
+          <span class="status-text" id="loaderStatusText">INITIALIZING CLOUD INFRASTRUCTURE...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Global Background & Mesh Grid -->
+  <div class="bg-gradient-glow top-glow" aria-hidden="true"></div>
+  <div class="bg-gradient-glow bottom-glow" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       1. HEADER / NAVIGATION (Global Header matching index.html)
+       ========================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      
+      <!-- Logo wrapped in anchor tag linking to index.html -->
+      <a href="index.html" class="logo-link" aria-label="Stackly Homepage">
+        <img 
+          src="images/logo.webp" 
+          alt="Stackly Logo" 
+          class="logo-img" 
+          onerror="this.src='images/logo.webp'">
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link magnetic-nav-item">Home</a></li>
+          <li class="nav-item"><a href="service.html" class="nav-link magnetic-nav-item">Services</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link magnetic-nav-item">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link magnetic-nav-item">Contact</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link magnetic-nav-item active">Blogs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult">
+          <span class="btn-consult-text">Book a consult</span>
+          <span class="pulse-aura" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="service.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link active">Blogs</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <a href="login.html" class="mobile-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult mobile-consult">
+          <span class="btn-consult-text">Book a consult</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. BLOG HERO SECTION - Split-Screen Animated Slider (Text Left, Image Right)
+       ========================================================================== -->
+  <main class="blog-split-hero" id="blogHero">
+
+    <!-- Atmospheric Dynamic Background Glow System -->
+    <div class="blog-hero-ambient" aria-hidden="true">
+      <div class="blog-ambient-blob blob-accent" id="blogAccentGlow"></div>
+      <div class="blog-ambient-blob blob-secondary"></div>
+      <div class="blog-hero-grid-mesh"></div>
+      <div class="blog-hero-noise-overlay"></div>
+    </div>
+
+    <!-- Main Container for Split Screen -->
+    <div class="blog-hero-shell">
+
+      <!-- Top Header / Context Row -->
+      <div class="blog-hero-header-row">
+        <div class="blog-overline" id="blogOverline">
+          <span class="blog-pulse-dot" aria-hidden="true">
+            <span class="blog-dot-ping"></span>
+            <span class="blog-dot-core"></span>
+          </span>
+          <span class="blog-overline-text">FEATURED ARCHITECTURAL BRIEFINGS</span>
+        </div>
+        
+        <!-- Live Status Pill -->
+        <div class="blog-status-indicator">
+          <span class="status-live-beacon"></span>
+          <span>AUTONOMOUS SLIDER ACTIVE</span>
+        </div>
+      </div>
+
+      <!-- Split Screen Grid Layout: Left Content, Right Visual Stage -->
+      <div class="blog-split-grid" id="blogSplitGrid">
+
+        <!-- ================= LEFT COLUMN: TEXT SLIDES DECK ================= -->
+        <div class="blog-split-text-deck" id="blogTextDeck">
+
+          <!-- Slide 01: Multi-Cloud -->
+          <article class="blog-text-slide active" data-slide-index="0" data-accent="#38bdf8">
+            <div class="slide-meta-row">
+              <span class="slide-category-pill category-cyan">
+                <i class="fa-solid fa-cloud"></i> ENTERPRISE ARCHITECTURE
+              </span>
+              <span class="slide-reading-time">
+                <i class="fa-regular fa-clock"></i> 8 MIN READ
+              </span>
+            </div>
+
+            <h1 class="slide-headline">
+              Next-Gen Multi-Cloud Orchestration at <span class="gradient-text-cyan">Hyper-Scale.</span>
+            </h1>
+
+            <p class="slide-lead">
+              How Fortune 500 FinTech and SaaS giants achieve automated cross-cloud failover across AWS, Azure, and GCP with sub-second latency and zero data divergence.
+            </p>
+
+            <div class="slide-author-row">
+              <img 
+                src="images/team3.webp" 
+                alt="Zaria Chen" 
+                class="slide-author-avatar"
+                onerror="this.src='images/team3.webp'">
+              <div class="slide-author-info">
+                <div class="slide-author-name">Zaria Chen</div>
+                <div class="slide-author-title">VP of Distributed Systems Â· Oct 14, 2026</div>
+              </div>
+            </div>
+
+            <div class="slide-actions-row">
+              <a href="404.html?article=multi-cloud-orchestration&amp;return_page=blog.html" class="slide-cta-btn btn-cyan">
+                <span>Read Full Briefing</span>
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+              <a href="404.html?from=blog_archive&amp;return_page=blog.html" class="slide-secondary-btn" id="exploreAllStoriesBtn">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>All Editions</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Slide 02: Zero-Trust Security -->
+          <article class="blog-text-slide" data-slide-index="1" data-accent="#a855f7">
+            <div class="slide-meta-row">
+              <span class="slide-category-pill category-purple">
+                <i class="fa-solid fa-shield-halved"></i> DEVSECOPS &amp; COMPLIANCE
+              </span>
+              <span class="slide-reading-time">
+                <i class="fa-regular fa-clock"></i> 6 MIN READ
+              </span>
+            </div>
+
+            <h1 class="slide-headline">
+              Hardening Ephemeral Workloads with <span class="gradient-text-purple">Identity Governance.</span>
+            </h1>
+
+            <p class="slide-lead">
+              Deconstructing automated identity governance, runtime vulnerability isolation, and cryptographic workload attestation in continuous high-velocity container pipelines.
+            </p>
+
+            <div class="slide-author-row">
+              <img 
+                src="images/smiling-worker-with-tie-suit.webp" 
+                alt="Julian Keller" 
+                class="slide-author-avatar"
+                onerror="this.src='images/smiling-worker-with-tie-suit.webp'">
+              <div class="slide-author-info">
+                <div class="slide-author-name">Julian Keller</div>
+                <div class="slide-author-title">Chief Information Security Officer Â· Oct 10, 2026</div>
+              </div>
+            </div>
+
+            <div class="slide-actions-row">
+              <a href="404.html?article=zero-trust-security&amp;return_page=blog.html" class="slide-cta-btn btn-purple">
+                <span>Read Full Briefing</span>
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+              <a href="404.html?from=blog_archive&amp;return_page=blog.html" class="slide-secondary-btn">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>All Editions</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Slide 03: FinOps & Cost Optimization -->
+          <article class="blog-text-slide" data-slide-index="2" data-accent="#10b981">
+            <div class="slide-meta-row">
+              <span class="slide-category-pill category-emerald">
+                <i class="fa-solid fa-chart-pie"></i> FINOPS STRATEGY
+              </span>
+              <span class="slide-reading-time">
+                <i class="fa-regular fa-clock"></i> 11 MIN READ
+              </span>
+            </div>
+
+            <h1 class="slide-headline">
+              Slashing Enterprise Cloud Waste by $1.2M with <span class="gradient-text-emerald">Predictive AI.</span>
+            </h1>
+
+            <p class="slide-lead">
+              A data-driven breakdown of predictive rightsizing, automated spot fleet arbitration, and custom telemetry graphs that slashed idle infrastructure bills without service degradation.
+            </p>
+
+            <div class="slide-author-row">
+              <img 
+                src="images/team1.webp" 
+                alt="Marcus Vance" 
+                class="slide-author-avatar"
+                onerror="this.src='images/team1.webp'">
+              <div class="slide-author-info">
+                <div class="slide-author-name">Marcus Vance</div>
+                <div class="slide-author-title">Principal Cloud Economist Â· Oct 04, 2026</div>
+              </div>
+            </div>
+
+            <div class="slide-actions-row">
+              <a href="404.html?article=finops-cost-reduction&amp;return_page=blog.html" class="slide-cta-btn btn-emerald">
+                <span>Read Full Briefing</span>
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+              <a href="404.html?from=blog_archive&amp;return_page=blog.html" class="slide-secondary-btn">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>All Editions</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Slide 04: Chaos Engineering -->
+          <article class="blog-text-slide" data-slide-index="3" data-accent="#ff5232">
+            <div class="slide-meta-row">
+              <span class="slide-category-pill category-coral">
+                <i class="fa-solid fa-bolt-lightning"></i> SITE RELIABILITY (SRE)
+              </span>
+              <span class="slide-reading-time">
+                <i class="fa-regular fa-clock"></i> 9 MIN READ
+              </span>
+            </div>
+
+            <h1 class="slide-headline">
+              Chaos Engineering Patterns for <span class="gradient-text-coral">Billion-Event APIs.</span>
+            </h1>
+
+            <p class="slide-lead">
+              Injecting controlled cross-region latency, silent partition drops, and cascade circuit breaker tests to fortify high-throughput payment and logistics microservices.
+            </p>
+
+            <div class="slide-author-row">
+              <img 
+                src="images/team2.webp" 
+                alt="Elena Rostova" 
+                class="slide-author-avatar"
+                onerror="this.src='images/team2.webp'">
+              <div class="slide-author-info">
+                <div class="slide-author-name">Elena Rostova</div>
+                <div class="slide-author-title">Lead Reliability Architect Â· Sep 28, 2026</div>
+              </div>
+            </div>
+
+            <div class="slide-actions-row">
+              <a href="404.html?article=chaos-engineering-patterns&amp;return_page=blog.html" class="slide-cta-btn btn-coral">
+                <span>Read Full Briefing</span>
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+              <a href="404.html?from=blog_archive&amp;return_page=blog.html" class="slide-secondary-btn">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>All Editions</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ================= RIGHT COLUMN: 3D VISUAL STAGE DECK ================= -->
+        <div class="blog-split-visual-stage" id="blogVisualStage">
+
+          <!-- 3D Card Interactive Tilt Shell -->
+          <div class="blog-visual-card-shell" id="blogVisualShell">
+
+            <!-- Ambient Glow Halo behind frame -->
+            <div class="blog-visual-glow-halo" id="blogVisualGlowHalo"></div>
+
+            <!-- Visual Slides Container -->
+            <div class="blog-visual-slides-viewport">
+
+              <!-- Image Slide 01 -->
+              <div class="blog-visual-slide active" data-slide-index="0">
+                <div class="visual-img-wrap">
+                  <img 
+                    src="images/about.s1.webp" 
+                    alt="Multi-Cloud Orchestration" 
+                    class="visual-main-img"
+                    onerror="this.src='images/about.s1.webp'">
+                  <div class="visual-img-overlay"></div>
+                </div>
+                <!-- Floating Metrics / Highlights -->
+                <div class="visual-chip visual-chip-top" data-float="subtle">
+                  <div class="chip-icon-box chip-cyan"><i class="fa-solid fa-bolt"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">420ms</span>
+                    <span class="chip-lbl">Cross-Cloud Failover</span>
+                  </div>
+                </div>
+                <div class="visual-chip visual-chip-bottom" data-float="subtle-reverse">
+                  <div class="chip-icon-box chip-cyan"><i class="fa-solid fa-shield-check"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">99.999%</span>
+                    <span class="chip-lbl">High Availability SLA</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Image Slide 02 -->
+              <div class="blog-visual-slide" data-slide-index="1">
+                <div class="visual-img-wrap">
+                  <img 
+                    src="images/ab3.webp" 
+                    alt="Zero-Trust Architecture" 
+                    class="visual-main-img"
+                    onerror="this.src='images/ab3.webp'">
+                  <div class="visual-img-overlay"></div>
+                </div>
+                <!-- Floating Metrics -->
+                <div class="visual-chip visual-chip-top" data-float="subtle">
+                  <div class="chip-icon-box chip-purple"><i class="fa-solid fa-fingerprint"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">SOC 2 Type II</span>
+                    <span class="chip-lbl">Cryptographic Attestation</span>
+                  </div>
+                </div>
+                <div class="visual-chip visual-chip-bottom" data-float="subtle-reverse">
+                  <div class="chip-icon-box chip-purple"><i class="fa-solid fa-lock"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">Zero</span>
+                    <span class="chip-lbl">Static Long-Lived Keys</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Image Slide 03 -->
+              <div class="blog-visual-slide" data-slide-index="2">
+                <div class="visual-img-wrap">
+                  <img 
+                    src="images/3 (2).webp" 
+                    alt="FinOps AI Cost Optimization" 
+                    class="visual-main-img"
+                    onerror="this.src='images/3 (2).webp'">
+                  <div class="visual-img-overlay"></div>
+                </div>
+                <!-- Floating Metrics -->
+                <div class="visual-chip visual-chip-top" data-float="subtle">
+                  <div class="chip-icon-box chip-emerald"><i class="fa-solid fa-chart-line"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">-$1.2M</span>
+                    <span class="chip-lbl">Cloud Waste Reclaimed</span>
+                  </div>
+                </div>
+                <div class="visual-chip visual-chip-bottom" data-float="subtle-reverse">
+                  <div class="chip-icon-box chip-emerald"><i class="fa-solid fa-microchip"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">64%</span>
+                    <span class="chip-lbl">Idle Compute Reduction</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Image Slide 04 -->
+              <div class="blog-visual-slide" data-slide-index="3">
+                <div class="visual-img-wrap">
+                  <img 
+                    src="images/061f5ada6dc1d46647286f3ceb88b3bc7d4e169a.webp" 
+                    alt="Chaos Engineering at Scale" 
+                    class="visual-main-img"
+                    onerror="this.src='images/061f5ada6dc1d46647286f3ceb88b3bc7d4e169a.webp'">
+                  <div class="visual-img-overlay"></div>
+                </div>
+                <!-- Floating Metrics -->
+                <div class="visual-chip visual-chip-top" data-float="subtle">
+                  <div class="chip-icon-box chip-coral"><i class="fa-solid fa-network-wired"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">1.4 Billion</span>
+                    <span class="chip-lbl">Daily Edge Transactions</span>
+                  </div>
+                </div>
+                <div class="visual-chip visual-chip-bottom" data-float="subtle-reverse">
+                  <div class="chip-icon-box chip-coral"><i class="fa-solid fa-gauge-high"></i></div>
+                  <div class="chip-content">
+                    <span class="chip-val">0.001%</span>
+                    <span class="chip-lbl">Error Budget Burn Rate</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Subtle Gloss & Reflection Overlay -->
+            <div class="visual-glass-sheen" aria-hidden="true"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= SLIDER CONTROL DOCK & PROGRESS BARS ================= -->
+      <div class="blog-slider-dock" id="blogSliderDock">
+
+        <!-- Slide Counter / Numerals -->
+        <div class="dock-counter">
+          <span class="dock-current-num" id="dockCurrentNum">01</span>
+          <span class="dock-sep">/</span>
+          <span class="dock-total-num">04</span>
+        </div>
+
+        <!-- Segmented Interactive Progress Trackers -->
+        <div class="dock-segments" id="dockSegments" role="tablist" aria-label="Slider navigation segments">
+          <button class="dock-segment active" data-index="0" role="tab" aria-selected="true" aria-label="Slide 1: Multi-Cloud Orchestration">
+            <span class="dock-segment-title">01 Multi-Cloud</span>
+            <div class="dock-bar-track">
+              <div class="dock-bar-fill"></div>
+            </div>
+          </button>
+          <button class="dock-segment" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2: Zero-Trust Security">
+            <span class="dock-segment-title">02 Zero-Trust</span>
+            <div class="dock-bar-track">
+              <div class="dock-bar-fill"></div>
+            </div>
+          </button>
+          <button class="dock-segment" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3: Enterprise FinOps">
+            <span class="dock-segment-title">03 FinOps AI</span>
+            <div class="dock-bar-track">
+              <div class="dock-bar-fill"></div>
+            </div>
+          </button>
+          <button class="dock-segment" data-index="3" role="tab" aria-selected="false" aria-label="Slide 4: Chaos Engineering">
+            <span class="dock-segment-title">04 Chaos Eng</span>
+            <div class="dock-bar-track">
+              <div class="dock-bar-fill"></div>
+            </div>
+          </button>
+        </div>
+
+        <!-- Navigation Action Buttons -->
+        <div class="dock-controls">
+          <button class="dock-btn dock-btn-prev" id="blogSliderPrev" aria-label="Previous Slide">
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+          <button class="dock-btn dock-btn-play" id="blogSliderPlayPause" aria-label="Pause Auto Rotation" title="Pause Auto-Play">
+            <i class="fa-solid fa-pause"></i>
+          </button>
+          <button class="dock-btn dock-btn-next" id="blogSliderNext" aria-label="Next Slide">
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Gradient Blend Divider -->
+    <div class="blog-hero-divider" aria-hidden="true"></div>
+
+  </main>
+
+  <!-- ==========================================================================
+       3. LATEST ENGINEERING DEEP DIVES SECTION (Featured Publications & Filterable Feed)
+       ========================================================================== -->
+  <section class="blog-feed-section" id="blogFeed" aria-label="Latest engineering deep dives">
+    <div class="feed-container">
+
+      <!-- Top Filter & Search Bar System -->
+      <div class="feed-top-bar" data-aos="fade-down" data-aos-duration="600">
+        
+        <!-- Filter Category Tabs -->
+        <div class="feed-category-pills" id="feedCategoryPills" role="tablist" aria-label="Publication Categories">
+          <button class="feed-pill active" role="tab" aria-selected="true" data-filter="all">ALL POSTS</button>
+          <button class="feed-pill" role="tab" aria-selected="false" data-filter="architecture">ARCHITECTURE</button>
+          <button class="feed-pill" role="tab" aria-selected="false" data-filter="finops">FINOPS</button>
+          <button class="feed-pill" role="tab" aria-selected="false" data-filter="migration">MIGRATION</button>
+          <button class="feed-pill" role="tab" aria-selected="false" data-filter="compliance">COMPLIANCE</button>
+          <button class="feed-pill" role="tab" aria-selected="false" data-filter="observability">OBSERVABILITY</button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="feed-search-box">
+          <i class="fa-solid fa-magnifying-glass feed-search-icon" aria-hidden="true"></i>
+          <input 
+            type="text" 
+            class="feed-search-input" 
+            id="feedSearchInput" 
+            placeholder="Search cloud resources..." 
+            aria-label="Search cloud resources"
+            autocomplete="off">
+          <button class="feed-search-clear" id="feedSearchClear" aria-label="Clear Search" style="display: none;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Section Headline & Subtitle Row -->
+      <div class="feed-heading-row" data-aos="fade-up" data-aos-duration="700">
+        <div class="feed-heading-left">
+          <div class="feed-overline">
+            <span class="feed-overline-dot" aria-hidden="true"></span>
+            <span>FEATURED PUBLICATION</span>
+          </div>
+          <h2 class="feed-main-title">Latest engineering deep dives</h2>
+        </div>
+        <div class="feed-heading-right">
+          <p class="feed-main-desc">
+            Insights and architectural strategies straight from Stacklyâ€™s production environments and specialized FinOps units.
+          </p>
+        </div>
+      </div>
+
+      <!-- Articles Deck Wrapper -->
+      <div class="feed-articles-deck" id="feedArticlesDeck">
+
+        <!-- 1. FEATURED CARD (Exact duplicate from user screenshot) -->
+        <article class="feed-article-item feed-featured-card" data-category="architecture" data-keywords="architecture rightsizing cost observability microservice marcus thorne cloud" data-aos="fade-up" data-aos-duration="800">
+          <div class="feed-featured-inner">
+            
+            <!-- Left Side Image -->
+            <div class="feed-featured-media">
+              <img 
+                src="images/Visual Side.webp" 
+                alt="Datacenter Server Room with Infrastructure Architect" 
+                class="feed-featured-img"
+                loading="lazy"
+                onerror="this.src='images/Visual Side.webp'">
+              <div class="feed-media-overlay" aria-hidden="true"></div>
+            </div>
+
+            <!-- Right Side Content -->
+            <div class="feed-featured-body">
+              <div class="feed-card-header">
+                <span class="feed-pill-badge badge-coral">CLOUD ARCHITECTURE</span>
+                <span class="feed-card-date">March 12, 2026 &bull; 12 min read</span>
+              </div>
+
+              <h3 class="feed-card-title">
+                The Cloud Cost Trap: Why Rightsizing Fails Without True Observability
+              </h3>
+
+              <p class="feed-card-excerpt">
+                Many technical organizations attempt to scale back compute costs by simply downsizing instances. Without mapping microservice dependency loops and memory peak profiles, you're merely trade-offing safety margins for latency spikes.
+              </p>
+
+              <div class="feed-card-footer">
+                <div class="feed-author-meta">
+                  <div class="feed-author-name">Marcus Thorne</div>
+                  <div class="feed-author-role">Principal Infrastructure Architect</div>
+                </div>
+                <a href="404.html?article=cloud-cost-trap&amp;return_page=blog.html" class="feed-read-action">
+                  <span>Read Article</span>
+                  <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- 2. GRID CARDS (For FinOps, Migration, Compliance, Observability) -->
+        <div class="feed-subgrid" id="feedSubgrid">
+
+          <!-- Card 2: FINOPS -->
+          <article class="feed-article-item feed-sub-card" data-category="finops" data-keywords="finops cost kubernetes billing telemetry allocation marcus vance cloud" data-aos="fade-up" data-aos-delay="100">
+            <div class="sub-card-media">
+              <img 
+                src="images/Card Visual.webp" 
+                alt="FinOps Architecture" 
+                class="sub-card-img"
+                loading="lazy">
+              <span class="feed-pill-badge badge-emerald sub-card-tag">FINOPS</span>
+            </div>
+            <div class="sub-card-body">
+              <div class="sub-card-meta">March 08, 2026 &bull; 9 min read</div>
+              <h3 class="sub-card-title">Deconstructing Cloud Unit Economics: From Bill Shock to Continuous Allocation</h3>
+              <p class="sub-card-excerpt">How enterprise engineering leaders bridge the divide between AWS billing dashboards and Kubernetes pod-level resource allocation.</p>
+              <div class="feed-card-footer">
+                <div class="feed-author-meta">
+                  <div class="feed-author-name">Marcus Vance</div>
+                  <div class="feed-author-role">Principal Cloud Economist</div>
+                </div>
+                <a href="404.html?article=unit-economics&amp;return_page=blog.html" class="feed-read-action">
+                  <span>Read Article</span>
+                  <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: MIGRATION -->
+          <article class="feed-article-item feed-sub-card" data-category="migration" data-keywords="migration database cdc multi-region cloud zaria chen" data-aos="fade-up" data-aos-delay="200">
+            <div class="sub-card-media">
+              <img 
+                src="images/Card Visual-1.webp" 
+                alt="Cloud Migration Operations" 
+                class="sub-card-img"
+                loading="lazy">
+              <span class="feed-pill-badge badge-cyan sub-card-tag">MIGRATION</span>
+            </div>
+            <div class="sub-card-body">
+              <div class="sub-card-meta">March 02, 2026 &bull; 14 min read</div>
+              <h3 class="sub-card-title">Zero-Downtime Multi-Region Database Migration at Enterprise Scale</h3>
+              <p class="sub-card-excerpt">A field manual on bidirectional CDC replication, cutover sequencing, and rollback topologies across heterogeneous cloud regions.</p>
+              <div class="feed-card-footer">
+                <div class="feed-author-meta">
+                  <div class="feed-author-name">Zaria Chen</div>
+                  <div class="feed-author-role">VP of Distributed Systems</div>
+                </div>
+                <a href="404.html?article=database-migration&amp;return_page=blog.html" class="feed-read-action">
+                  <span>Read Article</span>
+                  <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: COMPLIANCE -->
+          <article class="feed-article-item feed-sub-card" data-category="compliance" data-keywords="compliance soc2 devsecops guardrails ci/cd security julian keller cloud" data-aos="fade-up" data-aos-delay="100">
+            <div class="sub-card-media">
+              <img 
+                src="images/ab3.webp" 
+                alt="Zero-Trust Compliance" 
+                class="sub-card-img"
+                loading="lazy">
+              <span class="feed-pill-badge badge-purple sub-card-tag">COMPLIANCE</span>
+            </div>
+            <div class="sub-card-body">
+              <div class="sub-card-meta">February 24, 2026 &bull; 7 min read</div>
+              <h3 class="sub-card-title">Automated Guardrails &amp; Continuous SOC 2 Compliance in CI/CD</h3>
+              <p class="sub-card-excerpt">Enforcing non-bypassable cryptographic provenance, ephemeral workload verification, and real-time posture scanning across clusters.</p>
+              <div class="feed-card-footer">
+                <div class="feed-author-meta">
+                  <div class="feed-author-name">Julian Keller</div>
+                  <div class="feed-author-role">Chief Information Security Officer</div>
+                </div>
+                <a href="404.html?article=continuous-compliance&amp;return_page=blog.html" class="feed-read-action">
+                  <span>Read Article</span>
+                  <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: OBSERVABILITY -->
+          <article class="feed-article-item feed-sub-card" data-category="observability" data-keywords="observability distributed tracing telemetry microservices latency elena rostova cloud" data-aos="fade-up" data-aos-delay="200">
+            <div class="sub-card-media">
+              <img 
+                src="images/ss1.webp" 
+                alt="Telemetry and Observability" 
+                class="sub-card-img"
+                loading="lazy">
+              <span class="feed-pill-badge badge-blue sub-card-tag">OBSERVABILITY</span>
+            </div>
+            <div class="sub-card-body">
+              <div class="sub-card-meta">February 18, 2026 &bull; 11 min read</div>
+              <h3 class="sub-card-title">Distributed Tracing at Scale: Sifting Signal from Trillion-Span Noise</h3>
+              <p class="sub-card-excerpt">Techniques for adaptive head- and tail-based sampling in microservices operating at millions of requests per second.</p>
+              <div class="feed-card-footer">
+                <div class="feed-author-meta">
+                  <div class="feed-author-name">Elena Rostova</div>
+                  <div class="feed-author-role">Lead Reliability Architect</div>
+                </div>
+                <a href="404.html?article=distributed-tracing&amp;return_page=blog.html" class="feed-read-action">
+                  <span>Read Article</span>
+                  <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- No Results Fallback Box -->
+        <div class="feed-no-results" id="feedNoResults" style="display: none;">
+          <div class="no-results-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h4 class="no-results-title">No Publications Found</h4>
+          <p class="no-results-desc">No articles match your selected category or query. Try resetting your search filter.</p>
+          <button class="feed-reset-btn" id="feedResetBtn">Reset Filters</button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. STACKLY ARCHITECTURE ARCHIVE SECTION (Horizontal Cards & Pagination)
+       ========================================================================== -->
+  <section class="archive-section" id="blogArchive" aria-label="Explore the Stackly Architecture Archive">
+    <div class="archive-container">
+
+      <!-- Section Header -->
+      <div class="archive-header" data-aos="fade-up" data-aos-duration="650">
+        <h2 class="archive-title">Explore the Stackly Architecture Archive</h2>
+        <p class="archive-subtitle">Our complete collection of engineering telemetry, infrastructure guides, and case studies.</p>
+      </div>
+
+      <!-- Archive Cards Stack -->
+      <div class="archive-stack" id="archiveStack">
+
+        <!-- Card 1: Observability -->
+        <a href="404.html?article=multi-region-latency&amp;return_page=blog.html" class="archive-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="archive-card-pill">
+            <span>OBSERVABILITY</span>
+          </div>
+          <div class="archive-card-content">
+            <div class="archive-meta">Jan 12, 2026 &bull; 18 min read</div>
+            <h3 class="archive-headline">How We Track Latency Across Multi-Region Kubernetes Fleets</h3>
+            <p class="archive-desc">An architectural review of distributed tracing with eBPF agents, detailing telemetry collection patterns that minimize trace payload overhead on high-frequency transactions.</p>
+          </div>
+          <div class="archive-card-action" aria-label="Read article">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+        </a>
+
+        <!-- Card 2: FinOps -->
+        <a href="404.html?article=sre-cloud-waste&amp;return_page=blog.html" class="archive-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="archive-card-pill">
+            <span>FINOPS</span>
+          </div>
+          <div class="archive-card-content">
+            <div class="archive-meta">Dec 08, 2025 &bull; 10 min read</div>
+            <h3 class="archive-headline">The SRE Approach to Cloud Waste: Dynamic Resource Allocation</h3>
+            <p class="archive-desc">A case study detailing automated autoscaling triggers based on network transaction cycles rather than bare system CPU averages, reclaiming over 40% in waste spend.</p>
+          </div>
+          <div class="archive-card-action" aria-label="Read article">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+        </a>
+
+        <!-- Card 3: Cloud Architecture -->
+        <a href="404.html?article=multi-cloud-resiliency&amp;return_page=blog.html" class="archive-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="archive-card-pill">
+            <span>CLOUD ARCHITECTURE</span>
+          </div>
+          <div class="archive-card-content">
+            <div class="archive-meta">Nov 22, 2025 &bull; 15 min read</div>
+            <h3 class="archive-headline">Designing Multi-Cloud Resiliency Without Enterprise Lock-in</h3>
+            <p class="archive-desc">We weigh active-active cloud setups against the high operational complexity of independent platforms. Read our deployment guide for localized, self-contained landing spots.</p>
+          </div>
+          <div class="archive-card-action" aria-label="Read article">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Pagination Bar -->
+      <div class="archive-pagination" data-aos="fade-up" data-aos-delay="350">
+        <a href="404.html?return_page=blog.html" class="pagination-prev" id="paginationPrev">Older posts</a>
+        <div class="pagination-numbers" id="paginationNumbers">
+          <a href="404.html?return_page=blog.html" class="page-num active" data-page="1">1</a>
+          <a href="404.html?return_page=blog.html" class="page-num" data-page="2">2</a>
+          <a href="404.html?return_page=blog.html" class="page-num" data-page="3">3</a>
+          <a href="404.html?return_page=blog.html" class="page-dots">&hellip;</a>
+          <a href="404.html?return_page=blog.html" class="page-num" data-page="12">12</a>
+        </div>
+        <a href="404.html?return_page=blog.html" class="pagination-next" id="paginationNext">Newer posts <i class="fa-solid fa-book-open"></i></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. ARCHITECTURE PLAYBOOKS & BLUEPRINTS (Compact 3-Card Spotlight Grid)
+       ========================================================================== -->
+  <section class="playbooks-section" id="blogPlaybooks" aria-label="Architecture Playbooks & Blueprints">
+    <div class="playbooks-container">
+
+      <!-- Section Header -->
+      <div class="compact-header" data-aos="fade-up">
+        <div class="compact-overline">
+          <span class="compact-beacon beacon-blue"></span>
+          <span>ARCHITECTURE BLUEPRINTS</span>
+        </div>
+        <div class="compact-header-row">
+          <h2 class="compact-title">Production-Tested Architecture Playbooks</h2>
+          <a href="404.html?return_page=blog.html" class="compact-view-link">
+            <span>Explore all playbooks</span>
+            <i class="fa-solid fa-book-open"></i>
+          </a>
+        </div>
+        <p class="compact-desc">Step-by-step infrastructure architectures built and benchmarked for high-throughput cloud clusters.</p>
+      </div>
+
+      <!-- 3 Compact Cards Grid -->
+      <div class="playbooks-grid">
+
+        <!-- Card 1: b3.webp -->
+        <article class="playbook-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="playbook-media">
+            <img src="images/b3.webp" alt="eBPF Distributed Tracing" class="playbook-img" loading="lazy">
+            <span class="playbook-tag">TRACING</span>
+          </div>
+          <div class="playbook-content">
+            <div class="playbook-meta">Jan 2026 &bull; 11 min read</div>
+            <h3 class="playbook-headline">
+              <a href="404.html?article=ebpf-distributed-tracing&amp;return_page=blog.html">eBPF Distributed Tracing at 10M QPS</a>
+            </h3>
+            <p class="playbook-excerpt">Capturing distributed network tracepoints without intrusive sidecar pods to eliminate CPU scheduling overhead on high-throughput microservices.</p>
+            <div class="playbook-footer">
+              <span class="playbook-spec"><i class="fa-solid fa-microchip"></i> Kernel-Level</span>
+              <a href="404.html?article=ebpf-distributed-tracing&amp;return_page=blog.html" class="playbook-btn" aria-label="Read playbook">
+                <span>View Blueprint</span>
+                <i class="fa-solid fa-layer-group"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: fawq (1).webp -->
+        <article class="playbook-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="playbook-media">
+            <img src="images/fawq (1).webp" alt="Hybrid Multi-Cloud Fabric" class="playbook-img" loading="lazy">
+            <span class="playbook-tag">NETWORKING</span>
+          </div>
+          <div class="playbook-content">
+            <div class="playbook-meta">Dec 2025 &bull; 15 min read</div>
+            <h3 class="playbook-headline">
+              <a href="404.html?article=multi-cloud-fabric&amp;return_page=blog.html">Fault-Tolerant Hybrid Multi-Cloud Fabric</a>
+            </h3>
+            <p class="playbook-excerpt">An operational review of deploying dynamic BGP mesh routing across AWS, GCP, and bare-metal datacenters with automated link failover.</p>
+            <div class="playbook-footer">
+              <span class="playbook-spec"><i class="fa-solid fa-network-wired"></i> BGP Interconnect</span>
+              <a href="404.html?article=multi-cloud-fabric&amp;return_page=blog.html" class="playbook-btn" aria-label="Read playbook">
+                <span>View Blueprint</span>
+                <i class="fa-solid fa-layer-group"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Frame.webp -->
+        <article class="playbook-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="playbook-media">
+            <img src="images/Frame.webp" alt="Cache Synchronization" class="playbook-img" loading="lazy">
+            <span class="playbook-tag">LOW LATENCY</span>
+          </div>
+          <div class="playbook-content">
+            <div class="playbook-meta">Dec 2025 &bull; 13 min read</div>
+            <h3 class="playbook-headline">
+              <a href="404.html?article=cache-synchronization&amp;return_page=blog.html">Sub-Millisecond Multi-Region Cache Sync</a>
+            </h3>
+            <p class="playbook-excerpt">Preventing stale read states across transatlantic cache clusters using vector clocks and conflict-free replicated data types (CRDTs).</p>
+            <div class="playbook-footer">
+              <span class="playbook-spec"><i class="fa-solid fa-bolt"></i> P99 &lt; 2ms</span>
+              <a href="404.html?article=cache-synchronization&amp;return_page=blog.html" class="playbook-btn" aria-label="Read playbook">
+                <span>View Blueprint</span>
+                <i class="fa-solid fa-layer-group"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. ENTERPRISE FIELD REPORTS & RUNBOOKS (Compact 4-Column Grid with Metrics)
+       ========================================================================== -->
+  <section class="fieldreports-section" id="blogFieldReports" aria-label="Enterprise Field Reports and Runbooks">
+    <div class="fieldreports-container">
+
+      <!-- Section Header -->
+      <div class="compact-header" data-aos="fade-up">
+        <div class="compact-overline">
+          <span class="compact-beacon beacon-coral"></span>
+          <span>SRE RUNBOOKS &amp; BENCHMARKS</span>
+        </div>
+        <div class="compact-header-row">
+          <h2 class="compact-title">Enterprise Field Reports &amp; Verified Telemetry</h2>
+          <a href="404.html?return_page=blog.html" class="compact-view-link">
+            <span>View all field reports</span>
+            <i class="fa-solid fa-file-lines"></i>
+          </a>
+        </div>
+        <p class="compact-desc">Verified production metrics and battle-tested incident checklists from high-scale customer deployments.</p>
+      </div>
+
+      <!-- 4 Compact Cards Grid -->
+      <div class="fieldreports-grid">
+
+        <!-- Card 1: Rectangle.webp -->
+        <article class="report-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="report-media">
+            <img src="images/Rectangle.webp" alt="Database Migration" class="report-img" loading="lazy">
+            <span class="report-metric-badge badge-green"><i class="fa-solid fa-check"></i> Zero Downtime</span>
+          </div>
+          <div class="report-body">
+            <span class="report-category">DATABASE SRE</span>
+            <h3 class="report-title">
+              <a href="404.html?article=50tb-db-migration&amp;return_page=blog.html">Zero-Downtime Migration for 50TB Databases</a>
+            </h3>
+            <p class="report-summary">Safe dual-write replication patterns for enterprise Postgres under steady-state customer loads.</p>
+            <div class="report-footer">
+              <span class="report-meta">Feb 2026 &bull; 8 min read</span>
+              <a href="404.html?article=50tb-db-migration&amp;return_page=blog.html" class="report-link" aria-label="Read report"><i class="fa-solid fa-file-lines"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: 2 (2).webp -->
+        <article class="report-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="report-media">
+            <img src="images/2 (2).webp" alt="Consensus Quorum" class="report-img" loading="lazy">
+            <span class="report-metric-badge badge-blue"><i class="fa-solid fa-shield-halved"></i> 99.999% SLA</span>
+          </div>
+          <div class="report-body">
+            <span class="report-category">RESILIENCE</span>
+            <h3 class="report-title">
+              <a href="404.html?article=consensus-quorum&amp;return_page=blog.html">Consensus Quorum Recovery in Banking Fleets</a>
+            </h3>
+            <p class="report-summary">Automated partition healing and Raft cluster re-balancing during network splits.</p>
+            <div class="report-footer">
+              <span class="report-meta">Jan 2026 &bull; 10 min read</span>
+              <a href="404.html?article=consensus-quorum&amp;return_page=blog.html" class="report-link" aria-label="Read report"><i class="fa-solid fa-file-lines"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: 3 (2).webp -->
+        <article class="report-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="report-media">
+            <img src="images/3 (2).webp" alt="Progressive Canaries" class="report-img" loading="lazy">
+            <span class="report-metric-badge badge-purple"><i class="fa-solid fa-gauge-high"></i> 12s Rollback</span>
+          </div>
+          <div class="report-body">
+            <span class="report-category">CI/CD PIPELINES</span>
+            <h3 class="report-title">
+              <a href="404.html?article=argocd-canaries&amp;return_page=blog.html">Automated Progressive Canaries with ArgoCD</a>
+            </h3>
+            <p class="report-summary">Using Prometheus metric analysis for autonomous canary validation and millisecond rollbacks.</p>
+            <div class="report-footer">
+              <span class="report-meta">Jan 2026 &bull; 7 min read</span>
+              <a href="404.html?article=argocd-canaries&amp;return_page=blog.html" class="report-link" aria-label="Read report"><i class="fa-solid fa-file-lines"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: 5.webp -->
+        <article class="report-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="report-media">
+            <img src="images/5.webp" alt="Spot Cost Arbitrage" class="report-img" loading="lazy">
+            <span class="report-metric-badge badge-coral"><i class="fa-solid fa-chart-line"></i> -43% Spend</span>
+          </div>
+          <div class="report-body">
+            <span class="report-category">FINOPS ENGINE</span>
+            <h3 class="report-title">
+              <a href="404.html?article=spot-arbitrage&amp;return_page=blog.html">Dynamic Cloud Cost Arbitrage on Spot Nodes</a>
+            </h3>
+            <p class="report-summary">Predictive instance bin-packing and graceful termination handlers that slashed compute costs.</p>
+            <div class="report-footer">
+              <span class="report-meta">Dec 2025 &bull; 9 min read</span>
+              <a href="404.html?article=spot-arbitrage&amp;return_page=blog.html" class="report-link" aria-label="Read report"><i class="fa-solid fa-file-lines"></i></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. CLOUD SECURITY & COMPLIANCE MATRIX (Dense 2-Column Horizontal Split)
+       ========================================================================== -->
+  <section class="secmatrix-section" id="blogSecurityMatrix" aria-label="Cloud Security and Compliance Matrix">
+    <div class="secmatrix-container">
+
+      <!-- Section Header -->
+      <div class="compact-header" data-aos="fade-up">
+        <div class="compact-overline">
+          <span class="compact-beacon beacon-purple"></span>
+          <span>SECURITY &amp; COMPLIANCE ENGINEERING</span>
+        </div>
+        <div class="compact-header-row">
+          <h2 class="compact-title">Zero-Trust Security &amp; Compliance Matrix</h2>
+          <a href="404.html?return_page=blog.html" class="compact-view-link">
+            <span>Security runbooks</span>
+            <i class="fa-solid fa-shield-halved"></i>
+          </a>
+        </div>
+        <p class="compact-desc">Continuous cryptographic validation, runtime container protection, and automated governance guardrails.</p>
+      </div>
+
+      <!-- 2x2 Dense Horizontal Cards Grid -->
+      <div class="secmatrix-grid">
+
+        <!-- Card 1: 6.webp -->
+        <article class="matrix-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="matrix-media">
+            <img src="images/6.webp" alt="SOC 2 Compliance" class="matrix-img" loading="lazy">
+          </div>
+          <div class="matrix-info">
+            <div class="matrix-tag-row">
+              <span class="matrix-tag">COMPLIANCE</span>
+              <span class="matrix-time">8 min read</span>
+            </div>
+            <h3 class="matrix-title">
+              <a href="404.html?article=soc2-evidence&amp;return_page=blog.html">Continuous SOC 2 Type II Evidence in CI/CD</a>
+            </h3>
+            <p class="matrix-desc">Eliminating manual quarterly screenshots with automated infrastructure evidence collection in Terraform.</p>
+            <a href="404.html?article=soc2-evidence&amp;return_page=blog.html" class="matrix-read-link">
+              <span>Read Implementation</span>
+              <i class="fa-solid fa-shield-halved"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2: 89da0239b4e7c748f3a2b82eb9954c8732bab55f (1).webp -->
+        <article class="matrix-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="matrix-media">
+            <img src="images/89da0239b4e7c748f3a2b82eb9954c8732bab55f (1).webp" alt="Zero-Trust Mesh" class="matrix-img" loading="lazy">
+          </div>
+          <div class="matrix-info">
+            <div class="matrix-tag-row">
+              <span class="matrix-tag">PERIMETER DEFENSE</span>
+              <span class="matrix-time">12 min read</span>
+            </div>
+            <h3 class="matrix-title">
+              <a href="404.html?article=zerotrust-mesh&amp;return_page=blog.html">Zero-Trust WireGuard Interconnect Mesh</a>
+            </h3>
+            <p class="matrix-desc">Deploying ephemeral mutual TLS encryption and sub-millisecond crypto key exchange across multi-cloud VPCs.</p>
+            <a href="404.html?article=zerotrust-mesh&amp;return_page=blog.html" class="matrix-read-link">
+              <span>Read Implementation</span>
+              <i class="fa-solid fa-shield-halved"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3: ab3.webp -->
+        <article class="matrix-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="matrix-media">
+            <img src="images/ab3.webp" alt="Kernel Container Sandboxing" class="matrix-img" loading="lazy">
+          </div>
+          <div class="matrix-info">
+            <div class="matrix-tag-row">
+              <span class="matrix-tag">RUNTIME DEFENSE</span>
+              <span class="matrix-time">14 min read</span>
+            </div>
+            <h3 class="matrix-title">
+              <a href="404.html?article=kernel-sandboxing&amp;return_page=blog.html">Kernel Container Sandboxing with eBPF</a>
+            </h3>
+            <p class="matrix-desc">Intercepting privilege escalation and anomalous socket connections directly at the OS boundary before escape.</p>
+            <a href="404.html?article=kernel-sandboxing&amp;return_page=blog.html" class="matrix-read-link">
+              <span>Read Implementation</span>
+              <i class="fa-solid fa-shield-halved"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4: b1.webp -->
+        <article class="matrix-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="matrix-media">
+            <img src="images/b1.webp" alt="FinOps Budget Guardrails" class="matrix-img" loading="lazy">
+          </div>
+          <div class="matrix-info">
+            <div class="matrix-tag-row">
+              <span class="matrix-tag">GOVERNANCE</span>
+              <span class="matrix-time">10 min read</span>
+            </div>
+            <h3 class="matrix-title">
+              <a href="404.html?article=finops-guardrails&amp;return_page=blog.html">Autonomous FinOps Budget Allocation</a>
+            </h3>
+            <p class="matrix-desc">Granular container-level billing attribution across engineering squads with predictive cloud overspend alerts.</p>
+            <a href="404.html?article=finops-guardrails&amp;return_page=blog.html" class="matrix-read-link">
+              <span>Read Implementation</span>
+              <i class="fa-solid fa-shield-halved"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. TECHNICAL DEEP-DIVES AND RUNBOOKS (Auto-Moving Cards Slider)
+       ========================================================================== -->
+  <section class="runbooks-section" id="blogRunbooks" aria-label="Technical deep-dives and runbooks">
+    <div class="runbooks-container">
+
+      <!-- Section Header -->
+      <div class="runbooks-header" data-aos="fade-up" data-aos-duration="650">
+        <div class="runbooks-header-left">
+          <h2 class="runbooks-title">Technical deep-dives and runbooks</h2>
+        </div>
+        <div class="runbooks-header-right">
+          <div class="runbooks-nav-btns" aria-label="Slider navigation controls">
+            <button class="runbooks-nav-btn runbooks-prev" id="runbooksPrevBtn" aria-label="Scroll left">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button class="runbooks-nav-btn runbooks-next" id="runbooksNextBtn" aria-label="Scroll right">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+          </div>
+          <a href="404.html?return_page=blog.html" class="runbooks-view-all">
+            <span>View all category logs</span>
+            <i class="fa-solid fa-layer-group"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Continuous Auto-moving Carousel Viewport (Moving Left to Right) -->
+    <div class="runbooks-carousel-wrap" id="runbooksCarouselWrap">
+      <div class="runbooks-track" id="runbooksTrack">
+
+        <!-- Card 1: Migration -->
+        <article class="runbook-card">
+          <div class="runbook-img-box">
+            <img src="images/s3.webp" alt="Zero-Downtime Database Moves" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">MIGRATION</span>
+              <span class="runbook-date">Feb 28, 2026 &bull; 9 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=zero-downtime-database&amp;return_page=blog.html">Zero-Downtime Database Moves: The Dual-Write Strategy</a>
+            </h3>
+            <p class="runbook-card-desc">A production checklist for migrating relational database clusters safely under steady-state customer loads without read performance degradation.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Elena Rostova</span>
+                <span class="runbook-author-role">Sr. Database SRE</span>
+              </div>
+              <a href="404.html?article=zero-downtime-database&amp;return_page=blog.html" class="runbook-action-icon" aria-label="Read Elena Rostova's article">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: FinOps -->
+        <article class="runbook-card">
+          <div class="runbook-img-box">
+            <img src="images/b1.webp" alt="Container Level Cost Allocation in EKS" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">FINOPS</span>
+              <span class="runbook-date">Feb 22, 2026 &bull; 14 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=container-cost-allocation&amp;return_page=blog.html">Slicing the Bill: Container Level Cost Allocation in EKS</a>
+            </h3>
+            <p class="runbook-card-desc">How to deploy open-source agents to allocate exact cloud costs down to individual Kubernetes namespaces, workloads, and developer environments.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Arjun Mehta</span>
+                <span class="runbook-author-role">Head of FinOps Systems</span>
+              </div>
+              <a href="404.html?article=container-cost-allocation&amp;return_page=blog.html" class="runbook-action-icon" aria-label="Read Arjun Mehta's article">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Compliance -->
+        <article class="runbook-card">
+          <div class="runbook-img-box">
+            <img src="images/b2.webp" alt="Automating SOC 2 Audits" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">COMPLIANCE</span>
+              <span class="runbook-date">Jan 15, 2026 &bull; 11 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=soc2-audits-iac&amp;return_page=blog.html">Automating SOC 2 Audits with Infrastructure as Code</a>
+            </h3>
+            <p class="runbook-card-desc">Stop collecting screenshots manually every quarter. Build compliance controls directly into your Terraform landing zones and automated policies.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Sarah Jenkins</span>
+                <span class="runbook-author-role">VP of Compliance Engineering</span>
+              </div>
+              <a href="404.html?article=soc2-audits-iac&amp;return_page=blog.html" class="runbook-action-icon" aria-label="Read Sarah Jenkins's article">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: Observability -->
+        <article class="runbook-card">
+          <div class="runbook-img-box">
+            <img src="images/b3.webp" alt="Distributed Tracing in Edge Nodes" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">OBSERVABILITY</span>
+              <span class="runbook-date">Jan 08, 2026 &bull; 16 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=distributed-tracing-edge&amp;return_page=blog.html">Distributed Tracing in High-Throughput Edge Nodes</a>
+            </h3>
+            <p class="runbook-card-desc">Eliminating distributed tracing bottlenecks with intelligent tail-sampling and kernel-level trace aggregation during sudden network load spikes.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Liam Vance</span>
+                <span class="runbook-author-role">Lead Observability Engineer</span>
+              </div>
+              <a href="404.html?article=distributed-tracing-edge&amp;return_page=blog.html" class="runbook-action-icon" aria-label="Read Liam Vance's article">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5: Architecture -->
+        <article class="runbook-card">
+          <div class="runbook-img-box">
+            <img src="images/Frame.webp" alt="Zero-Trust VPC Peering" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">ARCHITECTURE</span>
+              <span class="runbook-date">Dec 19, 2025 &bull; 12 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=zero-trust-vpc-peering&amp;return_page=blog.html">Zero-Trust VPC Peering Across Hybrid Multi-Cloud</a>
+            </h3>
+            <p class="runbook-card-desc">Architecting zero-trust perimeter segmentation with wireguard overlays and automated credential exchange across enterprise cloud environments.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Devon Ray</span>
+                <span class="runbook-author-role">Principal Cloud Architect</span>
+              </div>
+              <a href="404.html?article=zero-trust-vpc-peering&amp;return_page=blog.html" class="runbook-action-icon" aria-label="Read Devon Ray's article">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6: Security -->
+        <article class="runbook-card">
+          <div class="runbook-img-box">
+            <img src="images/Rectangle-1.webp" alt="Real-Time Threat Detection" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">SECURITY</span>
+              <span class="runbook-date">Dec 04, 2025 &bull; 13 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=ebpf-threat-detection&amp;return_page=blog.html">Real-Time Threat Detection with Kernel eBPF Telemetry</a>
+            </h3>
+            <p class="runbook-card-desc">Catching privilege escalation and anomalous socket connections directly at the OS boundary before container sandboxes are breached.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Maya Lin</span>
+                <span class="runbook-author-role">Director of Security Operations</span>
+              </div>
+              <a href="404.html?article=ebpf-threat-detection&amp;return_page=blog.html" class="runbook-action-icon" aria-label="Read Maya Lin's article">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- DUPLICATE 6 CARDS FOR SEAMLESS INFINITE AUTO-MOVING TICKER (ARIA-HIDDEN) -->
+        <!-- Duplicate Card 1 -->
+        <article class="runbook-card" aria-hidden="true">
+          <div class="runbook-img-box">
+            <img src="images/s3.webp" alt="" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">MIGRATION</span>
+              <span class="runbook-date">Feb 28, 2026 &bull; 9 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=zero-downtime-database&amp;return_page=blog.html" tabindex="-1">Zero-Downtime Database Moves: The Dual-Write Strategy</a>
+            </h3>
+            <p class="runbook-card-desc">A production checklist for migrating relational database clusters safely under steady-state customer loads without read performance degradation.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Elena Rostova</span>
+                <span class="runbook-author-role">Sr. Database SRE</span>
+              </div>
+              <a href="404.html?article=zero-downtime-database&amp;return_page=blog.html" class="runbook-action-icon" tabindex="-1">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate Card 2 -->
+        <article class="runbook-card" aria-hidden="true">
+          <div class="runbook-img-box">
+            <img src="images/b1.webp" alt="" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">FINOPS</span>
+              <span class="runbook-date">Feb 22, 2026 &bull; 14 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=container-cost-allocation&amp;return_page=blog.html" tabindex="-1">Slicing the Bill: Container Level Cost Allocation in EKS</a>
+            </h3>
+            <p class="runbook-card-desc">How to deploy open-source agents to allocate exact cloud costs down to individual Kubernetes namespaces, workloads, and developer environments.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Arjun Mehta</span>
+                <span class="runbook-author-role">Head of FinOps Systems</span>
+              </div>
+              <a href="404.html?article=container-cost-allocation&amp;return_page=blog.html" class="runbook-action-icon" tabindex="-1">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate Card 3 -->
+        <article class="runbook-card" aria-hidden="true">
+          <div class="runbook-img-box">
+            <img src="images/b2.webp" alt="" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">COMPLIANCE</span>
+              <span class="runbook-date">Jan 15, 2026 &bull; 11 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=soc2-audits-iac&amp;return_page=blog.html" tabindex="-1">Automating SOC 2 Audits with Infrastructure as Code</a>
+            </h3>
+            <p class="runbook-card-desc">Stop collecting screenshots manually every quarter. Build compliance controls directly into your Terraform landing zones and automated policies.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Sarah Jenkins</span>
+                <span class="runbook-author-role">VP of Compliance Engineering</span>
+              </div>
+              <a href="404.html?article=soc2-audits-iac&amp;return_page=blog.html" class="runbook-action-icon" tabindex="-1">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate Card 4 -->
+        <article class="runbook-card" aria-hidden="true">
+          <div class="runbook-img-box">
+            <img src="images/b3.webp" alt="" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">OBSERVABILITY</span>
+              <span class="runbook-date">Jan 08, 2026 &bull; 16 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=distributed-tracing-edge&amp;return_page=blog.html" tabindex="-1">Distributed Tracing in High-Throughput Edge Nodes</a>
+            </h3>
+            <p class="runbook-card-desc">Eliminating distributed tracing bottlenecks with intelligent tail-sampling and kernel-level trace aggregation during sudden network load spikes.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Liam Vance</span>
+                <span class="runbook-author-role">Lead Observability Engineer</span>
+              </div>
+              <a href="404.html?article=distributed-tracing-edge&amp;return_page=blog.html" class="runbook-action-icon" tabindex="-1">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate Card 5 -->
+        <article class="runbook-card" aria-hidden="true">
+          <div class="runbook-img-box">
+            <img src="images/Frame.webp" alt="" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">ARCHITECTURE</span>
+              <span class="runbook-date">Dec 19, 2025 &bull; 12 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=zero-trust-vpc-peering&amp;return_page=blog.html" tabindex="-1">Zero-Trust VPC Peering Across Hybrid Multi-Cloud</a>
+            </h3>
+            <p class="runbook-card-desc">Architecting zero-trust perimeter segmentation with wireguard overlays and automated credential exchange across enterprise cloud environments.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Devon Ray</span>
+                <span class="runbook-author-role">Principal Cloud Architect</span>
+              </div>
+              <a href="404.html?article=zero-trust-vpc-peering&amp;return_page=blog.html" class="runbook-action-icon" tabindex="-1">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate Card 6 -->
+        <article class="runbook-card" aria-hidden="true">
+          <div class="runbook-img-box">
+            <img src="images/Rectangle-1.webp" alt="" class="runbook-img" loading="lazy">
+          </div>
+          <div class="runbook-body">
+            <div class="runbook-meta-row">
+              <span class="runbook-pill">SECURITY</span>
+              <span class="runbook-date">Dec 04, 2025 &bull; 13 min read</span>
+            </div>
+            <h3 class="runbook-card-title">
+              <a href="404.html?article=ebpf-threat-detection&amp;return_page=blog.html" tabindex="-1">Real-Time Threat Detection with Kernel eBPF Telemetry</a>
+            </h3>
+            <p class="runbook-card-desc">Catching privilege escalation and anomalous socket connections directly at the OS boundary before container sandboxes are breached.</p>
+            <div class="runbook-footer-row">
+              <div class="runbook-author-info">
+                <span class="runbook-author-name">Maya Lin</span>
+                <span class="runbook-author-role">Director of Security Operations</span>
+              </div>
+              <a href="404.html?article=ebpf-threat-detection&amp;return_page=blog.html" class="runbook-action-icon" tabindex="-1">
+                <i class="fa-solid fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. NEWSLETTER SUBSCRIPTION SECTION (Join the Stackly Signal)
+       ========================================================================== -->
+  <section class="signal-section" id="blogSignal" aria-label="Join the Stackly Signal Newsletter">
+    <div class="signal-container">
+
+      <!-- Signal Card Frame: width: 1248px; height: 264px; padding: 64px; gap: 64px; border-radius: 24px; -->
+      <div class="signal-card" data-aos="fade-up" data-aos-duration="700">
+
+        <!-- Ambient Background Glow -->
+        <div class="signal-glow" aria-hidden="true"></div>
+
+        <!-- Left Column: Content -->
+        <div class="signal-content">
+          <h2 class="signal-title">Join the Stackly Signal</h2>
+          <p class="signal-desc">No marketing fluff. Unfiltered cloud post-mortems, real operations runbooks, and direct architecture teardowns sent straight to your inbox once a fortnight.</p>
+        </div>
+
+        <!-- Right Column: Subscription Form -->
+        <div class="signal-action-col">
+          <form class="signal-form" id="signalForm" action="404.html?from=signal-form&amp;return_page=blog.html" novalidate>
+            <div class="signal-input-group">
+              <input 
+                type="email" 
+                class="signal-input" 
+                id="signalEmail" 
+                placeholder="Enter your work email address..." 
+                required 
+                autocomplete="email"
+                aria-label="Work email address">
+              <button type="submit" class="signal-btn" id="signalSubmitBtn" aria-label="Subscribe to Stackly Signal">
+                <span>Subscribe</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+            <p class="signal-disclaimer">Zero spam. Unsubscribe at any time with a single click.</p>
+            <div class="signal-feedback" id="signalFeedback" aria-live="polite"></div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. SITE FOOTER SECTION (Global Footer matching index.html)
+       ========================================================================== -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-container">
+
+      <!-- 4-Column Grid -->
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand -->
+        <div class="footer-col footer-col-brand" data-aos="fade-up" data-aos-duration="800">
+          <a href="index.html" class="footer-brand-logo" aria-label="Stackly Homepage">
+            <img 
+              src="images/logo.webp" 
+              alt="Stackly Logo" 
+              class="footer-logo-img" 
+              onerror="this.src='images/logo.webp'">
+          </a>
+          <p class="footer-brand-desc">
+            A warm signal through the cloud layer - complexity turned into a route your team can walk.
+          </p>
+        </div>
+
+        <!-- Column 2: Company -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-link-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="service.html" class="footer-link">Our Solutions</a></li>
+            <li><a href="404.html?from=footer&amp;return_page=blog.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links (Mirrors Header Links Accurately) -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-link-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="service.html" class="footer-link">Services</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="blog.html" class="footer-link active">Blogs</a></li>
+            <li><a href="login.html" class="footer-link">Sign In</a></li>
+            <li><a href="contact.html" class="footer-link">Book a Consult</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-col footer-col-contact" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-info">
+            <a href="mailto:hello@Stackly.net.in" class="footer-contact-item">
+              <i class="fa-regular fa-envelope footer-contact-icon" aria-hidden="true"></i>
+              <span>hello@Stackly.net.in</span>
+            </a>
+            <a href="tel:+918905246537" class="footer-contact-item">
+              <i class="fa-solid fa-phone footer-contact-icon" aria-hidden="true"></i>
+              <span>+91 89052 46537</span>
+            </a>
+            <div class="footer-contact-item footer-contact-address">
+              <i class="fa-solid fa-location-dot footer-contact-icon" aria-hidden="true"></i>
+              <span>MMR Complex, China Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animated Divider Line -->
+      <div class="footer-divider-wrap">
+        <div class="footer-divider-line" id="footerDivider"></div>
+      </div>
+
+      <!-- Bottom Footer: Copyright & Socials -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2026 Stackly Technologies. All rights reserved.
+        </p>
+        
+        <div class="footer-social-links" aria-label="Social Media">
+          <a href="404.html?from=blog_social&amp;return_page=blog.html" class="footer-social-btn" aria-label="Stackly on LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=blog_social&amp;return_page=blog.html" class="footer-social-btn" aria-label="Stackly on Twitter / X" title="Twitter / X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=blog_social&amp;return_page=blog.html" class="footer-social-btn" aria-label="Stackly on Instagram" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
+

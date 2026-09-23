@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In &amp; Sign Up Stackly Cloud Business Solutions</title>
+  <meta name="description" content="Sign in or create your Stackly account. Access telemetry dashboards, cloud infrastructure controls, FinOps analytics, and enterprise SRE tools.">
+
+  <!-- Instant Position & Scroll Restoration Configuration -->
+  <script>
+    (function() {
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var restoreScroll = urlParams.get('restore_scroll');
+        var isRestoring = (sessionStorage.getItem('stackly_instant_restore') === 'true' || restoreScroll !== null) && 
+                          (document.referrer.indexOf('404.html') !== -1 || restoreScroll !== null);
+        if (isRestoring) {
+          document.documentElement.classList.add('instant-restoring');
+          document.documentElement.style.scrollBehavior = 'auto';
+          var sVal = restoreScroll || sessionStorage.getItem('stackly_target_scroll') || sessionStorage.getItem('stackly_last_scroll');
+          if (sVal !== null && sVal !== '' && parseInt(sVal, 10) >= 0) {
+            window.scrollTo(0, parseInt(sVal, 10));
+          }
+        } else {
+          window.scrollTo(0, 0);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- AOS (Animate On Scroll) CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body class="auth-page">
+
+  <!-- ==========================================================================
+       Futuristic 3D GSAP Animated Loading Page
+       ========================================================================== -->
+  <div id="siteLoader" class="site-loader" aria-label="Loading Stackly">
+    <!-- Ambient Background Lighting & Mesh -->
+    <div class="loader-ambient-glow cyan-ambient" aria-hidden="true"></div>
+    <div class="loader-ambient-glow indigo-ambient" aria-hidden="true"></div>
+    <div class="loader-grid-mesh" aria-hidden="true"></div>
+
+    <div class="loader-container">
+      <!-- 1. Brand Logo with 3D Float & Ambient Halo -->
+      <div class="loader-brand" id="loaderBrand">
+        <div class="loader-logo-halo" aria-hidden="true"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="loader-logo-img">
+        <div class="loader-tagline">
+          <span class="loader-tag-dot" aria-hidden="true"></span>
+          <span>CLOUD BUSINESS SOLUTIONS</span>
+        </div>
+      </div>
+
+      <!-- 2. 3D Gyroscope Video Core Stage -->
+      <div class="loader-stage-3d" id="loaderStage3D">
+        <!-- Concentric 3D Gyroscope Rings -->
+        <div class="loader-gyro-ring ring-outer" aria-hidden="true">
+          <div class="gyro-dot dot-1"></div>
+          <div class="gyro-dot dot-2"></div>
+        </div>
+        <div class="loader-gyro-ring ring-middle" aria-hidden="true">
+          <div class="gyro-dot dot-3"></div>
+        </div>
+        <div class="loader-gyro-ring ring-inner" aria-hidden="true"></div>
+
+        <!-- Spherical Looping Video Core with Holographic Glare -->
+        <div class="loader-video-orb" id="loaderVideoOrb">
+          <div class="loader-orb-aura" aria-hidden="true"></div>
+          <div class="loader-orb-rim" aria-hidden="true"></div>
+          <video 
+            class="loader-core-video" 
+            src="images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="auto"
+          ></video>
+          <div class="loader-orb-glare" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- 3. Cyber HUD Progress Counter & Status -->
+      <div class="loader-hud" id="loaderHud">
+        <div class="loader-counter-wrap">
+          <span class="loader-counter-num" id="loaderCounter">0</span>
+          <span class="loader-counter-pct">%</span>
+        </div>
+
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar" id="loaderProgressBar">
+            <span class="loader-progress-glow"></span>
+          </div>
+        </div>
+
+        <div class="loader-status" id="loaderStatus">
+          <span class="status-indicator"></span>
+          <span class="status-text" id="loaderStatusText">INITIALIZING CLOUD INFRASTRUCTURE...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Global Background & Mesh Grid -->
+  <div class="bg-gradient-glow top-glow" aria-hidden="true"></div>
+  <div class="bg-gradient-glow bottom-glow" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- 1. Global Header / Navbar (Mirrors index.html) -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      
+      <!-- Left: Logo -->
+      <a href="index.html" class="logo-link" aria-label="Stackly Homepage">
+        <img 
+          src="images/logo.webp" 
+          alt="Stackly Logo" 
+          class="logo-img" 
+          onerror="this.src='images/logo.webp'">
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link magnetic-nav-item">Home</a></li>
+          <li class="nav-item"><a href="service.html" class="nav-link magnetic-nav-item">Services</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link magnetic-nav-item">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link magnetic-nav-item">Contact</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link magnetic-nav-item">Blogs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right: Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-signin active">Sign in</a>
+        <a href="contact.html" class="btn-consult">
+          <span class="btn-consult-text">Book a consult</span>
+          <span class="pulse-aura" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="service.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blogs</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <a href="login.html" class="mobile-signin active">Sign in</a>
+        <a href="contact.html" class="btn-consult mobile-consult">
+          <span class="btn-consult-text">Book a consult</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. MAIN AUTHENTICATION CONTAINER: Dual-Panel Sign In / Sign Up
+       ========================================================================== -->
+  <main class="auth-section" id="authSection" aria-label="Authentication">
+    <div class="auth-wrapper">
+
+      <div class="auth-card" id="authCard" data-aos="fade-up" data-aos-duration="700">
+
+        <!-- ====================================================================
+             LEFT PANEL: Clean Form Panel (Sign In & Sign Up Views)
+             ==================================================================== -->
+        <div class="auth-left-panel">
+
+          <!-- Brand Logo Header -->
+          <div class="auth-brand-row">
+            <a href="index.html" class="auth-logo-link" aria-label="Return to Stackly Home">
+              <img 
+                src="images/logo black.webp" 
+                alt="Stackly Logo" 
+                class="auth-brand-logo"
+                onerror="this.src='images/logo.webp'">
+            </a>
+          </div>
+
+          <!-- Top Mode Switcher Pill (Sign In / Create Account) -->
+          <div class="auth-mode-switcher-wrap">
+            <div class="auth-mode-pill">
+              <button type="button" class="mode-tab-btn active" id="tabBtnSignIn">
+                <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+                <span>Sign In</span>
+              </button>
+              <button type="button" class="mode-tab-btn" id="tabBtnSignUp">
+                <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                <span>Create Account</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Role Privilege Selector (User vs Admin) -->
+          <div class="auth-privilege-section" id="authPrivilegeSection">
+            <div class="privilege-label-row">
+              <span class="privilege-label-beacon" aria-hidden="true"></span>
+              <span class="privilege-header-title">SELECT CLOUD BUSINESS ROLE</span>
+            </div>
+
+            <div class="privilege-toggle-grid">
+              <!-- Option 1: User (Client) -->
+              <button type="button" class="privilege-card active" id="roleBtnUser" data-role="user" aria-pressed="true">
+                <div class="privilege-icon-wrap icon-user">
+                  <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+                </div>
+                <div class="privilege-text-content">
+                  <div class="privilege-name">User (Client)</div>
+                  <div class="privilege-subtitle">Enterprise Workload &amp; FinOps Client</div>
+                </div>
+                <div class="privilege-check-indicator" aria-hidden="true">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+              </button>
+
+              <!-- Option 2: Admin (Director) -->
+              <button type="button" class="privilege-card" id="roleBtnAdmin" data-role="admin" aria-pressed="false">
+                <div class="privilege-icon-wrap icon-admin">
+                  <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                </div>
+                <div class="privilege-text-content">
+                  <div class="privilege-name">Admin (Director)</div>
+                  <div class="privilege-subtitle">Multi-Cloud Architect &amp; Governance</div>
+                </div>
+                <div class="privilege-check-indicator" aria-hidden="true">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+              </button>
+            </div>
+
+            <!-- Dynamic Privilege Description Note -->
+            <div class="privilege-info-box" id="privilegeInfoBox">
+              <i class="fa-solid fa-circle-check info-icon" aria-hidden="true"></i>
+              <span id="privilegeInfoText">
+                <strong>Enterprise Workload Suite:</strong> Access real-time workload telemetry, track cloud migration stages, approve monthly FinOps cost allocations, and submit architecture tickets.
+              </span>
+            </div>
+          </div>
+
+          <!-- Notification / Toast Feedback Container -->
+          <div class="auth-alert" id="authAlert" role="alert" aria-live="polite">
+            <i class="fa-solid fa-circle-exclamation alert-icon"></i>
+            <span class="alert-message" id="authAlertMessage"></span>
+          </div>
+
+          <!-- ==================================================================
+               VIEW A: SIGN IN FORM
+               ================================================================== -->
+          <div class="auth-form-container" id="signInFormView">
+            
+            <div class="auth-form-header">
+              <h1 class="auth-form-title">Sign In</h1>
+              <p class="auth-form-subtitle">
+                Welcome back! Sign in to access your account with your registered username or email address
+              </p>
+            </div>
+
+            <form class="auth-form" id="signInForm" novalidate>
+              
+              <!-- Email Input -->
+              <div class="form-field-group">
+                <label for="signInEmail" class="form-field-label">Email Address</label>
+                <div class="input-with-icon">
+                  <i class="fa-regular fa-user input-icon" aria-hidden="true"></i>
+                  <input 
+                    type="email" 
+                    id="signInEmail" 
+                    name="email" 
+                    class="auth-input" 
+                    placeholder="Enter your email address" 
+                    required 
+                    autocomplete="email">
+                </div>
+                <span class="field-error-msg" id="signInEmailError"></span>
+              </div>
+
+              <!-- Password Input -->
+              <div class="form-field-group">
+                <label for="signInPassword" class="form-field-label">Password</label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-lock input-icon" aria-hidden="true"></i>
+                  <input 
+                    type="password" 
+                    id="signInPassword" 
+                    name="password" 
+                    class="auth-input" 
+                    placeholder="Type your password" 
+                    required 
+                    minlength="8"
+                    autocomplete="current-password">
+                  <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                    <i class="fa-regular fa-eye toggle-icon" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="field-hint-row">
+                  <small class="input-helper-text">At least 8 characters</small>
+                </div>
+                <span class="field-error-msg" id="signInPasswordError"></span>
+              </div>
+
+              <!-- Remember Me & Forgot Password Row -->
+              <div class="form-options-row">
+                <label class="remember-checkbox-label">
+                  <input type="checkbox" id="rememberMe" name="remember">
+                  <span class="custom-checkbox"></span>
+                  <span class="checkbox-text">Remember me</span>
+                </label>
+                <a href="404.html?from=forgot&amp;return_page=login.html" class="forgot-password-link" id="forgotPasswordBtn">Forgot password</a>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="auth-primary-btn" id="signInBtn">
+                <span class="btn-text">Sign In</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+
+              <!-- Alternative Enterprise Auth Divider -->
+              <div class="auth-social-divider">
+                <span>Or continue with</span>
+              </div>
+
+              <!-- Copyright-Free Enterprise Auth Buttons Row -->
+              <div class="social-login-grid">
+                <!-- Enterprise Cloud SSO -->
+                <a href="404.html?from=cloud_sso&amp;return_page=login.html" class="social-auth-btn auth-provider-sso" data-provider="sso" aria-label="Sign in with Enterprise Cloud SSO" title="Enterprise Cloud SSO (SAML 2.0 / OIDC)">
+                  <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+                </a>
+                
+                <!-- Biometric Passkey / WebAuthn -->
+                <a href="404.html?from=biometric_passkey&amp;return_page=login.html" class="social-auth-btn auth-provider-passkey" data-provider="passkey" aria-label="Sign in with Biometric Passkey" title="Biometric Passkey (FIDO2 / WebAuthn)">
+                  <i class="fa-solid fa-fingerprint" aria-hidden="true"></i>
+                </a>
+                
+                <!-- Hardware Security Key -->
+                <a href="404.html?from=security_key&amp;return_page=login.html" class="social-auth-btn auth-provider-key" data-provider="key" aria-label="Sign in with Hardware Security Key" title="Hardware Security Key / MFA Token">
+                  <i class="fa-solid fa-key" aria-hidden="true"></i>
+                </a>
+              </div>
+
+              <!-- Switch to Sign Up Trigger -->
+              <div class="auth-switch-box">
+                <span>Don't have an account?</span>
+                <button type="button" class="auth-inline-switch-btn" id="switchToSignUpBtn">Sign Up</button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- ==================================================================
+               VIEW B: SIGN UP FORM (Shown upon toggle)
+               ================================================================== -->
+          <div class="auth-form-container" id="signUpFormView" style="display: none;">
+            
+            <div class="auth-form-header">
+              <h1 class="auth-form-title">Sign up</h1>
+              <p class="auth-form-subtitle">
+                Welcome To Stackly ! Sign up to access your account with your registered username or email address
+              </p>
+            </div>
+
+            <form class="auth-form" id="signUpForm" novalidate>
+              
+              <!-- Full Name Input -->
+              <div class="form-field-group">
+                <label for="signUpName" class="form-field-label">Full Name</label>
+                <div class="input-with-icon">
+                  <i class="fa-regular fa-user input-icon" aria-hidden="true"></i>
+                  <input 
+                    type="text" 
+                    id="signUpName" 
+                    name="fullname" 
+                    class="auth-input" 
+                    placeholder="Enter your full name" 
+                    required 
+                    autocomplete="name">
+                </div>
+                <span class="field-error-msg" id="signUpNameError"></span>
+              </div>
+
+              <!-- Email Input -->
+              <div class="form-field-group">
+                <label for="signUpEmail" class="form-field-label">Email</label>
+                <div class="input-with-icon">
+                  <i class="fa-regular fa-envelope input-icon" aria-hidden="true"></i>
+                  <input 
+                    type="email" 
+                    id="signUpEmail" 
+                    name="email" 
+                    class="auth-input" 
+                    placeholder="hi@email.com" 
+                    required 
+                    autocomplete="email">
+                </div>
+                <span class="field-error-msg" id="signUpEmailError"></span>
+              </div>
+
+              <!-- Password Input -->
+              <div class="form-field-group">
+                <label for="signUpPassword" class="form-field-label">Password</label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-lock input-icon" aria-hidden="true"></i>
+                  <input 
+                    type="password" 
+                    id="signUpPassword" 
+                    name="password" 
+                    class="auth-input" 
+                    placeholder="Password" 
+                    required 
+                    minlength="8"
+                    autocomplete="new-password">
+                  <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                    <i class="fa-regular fa-eye toggle-icon" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="field-hint-row">
+                  <small class="input-helper-text">At least 8 characters</small>
+                </div>
+                <span class="field-error-msg" id="signUpPasswordError"></span>
+              </div>
+
+              <!-- Confirm Password Input -->
+              <div class="form-field-group">
+                <label for="signUpConfirmPassword" class="form-field-label">Confirm Password</label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-shield-halved input-icon" aria-hidden="true"></i>
+                  <input 
+                    type="password" 
+                    id="signUpConfirmPassword" 
+                    name="confirmPassword" 
+                    class="auth-input" 
+                    placeholder="Confirm password" 
+                    required 
+                    minlength="8"
+                    autocomplete="new-password">
+                  <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                    <i class="fa-regular fa-eye toggle-icon" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <span class="field-error-msg" id="signUpConfirmPasswordError"></span>
+              </div>
+
+              <!-- Terms Agreement Checkbox -->
+              <div class="form-options-row">
+                <label class="remember-checkbox-label">
+                  <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                  <span class="custom-checkbox"></span>
+                  <span class="checkbox-text">I agree to Stackly Terms &amp; Privacy Policy</span>
+                </label>
+                <span class="field-error-msg" id="signUpTermsError"></span>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="auth-primary-btn" id="signUpBtn">
+                <span class="btn-text">Sign Up</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+
+              <!-- Alternative Enterprise Auth Divider -->
+              <div class="auth-social-divider">
+                <span>Or continue with</span>
+              </div>
+
+              <!-- Copyright-Free Enterprise Auth Buttons Row -->
+              <div class="social-login-grid">
+                <!-- Enterprise Cloud SSO -->
+                <a href="404.html?from=cloud_sso&amp;return_page=login.html" class="social-auth-btn auth-provider-sso" data-provider="sso" aria-label="Register with Enterprise Cloud SSO" title="Enterprise Cloud SSO (SAML 2.0 / OIDC)">
+                  <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+                </a>
+                
+                <!-- Biometric Passkey / WebAuthn -->
+                <a href="404.html?from=biometric_passkey&amp;return_page=login.html" class="social-auth-btn auth-provider-passkey" data-provider="passkey" aria-label="Register with Biometric Passkey" title="Biometric Passkey (FIDO2 / WebAuthn)">
+                  <i class="fa-solid fa-fingerprint" aria-hidden="true"></i>
+                </a>
+                
+                <!-- Hardware Security Key -->
+                <a href="404.html?from=security_key&amp;return_page=login.html" class="social-auth-btn auth-provider-key" data-provider="key" aria-label="Register with Hardware Security Key" title="Hardware Security Key / MFA Token">
+                  <i class="fa-solid fa-key" aria-hidden="true"></i>
+                </a>
+              </div>
+
+              <!-- Switch to Sign In Trigger -->
+              <div class="auth-switch-box">
+                <span>Already have an account?</span>
+                <button type="button" class="auth-inline-switch-btn" id="switchToSignInBtn">Sign in</button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+        <!-- ====================================================================
+             RIGHT PANEL: Deep Blue Light Curtain & Enterprise Testimonial
+             ==================================================================== -->
+        <div class="auth-right-panel" id="authRightPanel">
+          
+          <!-- Background Vertical Light Curtains Effect -->
+          <div class="curtain-light-layer" aria-hidden="true">
+            <span class="curtain-band b1"></span>
+            <span class="curtain-band b2"></span>
+            <span class="curtain-band b3"></span>
+            <span class="curtain-band b4"></span>
+            <span class="curtain-band b5"></span>
+            <span class="curtain-band b6"></span>
+            <span class="curtain-band b7"></span>
+            <span class="curtain-band b8"></span>
+          </div>
+
+          <!-- Ambient Overlay Glow -->
+          <div class="curtain-ambient-glow" aria-hidden="true"></div>
+
+          <!-- Content Inside Right Panel -->
+          <div class="curtain-inner-content">
+            
+            <!-- Dynamic Quote Block -->
+            <div class="curtain-quote-wrap">
+              <h2 class="curtain-headline" id="curtainHeadline">
+                Compact, Efficient, and Very Simple Tools
+              </h2>
+              <p class="curtain-quote-text" id="curtainQuote">
+                Using Stackly cloud we spent 8 hours on reporting; now, their automated dashboards cut our work by 50%, giving us back a full day weekly!
+              </p>
+              
+              <!-- Author Profile Card -->
+              <div class="curtain-author-card">
+                <div class="curtain-author-avatar">
+                  <span>IA</span>
+                </div>
+                <div class="curtain-author-meta">
+                  <div class="author-name">Imam Athaya</div>
+                  <div class="author-title">Head of Design, Mokanata Studio</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Client Logos Trust Strip -->
+            <div class="curtain-trust-strip">
+              <div class="curtain-trust-divider">
+                <span>Product using Stackly cloud services</span>
+              </div>
+
+              <div class="curtain-brands-grid">
+                <!-- Shopify -->
+                <div class="brand-item" title="Shopify">
+                  <i class="fa-brands fa-shopify"></i>
+                  <span>shopify</span>
+                </div>
+                <!-- Dribbble -->
+                <div class="brand-item" title="Dribbble">
+                  <i class="fa-brands fa-dribbble"></i>
+                  <span>dribbble</span>
+                </div>
+                <!-- Gumroad -->
+                <div class="brand-item" title="Gumroad">
+                  <span class="custom-brand-text">GUMROAD</span>
+                </div>
+                <!-- Docker -->
+                <div class="brand-item" title="Docker">
+                  <i class="fa-brands fa-docker"></i>
+                  <span>docker</span>
+                </div>
+                <!-- Webflow -->
+                <div class="brand-item" title="Webflow">
+                  <span class="custom-brand-text webflow-text">webflow</span>
+                </div>
+                <!-- Descript -->
+                <div class="brand-item" title="Descript">
+                  <span class="brand-descript-icon"><i class="fa-solid fa-bars-staggered"></i></span>
+                  <span>descript</span>
+                </div>
+                <!-- Product Hunt -->
+                <div class="brand-item" title="Product Hunt">
+                  <span class="ph-circle">P</span>
+                  <span>Product Hunt</span>
+                </div>
+                <!-- Lever -->
+                <div class="brand-item" title="Lever">
+                  <span class="lever-prism">â–²</span>
+                  <span>LEVER</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       3. GLOBAL FOOTER (Mirrors index.html)
+       ========================================================================== -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-container">
+      
+      <!-- 4-Column Grid -->
+      <div class="footer-grid">
+        
+        <!-- Column 1: Brand Info -->
+        <div class="footer-col footer-col-brand" data-aos="fade-up" data-aos-duration="800">
+          <a href="index.html" class="footer-brand-logo" aria-label="Stackly Homepage">
+            <img 
+              src="images/logo.webp" 
+              alt="Stackly Logo" 
+              class="footer-logo-img"
+              onerror="this.src='images/logo.webp'">
+          </a>
+          <p class="footer-brand-desc">
+            A warm signal through the cloud layer - complexity turned into a route your team can walk.
+          </p>
+        </div>
+
+        <!-- Column 2: Company -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-link-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="service.html" class="footer-link">Our Solutions</a></li>
+            <li><a href="404.html?from=footer&amp;return_page=login.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-link-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="service.html" class="footer-link">Services</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="blog.html" class="footer-link">Blogs</a></li>
+            <li><a href="login.html" class="footer-link active">Sign In</a></li>
+            <li><a href="contact.html" class="footer-link">Book a Consult</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-col footer-col-contact" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-info">
+            <a href="mailto:hello@Stackly.net.in" class="footer-contact-item">
+              <i class="fa-regular fa-envelope footer-contact-icon" aria-hidden="true"></i>
+              <span>hello@Stackly.net.in</span>
+            </a>
+            <a href="tel:+918905246537" class="footer-contact-item">
+              <i class="fa-solid fa-phone footer-contact-icon" aria-hidden="true"></i>
+              <span>+91 89052 46537</span>
+            </a>
+            <div class="footer-contact-item footer-contact-address">
+              <i class="fa-solid fa-location-dot footer-contact-icon" aria-hidden="true"></i>
+              <span>MMR Complex, China Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animated Divider Line -->
+      <div class="footer-divider-wrap">
+        <div class="footer-divider-line" id="footerDivider"></div>
+      </div>
+
+      <!-- Bottom Footer: Copyright & Socials -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2026 Stackly Technologies. All rights reserved.
+        </p>
+        
+        <div class="footer-social-links" aria-label="Social Media">
+          <a href="404.html?from=footer&amp;return_page=login.html" class="footer-social-btn" aria-label="Stackly on LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=login.html" class="footer-social-btn" aria-label="Stackly on Twitter / X" title="Twitter / X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=login.html" class="footer-social-btn" aria-label="Stackly on Instagram" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Stackly Cloud Business Solutions</title>
+  <meta name="description" content="Bring us the hard cloud question. Tell us where the signal gets noisy. We'll reply with the right next conversation, not a generic sales script.">
+
+  <!-- Instant Position Restoration -->
+  <script>
+    (function() {
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var restoreScroll = urlParams.get('restore_scroll');
+        var isRestoring = (sessionStorage.getItem('stackly_instant_restore') === 'true' || restoreScroll !== null) && 
+                          (document.referrer.indexOf('404.html') !== -1 || restoreScroll !== null);
+        if (isRestoring) {
+          document.documentElement.classList.add('instant-restoring');
+          document.documentElement.style.scrollBehavior = 'auto';
+          var sVal = restoreScroll || sessionStorage.getItem('stackly_target_scroll') || sessionStorage.getItem('stackly_last_scroll');
+          if (sVal !== null && sVal !== '' && parseInt(sVal, 10) >= 0) {
+            window.scrollTo(0, parseInt(sVal, 10));
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- AOS (Animate On Scroll) CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body class="contact-page">
+
+  <!-- ==========================================================================
+       Futuristic 3D GSAP Animated Loading Page
+       ========================================================================== -->
+  <div id="siteLoader" class="site-loader" aria-label="Loading Stackly">
+    <!-- Ambient Background Lighting & Mesh -->
+    <div class="loader-ambient-glow cyan-ambient" aria-hidden="true"></div>
+    <div class="loader-ambient-glow indigo-ambient" aria-hidden="true"></div>
+    <div class="loader-grid-mesh" aria-hidden="true"></div>
+
+    <div class="loader-container">
+      <!-- 1. Brand Logo with 3D Float & Ambient Halo -->
+      <div class="loader-brand" id="loaderBrand">
+        <div class="loader-logo-halo" aria-hidden="true"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="loader-logo-img">
+        <div class="loader-tagline">
+          <span class="loader-tag-dot" aria-hidden="true"></span>
+          <span>CLOUD BUSINESS SOLUTIONS</span>
+        </div>
+      </div>
+
+      <!-- 2. 3D Gyroscope Video Core Stage -->
+      <div class="loader-stage-3d" id="loaderStage3D">
+        <!-- Concentric 3D Gyroscope Rings -->
+        <div class="loader-gyro-ring ring-outer" aria-hidden="true">
+          <div class="gyro-dot dot-1"></div>
+          <div class="gyro-dot dot-2"></div>
+        </div>
+        <div class="loader-gyro-ring ring-middle" aria-hidden="true">
+          <div class="gyro-dot dot-3"></div>
+        </div>
+        <div class="loader-gyro-ring ring-inner" aria-hidden="true"></div>
+
+        <!-- Spherical Looping Video Core with Holographic Glare -->
+        <div class="loader-video-orb" id="loaderVideoOrb">
+          <div class="loader-orb-aura" aria-hidden="true"></div>
+          <div class="loader-orb-rim" aria-hidden="true"></div>
+          <video 
+            class="loader-core-video" 
+            src="images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="auto"
+          ></video>
+          <div class="loader-orb-glare" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- 3. Cyber HUD Progress Counter & Status -->
+      <div class="loader-hud" id="loaderHud">
+        <div class="loader-counter-wrap">
+          <span class="loader-counter-num" id="loaderCounter">0</span>
+          <span class="loader-counter-pct">%</span>
+        </div>
+
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar" id="loaderProgressBar">
+            <span class="loader-progress-glow"></span>
+          </div>
+        </div>
+
+        <div class="loader-status" id="loaderStatus">
+          <span class="status-indicator"></span>
+          <span class="status-text" id="loaderStatusText">INITIALIZING CLOUD INFRASTRUCTURE...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Global Background & Mesh Grid -->
+  <div class="bg-gradient-glow top-glow" aria-hidden="true"></div>
+  <div class="bg-gradient-glow bottom-glow" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- 1. Global Header / Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      
+      <!-- Left: Logo -->
+      <a href="index.html" class="logo-link" aria-label="Stackly Homepage">
+        <img 
+          src="images/logo.webp" 
+          alt="Stackly Logo" 
+          class="logo-img" 
+          onerror="this.src='images/logo.webp'">
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link magnetic-nav-item">Home</a></li>
+          <li class="nav-item"><a href="service.html" class="nav-link magnetic-nav-item">Services</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link magnetic-nav-item">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link magnetic-nav-item active">Contact</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link magnetic-nav-item">Blogs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right: Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult">
+          <span class="btn-consult-text">Book a consult</span>
+          <span class="pulse-aura" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="service.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link active">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blogs</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <a href="login.html" class="mobile-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult mobile-consult">
+          <span class="btn-consult-text">Book a consult</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Two-Column Contact Hero Section -->
+  <main class="contact-hero-section" id="contactHero" aria-label="Contact Stackly Engineering">
+    <div class="contact-hero-container">
+
+      <!-- Left Column (approx 45% width): Content & Typography -->
+      <div class="contact-hero-left" id="contactHeroLeft">
+        
+        <!-- Overline -->
+        <div class="contact-overline">
+          <span class="contact-beacon" aria-hidden="true"></span>
+          <span class="contact-overline-text">CONTACT STACKLY</span>
+        </div>
+
+        <!-- Main Heading: running word-by-word reveal -->
+        <h1 class="contact-hero-heading" id="contactHeroHeading" aria-label="Bring us the hard cloud question.">
+          <span class="contact-word-mask"><span class="contact-word">Bring</span></span>
+          <span class="contact-word-mask"><span class="contact-word">us</span></span>
+          <span class="contact-word-mask"><span class="contact-word">the</span></span>
+          <span class="contact-word-mask"><span class="contact-word">hard</span></span>
+          <span class="contact-word-mask"><span class="contact-word">cloud</span></span>
+          <span class="contact-word-mask"><span class="contact-word">question.</span></span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="contact-hero-subheading" id="contactHeroSubheading">
+          Tell us where the signal gets noisy. We'll reply with the right next conversation, not a generic sales script.
+        </p>
+
+        <!-- Contact List (Icon + Text) -->
+        <ul class="contact-info-list" id="contactInfoList" role="list">
+          
+          <!-- Item 1: Email -->
+          <li class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <i class="fa-regular fa-envelope"></i>
+            </div>
+            <div class="contact-info-content">
+              <span class="contact-info-label">Direct Channel</span>
+              <a href="404.html?from=hello-stackly&amp;return_page=contact.html" class="contact-info-link">hello@stackly.cloud</a>
+            </div>
+          </li>
+
+          <!-- Item 2: Response SLA -->
+          <li class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <i class="fa-regular fa-clock"></i>
+            </div>
+            <div class="contact-info-content">
+              <span class="contact-info-label">Response Time</span>
+              <span class="contact-info-text">Replies within one business day</span>
+            </div>
+          </li>
+
+          <!-- Item 3: Remote First Worldwide / Parali -->
+          <li class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="contact-info-content">
+              <span class="contact-info-label">Global Presence</span>
+              <span class="contact-info-text">Remote-first &mdash; supporting teams worldwide <span class="contact-location-tag">(Hub: Parali, Kerala, India)</span></span>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <!-- Right Column (approx 55% width): 3D Animated Hero Image -->
+      <div class="contact-hero-right" id="contactHeroRight">
+        <div class="contact-card-3d" id="contactCard3D">
+          <div class="contact-card-inner">
+            <img 
+              src="images/cont1.webp" 
+              alt="Stackly Cloud Engineering Team Collaboration" 
+              class="contact-fluid-img" 
+              id="contactFluidImg"
+              loading="eager"
+              onerror="this.src='images/cont1.webp'">
+            <div class="contact-img-glow" aria-hidden="true"></div>
+            <div class="contact-img-border" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       2. ROUTE AUDIT REQUEST & CONTACT CHANNELS (Image 2 Match)
+       ========================================================================== -->
+  <section class="audit-section" id="contactAudit" aria-label="Route Audit Request">
+    <div class="audit-container">
+
+      <!-- Top Row: Two-Column Form & Value Prop -->
+      <div class="audit-top-row">
+
+        <!-- Left Column: Context & Guarantees -->
+        <div class="audit-left" data-aos="fade-up" data-aos-duration="700">
+          <div class="audit-overline">
+            <span class="audit-beacon" aria-hidden="true"></span>
+            <span>ROUTE AUDIT REQUEST</span>
+          </div>
+
+          <h2 class="audit-heading">
+            Give us enough context to make the first call useful.
+          </h2>
+
+          <p class="audit-desc">
+            You do not need a polished brief. Tell us what changed, what is at risk, and what decision feels blocked. A senior operator will review your note before replying.
+          </p>
+
+          <!-- Trust Badges List -->
+          <div class="audit-trust-list">
+            <div class="audit-trust-item">
+              <div class="audit-trust-icon" aria-hidden="true">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <span class="audit-trust-text">Your information stays private</span>
+            </div>
+
+            <div class="audit-trust-item">
+              <div class="audit-trust-icon" aria-hidden="true">
+                <i class="fa-solid fa-user-check"></i>
+              </div>
+              <span class="audit-trust-text">Reviewed by an experienced practitioner</span>
+            </div>
+
+            <div class="audit-trust-item">
+              <div class="audit-trust-icon" aria-hidden="true">
+                <i class="fa-regular fa-comment-dots"></i>
+              </div>
+              <span class="audit-trust-text">No obligation and no automated sequence</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Warm Ivory Form Card -->
+        <div class="audit-right" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
+          <div class="audit-form-card" id="auditFormCard">
+            <form class="audit-form" id="routeAuditForm" action="404.html?from=contact-inquiry&amp;return_page=contact.html" novalidate>
+              
+              <!-- Row 1: Name & Work Email -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="auditName" class="form-label">Name</label>
+                  <input 
+                    type="text" 
+                    id="auditName" 
+                    name="name" 
+                    class="form-input" 
+                    placeholder="Your name" 
+                    required 
+                    autocomplete="name">
+                  <span class="form-field-error" id="err-auditName" style="display: none;">Please fill all fields</span>
+                </div>
+                <div class="form-group">
+                  <label for="auditEmail" class="form-label">Work email</label>
+                  <input 
+                    type="email" 
+                    id="auditEmail" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="you@company.com" 
+                    required 
+                    autocomplete="email">
+                  <span class="form-field-error" id="err-auditEmail" style="display: none;">Please fill all fields</span>
+                </div>
+              </div>
+
+              <!-- Row 2: Company & Role -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="auditCompany" class="form-label">Company</label>
+                  <input 
+                    type="text" 
+                    id="auditCompany" 
+                    name="company" 
+                    class="form-input" 
+                    placeholder="Company name" 
+                    required 
+                    autocomplete="organization">
+                  <span class="form-field-error" id="err-auditCompany" style="display: none;">Please fill all fields</span>
+                </div>
+                <div class="form-group">
+                  <label for="auditRole" class="form-label">Role</label>
+                  <input 
+                    type="text" 
+                    id="auditRole" 
+                    name="role" 
+                    class="form-input" 
+                    placeholder="Your role" 
+                    required 
+                    autocomplete="organization-title">
+                  <span class="form-field-error" id="err-auditRole" style="display: none;">Please fill all fields</span>
+                </div>
+              </div>
+
+              <!-- Row 3: What are you solving? -->
+              <div class="form-group form-group-full">
+                <label for="auditSolving" class="form-label">What are you solving?</label>
+                <textarea 
+                  id="auditSolving" 
+                  name="solving" 
+                  class="form-textarea" 
+                  placeholder="A migration, rising spend, an audit, an unreliable service, or a platform that needs a clearer owner..." 
+                  rows="4" 
+                  required></textarea>
+                <span class="form-field-error" id="err-auditSolving" style="display: none;">Please fill all fields</span>
+              </div>
+
+              <!-- Action Button -->
+              <button type="submit" class="btn-send-inquiry" id="btnSendInquiry">
+                <span class="btn-text">Send inquiry</span>
+                <i class="fa-regular fa-paper-plane btn-icon" aria-hidden="true"></i>
+              </button>
+
+              <!-- Sub-button Note -->
+              <p class="form-sub-note">
+                No pressure. No generic deck. Just a useful first conversation.
+              </p>
+
+              <!-- Form Success Feedback State -->
+              <div class="form-feedback-message" id="formFeedbackMessage" style="display: none;">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Thank you! Your note has been securely forwarded to a senior operator.</span>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Divider Line -->
+      <div class="audit-divider"></div>
+
+      <!-- Bottom Row: 3 Contact Channels Strip -->
+      <div class="channels-strip" data-aos="fade-up" data-aos-duration="600">
+        
+        <!-- Channel 1: General Inquiries -->
+        <div class="channel-col">
+          <div class="channel-icon" aria-hidden="true">
+            <i class="fa-regular fa-envelope"></i>
+          </div>
+          <span class="channel-label">GENERAL INQUIRIES</span>
+          <a href="404.html?from=hello-stackly&amp;return_page=contact.html" class="channel-value">hello@stackly.cloud</a>
+          <p class="channel-desc">
+            For partnerships, speaking, and questions that do not need a route audit.
+          </p>
+        </div>
+
+        <!-- Channel 2: Response Window -->
+        <div class="channel-col">
+          <div class="channel-icon" aria-hidden="true">
+            <i class="fa-regular fa-clock"></i>
+          </div>
+          <span class="channel-label">RESPONSE WINDOW</span>
+          <div class="channel-value channel-static">One business day</div>
+          <p class="channel-desc">
+            Complex questions may take longer, but we will always acknowledge your note promptly.
+          </p>
+        </div>
+
+        <!-- Channel 3: Working Model -->
+        <div class="channel-col">
+          <div class="channel-icon" aria-hidden="true">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <span class="channel-label">WORKING MODEL</span>
+          <div class="channel-value channel-static">Remote-first</div>
+          <p class="channel-desc">
+            We support distributed teams worldwide with clear overlap and written continuity.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. HOW WE WORK & COMMON FIRST QUESTIONS (Image 1 Match)
+       ========================================================================== -->
+  <section class="process-faq-section" id="contactProcessFaq" aria-label="Process and FAQ">
+    <div class="process-faq-container">
+
+      <!-- Top Process Divider Line -->
+      <div class="process-border-line"></div>
+
+      <!-- 3-Step Process Strip -->
+      <div class="process-strip" id="processStrip">
+        
+        <!-- Step 01 -->
+        <div class="process-step" data-aos="fade-up" data-aos-delay="50">
+          <div class="step-num">01</div>
+          <h3 class="step-title">We read first</h3>
+          <p class="step-desc">
+            A senior operator reviews your note before we get on a call.
+          </p>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="process-step" data-aos="fade-up" data-aos-delay="150">
+          <div class="step-num">02</div>
+          <h3 class="step-title">We meet for 30</h3>
+          <p class="step-desc">
+            A focused route audit with the people closest to the problem.
+          </p>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="process-step" data-aos="fade-up" data-aos-delay="250">
+          <div class="step-num">03</div>
+          <h3 class="step-title">You leave with signal</h3>
+          <p class="step-desc">
+            A next step you can use whether or not we work together.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Bottom Process Divider Line -->
+      <div class="process-border-line"></div>
+
+      <!-- Common First Questions (FAQ) -->
+      <div class="faq-grid" id="faqGrid">
+        
+        <!-- Left: Heading & Context -->
+        <div class="faq-left" data-aos="fade-up" data-aos-duration="650">
+          <div class="faq-overline">
+            <span>COMMON FIRST QUESTIONS</span>
+          </div>
+          <h2 class="faq-main-title">
+            A few useful answers.
+          </h2>
+          <p class="faq-intro-text">
+            Direct, actionable clarity without gatekeeping or generic sales decks. We partner directly with technical founders, VP of Engineering, and SRE leaders to unblock stalled migrations, isolate runaway cloud spend, and harden critical clusters.
+          </p>
+          <div class="faq-support-card">
+            <div class="faq-support-icon">
+              <i class="fa-solid fa-headset" aria-hidden="true"></i>
+            </div>
+            <div class="faq-support-content">
+              <h4 class="faq-support-title">Have an unlisted architecture question?</h4>
+              <p class="faq-support-desc">Connect directly with a principal systems architect for an objective, zero-obligation review of your technical topology.</p>
+              <a href="404.html?from=ask-architect&amp;return_page=contact.html" class="faq-support-btn">
+                <span>Ask an Architect Directly</span>
+                <i class="fa-solid fa-comments" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="faq-trust-strip">
+            <span class="faq-trust-pill">
+              <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+              <span>Avg. reply &lt; 4 business hours</span>
+            </span>
+            <span class="faq-trust-pill">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              <span>100% senior architect review</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: FAQ List -->
+        <div class="faq-right" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+          <div class="faq-list">
+            
+            <!-- Item 1 -->
+            <div class="faq-item">
+              <h3 class="faq-question">
+                Do you work with teams that already have cloud engineers?
+              </h3>
+              <p class="faq-answer">
+                Yes. Most of our work is alongside an existing team. We add route clarity, specialist depth, and a calmer operating rhythm.
+              </p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="faq-item">
+              <h3 class="faq-question">
+                Can you start with a specific workload?
+              </h3>
+              <p class="faq-answer">
+                Absolutely. A focused workload is often the best way to prove the route before expanding it across a platform.
+              </p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="faq-item">
+              <h3 class="faq-question">
+                Where are you based?
+              </h3>
+              <p class="faq-answer">
+                We are remote-first and work across time zones, with a bias toward clear written communication.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. GLOBAL OPERATIONS & ADVISORY HUBS (Section 4)
+       ========================================================================== -->
+  <section class="hubs-section" id="contactHubs" aria-label="Global Operations and Advisory Hubs">
+    <div class="hubs-container">
+
+      <!-- Section Header -->
+      <div class="contact-section-header" data-aos="fade-up" data-aos-duration="650">
+        <div class="contact-sub-overline">
+          <span class="sub-beacon beacon-cyan"></span>
+          <span>GLOBAL INFRASTRUCTURE FOOTPRINT</span>
+        </div>
+        <div class="header-split-row">
+          <h2 class="contact-section-title">
+            Global Operations &amp; Advisory Desks
+          </h2>
+          <p class="contact-section-desc">
+            Distributed site reliability engineers and principal infrastructure architects aligned across prime timezone corridors.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 Compact Hub Cards Grid -->
+      <div class="hubs-grid">
+
+        <!-- Hub 1: APAC Operations Centre (Salem / Parali) -->
+        <article class="hub-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="hub-media">
+            <img 
+              src="images/b3.webp" 
+              alt="APAC Operations Centre in Salem" 
+              class="hub-img" 
+              loading="lazy">
+            <span class="hub-badge-live">
+              <span class="pulse-live-dot"></span>
+              <span>LIVE DESK &bull; 24/7 SRE</span>
+            </span>
+          </div>
+          <div class="hub-body">
+            <div class="hub-region-tag">ASIA-PACIFIC COMMAND</div>
+            <h3 class="hub-name">Salem &amp; Parali Hub</h3>
+            <p class="hub-scope">Core infrastructure architecture, high-frequency SRE telemetry, and zero-downtime database cutovers.</p>
+            <div class="hub-meta-row">
+              <div class="hub-time-meta">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                <span>IST (UTC +5:30)</span>
+              </div>
+              <a href="404.html?from=apac-desk&amp;return_page=contact.html" class="hub-contact-link" aria-label="Email APAC Desk">
+                <span>apac-desk@stackly.cloud</span>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Hub 2: Americas Cloud Command (San Francisco / Remote East) -->
+        <article class="hub-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="hub-media">
+            <img 
+              src="images/b1.webp" 
+              alt="Americas Datacenter Hub" 
+              class="hub-img" 
+              loading="lazy">
+            <span class="hub-badge-live">
+              <span class="pulse-live-dot"></span>
+              <span>ACTIVE &bull; 08:00 - 20:00 EST</span>
+            </span>
+          </div>
+          <div class="hub-body">
+            <div class="hub-region-tag">NORTH AMERICA FLEET</div>
+            <h3 class="hub-name">San Francisco &amp; East Hub</h3>
+            <p class="hub-scope">Enterprise FinOps continuous allocation audits, multi-cloud Kubernetes peering, and executive RFPs.</p>
+            <div class="hub-meta-row">
+              <div class="hub-time-meta">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                <span>PST / EST (UTC -8 / -5)</span>
+              </div>
+              <a href="404.html?from=na-desk&amp;return_page=contact.html" class="hub-contact-link" aria-label="Email North America Desk">
+                <span>na-desk@stackly.cloud</span>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Hub 3: EMEA Reliability Hub (London / Berlin) -->
+        <article class="hub-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="hub-media">
+            <img 
+              src="images/b2.webp" 
+              alt="EMEA Engineering Desk" 
+              class="hub-img" 
+              loading="lazy">
+            <span class="hub-badge-live">
+              <span class="pulse-live-dot"></span>
+              <span>ACTIVE &bull; 08:00 - 18:00 CET</span>
+            </span>
+          </div>
+          <div class="hub-body">
+            <div class="hub-region-tag">EMEA RELIABILITY</div>
+            <h3 class="hub-name">London &amp; Berlin Hub</h3>
+            <p class="hub-scope">Zero-trust WireGuard interconnects, GDPR/SOC 2 CI/CD compliance guardrails, and latency optimization.</p>
+            <div class="hub-meta-row">
+              <div class="hub-time-meta">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                <span>GMT / CET (UTC +0 / +1)</span>
+              </div>
+              <a href="404.html?from=emea-desk&amp;return_page=contact.html" class="hub-contact-link" aria-label="Email EMEA Desk">
+                <span>emea-desk@stackly.cloud</span>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. ENGINEERING ESCALATION & SLA TIER MATRIX (Section 5)
+       ========================================================================== -->
+  <section class="sla-section" id="contactSlaMatrix" aria-label="Engineering Escalation and SLA Tiers">
+    <div class="sla-container">
+
+      <!-- Section Header -->
+      <div class="contact-section-header" data-aos="fade-up" data-aos-duration="650">
+        <div class="contact-sub-overline">
+          <span class="sub-beacon beacon-coral"></span>
+          <span>ENTERPRISE GUARANTEES</span>
+        </div>
+        <div class="header-split-row">
+          <h2 class="contact-section-title">
+            Engineering Escalation &amp; SLA Matrix
+          </h2>
+          <p class="contact-section-desc">
+            Clear contractual guarantees and response velocities tailored to incident severity and architecture advisory scopes.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 Compact SLA Cards Grid -->
+      <div class="sla-grid">
+
+        <!-- Tier 1: Advisory & Route Audit -->
+        <article class="sla-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="sla-media">
+            <img src="images/ss3.webp" alt="Architecture Advisory" class="sla-img" loading="lazy">
+            <span class="sla-pill pill-blue"><i class="fa-solid fa-shield"></i> ADVISORY</span>
+          </div>
+          <div class="sla-body">
+            <div class="sla-response-window">
+              <span class="sla-metric">&lt; 24h</span>
+              <span class="sla-metric-label">Guaranteed Response</span>
+            </div>
+            <h3 class="sla-tier-title">Architecture Consult &amp; Route Audit</h3>
+            <p class="sla-tier-desc">Deep inspection of your existing cloud topology, FinOps waste attribution, and infrastructure RFP evaluations.</p>
+            <ul class="sla-feature-list">
+              <li><i class="fa-solid fa-check"></i> Written Notion / Markdown architecture review</li>
+              <li><i class="fa-solid fa-check"></i> Direct 1-on-1 strategy video bridge</li>
+            </ul>
+            <div class="sla-card-footer">
+              <a href="404.html?from=request-route-audit&amp;return_page=contact.html" class="sla-action-btn">
+                <span>Request Route Audit</span>
+                <i class="fa-solid fa-calendar-check"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tier 2: SEV-1 Production Incident -->
+        <article class="sla-card sla-card-featured" data-aos="fade-up" data-aos-delay="200">
+          <div class="sla-media">
+            <img src="images/ss1.webp" alt="Incident Fencing" class="sla-img" loading="lazy">
+            <span class="sla-pill pill-coral"><i class="fa-solid fa-bolt"></i> SEV-1 INCIDENT</span>
+          </div>
+          <div class="sla-body">
+            <div class="sla-response-window">
+              <span class="sla-metric color-coral">15 min</span>
+              <span class="sla-metric-label">Target Response SLA</span>
+            </div>
+            <h3 class="sla-tier-title">Production Emergency Fencing</h3>
+            <p class="sla-tier-desc">Immediate incident commander dispatch for cluster split-brains, network partitions, and catastrophic outages.</p>
+            <ul class="sla-feature-list">
+              <li><i class="fa-solid fa-check"></i> 24/7 high-priority paging bridge</li>
+              <li><i class="fa-solid fa-check"></i> Live root cause mitigation &amp; forensic post-mortem</li>
+            </ul>
+            <div class="sla-card-footer">
+              <a href="404.html?from=emergency-hotline&amp;return_page=contact.html" class="sla-action-btn btn-highlight">
+                <span>Emergency Hotline</span>
+                <i class="fa-solid fa-phone"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tier 3: Dedicated SRE Pod -->
+        <article class="sla-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="sla-media">
+            <img src="images/ss2.webp" alt="Dedicated SRE Pod" class="sla-img" loading="lazy">
+            <span class="sla-pill pill-purple"><i class="fa-solid fa-cubes"></i> EMBEDDED POD</span>
+          </div>
+          <div class="sla-body">
+            <div class="sla-response-window">
+              <span class="sla-metric">24/7</span>
+              <span class="sla-metric-label">Real-Time Telemetry</span>
+            </div>
+            <h3 class="sla-tier-title">Dedicated Platform SRE Pod</h3>
+            <p class="sla-tier-desc">Continuous co-engineering with your internal squad via shared Slack/Teams channels and proactive runbook automation.</p>
+            <ul class="sla-feature-list">
+              <li><i class="fa-solid fa-check"></i> Private Slack Connect channel</li>
+              <li><i class="fa-solid fa-check"></i> Automated canary CI/CD gatekeeping</li>
+            </ul>
+            <div class="sla-card-footer">
+              <a href="404.html?from=discuss-retainer&amp;return_page=contact.html" class="sla-action-btn">
+                <span>Discuss Retainer</span>
+                <i class="fa-solid fa-handshake"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. DIRECT ARCHITECT DISPATCH CHANNELS (Section 6)
+       ========================================================================== -->
+  <section class="dispatch-section" id="contactDispatch" aria-label="Direct Architect Dispatch Channels">
+    <div class="dispatch-container">
+
+      <!-- Section Header -->
+      <div class="contact-section-header" data-aos="fade-up" data-aos-duration="650">
+        <div class="contact-sub-overline">
+          <span class="sub-beacon beacon-green"></span>
+          <span>SPECIALIZED PRACTICE LEADS</span>
+        </div>
+        <div class="header-split-row">
+          <h2 class="contact-section-title">
+            Direct Architect Dispatch Channels
+          </h2>
+          <p class="contact-section-desc">
+            Skip the sales team. Reach out directly to the principal engineer heading the discipline matching your architectural challenge.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 Compact Dispatch Cards Grid -->
+      <div class="dispatch-grid">
+
+        <!-- Lead 1: FinOps & Cloud Economics -->
+        <article class="dispatch-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="dispatch-header">
+            <div class="dispatch-avatar-wrap">
+              <img src="images/team1.webp" alt="Marcus Vance" class="dispatch-avatar" loading="lazy">
+              <span class="dispatch-online-dot" title="Available"></span>
+            </div>
+            <div class="dispatch-person">
+              <h3 class="dispatch-name">Marcus Vance</h3>
+              <span class="dispatch-role">Principal Cloud Economist</span>
+            </div>
+          </div>
+          <div class="dispatch-body">
+            <span class="dispatch-pill">FINOPS &amp; SPEND EFFICIENCY</span>
+            <p class="dispatch-specialty">Specializes in container-level pod billing attribution, spot arbitrage, and slashing multi-cloud waste spend.</p>
+          </div>
+          <div class="dispatch-footer">
+            <a href="404.html?from=finops-channel&amp;return_page=contact.html" class="dispatch-link">
+              <span>Open FinOps Channel</span>
+              <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Lead 2: Multi-Region Database Migrations -->
+        <article class="dispatch-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="dispatch-header">
+            <div class="dispatch-avatar-wrap">
+              <img src="images/team2.webp" alt="Zaria Chen" class="dispatch-avatar" loading="lazy">
+              <span class="dispatch-online-dot" title="Available"></span>
+            </div>
+            <div class="dispatch-person">
+              <h3 class="dispatch-name">Zaria Chen</h3>
+              <span class="dispatch-role">VP of Distributed Systems</span>
+            </div>
+          </div>
+          <div class="dispatch-body">
+            <span class="dispatch-pill">ZERO-DOWNTIME MIGRATIONS</span>
+            <p class="dispatch-specialty">Specializes in CDC bidirectional replication, Postgres multi-region failover, and high-throughput data pipelines.</p>
+          </div>
+          <div class="dispatch-footer">
+            <a href="404.html?from=migration-channel&amp;return_page=contact.html" class="dispatch-link">
+              <span>Open Migration Channel</span>
+              <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Lead 3: Zero-Trust Security & Compliance -->
+        <article class="dispatch-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="dispatch-header">
+            <div class="dispatch-avatar-wrap">
+              <img src="images/team3.webp" alt="Julian Keller" class="dispatch-avatar" loading="lazy">
+              <span class="dispatch-online-dot" title="Available"></span>
+            </div>
+            <div class="dispatch-person">
+              <h3 class="dispatch-name">Julian Keller</h3>
+              <span class="dispatch-role">Lead Security Architect</span>
+            </div>
+          </div>
+          <div class="dispatch-body">
+            <span class="dispatch-pill">ZERO-TRUST &amp; SOC 2</span>
+            <p class="dispatch-specialty">Specializes in WireGuard encrypted interconnects, kernel eBPF container defense, and automated compliance evidence.</p>
+          </div>
+          <div class="dispatch-footer">
+            <a href="404.html?from=security-channel&amp;return_page=contact.html" class="dispatch-link">
+              <span>Open Security Channel</span>
+              <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Global Footer (Matches index.html) -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Brand -->
+        <div class="footer-col footer-col-brand" data-aos="fade-up" data-aos-duration="800">
+          <a href="index.html" class="footer-brand-logo" aria-label="Stackly Homepage">
+            <img 
+              src="images/logo.webp" 
+              alt="Stackly Logo" 
+              class="footer-logo-img" 
+              onerror="this.src='images/logo.webp'">
+          </a>
+          <p class="footer-brand-desc">
+            A warm signal through the cloud layer - complexity turned into a route your team can walk.
+          </p>
+        </div>
+
+        <!-- Column 2: Company -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-link-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="service.html" class="footer-link">Our Solutions</a></li>
+            <li><a href="404.html?from=footer&amp;return_page=contact.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link active">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links (Mirrors Header Links) -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-link-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="service.html" class="footer-link">Services</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link active">Contact</a></li>
+            <li><a href="blog.html" class="footer-link">Blogs</a></li>
+            <li><a href="login.html" class="footer-link">Sign In</a></li>
+            <li><a href="contact.html" class="footer-link">Book a Consult</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-col footer-col-contact" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-info">
+            <a href="404.html?from=footer-email&amp;return_page=contact.html" class="footer-contact-item">
+              <i class="fa-regular fa-envelope footer-contact-icon" aria-hidden="true"></i>
+              <span>hello@stackly.cloud</span>
+            </a>
+            <a href="404.html?from=footer-phone&amp;return_page=contact.html" class="footer-contact-item">
+              <i class="fa-solid fa-phone footer-contact-icon" aria-hidden="true"></i>
+              <span>+91 89052 46537</span>
+            </a>
+            <div class="footer-contact-item footer-contact-address">
+              <i class="fa-solid fa-location-dot footer-contact-icon" aria-hidden="true"></i>
+              <span>Remote-first &bull; Hub: Parali, Kerala, India</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animated Divider Line -->
+      <div class="footer-divider-wrap">
+        <div class="footer-divider-line" id="footerDivider"></div>
+      </div>
+
+      <!-- Bottom Footer: Copyright & Socials -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2026 Stackly Technologies. All rights reserved.
+        </p>
+        <div class="footer-social-links" aria-label="Social Media">
+          <a href="404.html?from=contact_social&amp;return_page=contact.html" class="footer-social-btn" aria-label="Stackly on LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=contact_social&amp;return_page=contact.html" class="footer-social-btn" aria-label="Stackly on Twitter / X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=contact_social&amp;return_page=contact.html" class="footer-social-btn" aria-label="Stackly on Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+

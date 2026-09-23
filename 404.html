@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page In Orbit | Stackly</title>
+  <meta name="description" content="The page you requested is currently in orbit or under development. Return to Stackly Cloud Business Solutions.">
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #040507;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --accent-orange: #f97316;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 24px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Glow Backdrops */
+    .glow-top {
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 650px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 75%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-bottom {
+      position: absolute;
+      bottom: -150px;
+      right: 15%;
+      width: 500px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top Navigation (No Logo) */
+    header {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .top-back-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      font-family: inherit;
+      padding: 8px 18px;
+      border-radius: 100px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .top-back-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(249, 115, 22, 0.4);
+      color: #ffffff;
+      transform: translateX(-3px);
+    }
+
+    /* Main 404 Hero Container */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      text-align: center;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto 0;
+    }
+
+    /* Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-orange);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.6; }
+    }
+
+    /* Big 404 Number */
+    .hero-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(5.5rem, 12vw, 9.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.15) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      user-select: none;
+    }
+
+    .hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 1.3vw, 1.08rem);
+      line-height: 1.68;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 38px;
+    }
+
+    /* Button Group */
+    .btn-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Go Back Pill Button (Primary) */
+    .go-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      padding: 15px 36px;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 255, 255, 0.25);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .go-back-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 0 34px rgba(255, 255, 255, 0.5), 0 12px 28px rgba(0, 0, 0, 0.55);
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .go-back-btn:active {
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    .go-back-btn i {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .go-back-btn:hover i {
+      transform: rotate(-35deg);
+    }
+
+    /* Secondary Home Link */
+    .home-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-size: 0.96rem;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .home-link-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Minimal Footer (No Social Icons) */
+    footer {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .copyright {
+      font-size: 0.86rem;
+      color: #64748b;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 24px 16px;
+      }
+      .btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .go-back-btn, .home-link-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Ambience -->
+  <div class="glow-top" aria-hidden="true"></div>
+  <div class="glow-bottom" aria-hidden="true"></div>
+
+  <!-- Top Bar (No logo, only subtle back button) -->
+  <header>
+    <button class="top-back-btn" onclick="handleGoBack()" aria-label="Go Back">
+      <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+      <span>Go Back</span>
+    </button>
+  </header>
+
+  <!-- Central Content -->
+  <main>
+    <div class="status-badge">
+      <span class="pulse-dot"></span>
+      <span>Route In Orbit</span>
+    </div>
+
+    <div class="hero-number">404</div>
+    <h1 class="hero-title">This Route is Still Being Mapped</h1>
+    <p class="hero-desc">
+      The destination you requested has either shifted into a private architecture or is currently undergoing scheduled platform upgrades.
+    </p>
+
+    <!-- Prominent Action Buttons -->
+    <div class="btn-group">
+      <button class="go-back-btn" id="goBackBtn" onclick="handleGoBack()" aria-label="Return to previous section">
+        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+        <span>Go Back</span>
+      </button>
+
+      <a href="index.html" class="home-link-btn" onclick="sessionStorage.clear()" aria-label="Return to Homepage">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <span>Return to Home</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Minimal Footer (No social icons) -->
+  <footer>
+    <p class="copyright">&copy; 2026 Stackly Technologies. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleGoBack() {
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // 1. Determine Return Page (query param -> parameter inference map -> sessionStorage -> document.referrer -> fallback)
+      let returnPage = urlParams.get('return_page') || '';
+      
+      const fromParam = (urlParams.get('from') || '').toLowerCase();
+      const articleParam = urlParams.get('article');
+      const memberParam = urlParams.get('member');
+      const serviceParam = urlParams.get('service');
+      const clusterParam = urlParams.get('cluster');
+      const tenantParam = urlParams.get('tenant');
+      const poolParam = urlParams.get('pool');
+      const planeParam = urlParams.get('plane');
+      const ticketParam = urlParams.get('ticket');
+      const expertParam = urlParams.get('expert');
+      const contactArchParam = urlParams.get('contact_architect');
+
+      // Smart Parameter Routing Map
+      const serviceParams = [
+        'explore-services', 'service-expert', 'cloud-architecture', 'cloud-migration',
+        'devops-automation', 'security-compliance', 'managed-operations', 'cost-optimization',
+        'intelligence-layer', 'case-study-meridian', 'technical-specs-stage-1',
+        'technical-specs-stage-2', 'technical-specs-stage-3', 'technical-specs-stage-4',
+        'disciplines', 'delivery', 'intel-layer', 'endorsements', 'proven-performance',
+        'cloud-mesh-bento', 'migration-pathways', 'cloud-faq-advisory'
+      ];
+      const aboutParams = ['our-services', 'meet-the-team', 'about_cta', 'leadership', 'team', 'company-mission'];
+      const blogParams = ['blog_archive', 'blog_social', 'signal-form', 'blogsignal', 'blog_feed', 'playbooks'];
+      const contactParams = [
+        'contact-inquiry', 'contactaudit', 'contact', 'hello-stackly', 'ask-architect',
+        'apac-desk', 'na-desk', 'emea-desk', 'request-route-audit', 'emergency-hotline',
+        'discuss-retainer', 'finops-channel', 'migration-channel', 'security-channel',
+        'footer-email', 'footer-phone', 'contact_social', 'routeauditform'
+      ];
+      const userDashParams = [
+        'quota-upgrade', 'dash_notifications', 'deploy_cluster', 'export_traffic',
+        'mesh_inspect', 'cluster_telemetry', 'view_topology', 'filter_workloads',
+        'add_service', 'view_all_workloads', 'scale_nodes', 'new_cluster', 'hpa_policies',
+        'canary_pipeline', 'finops_report', 'budget_alerts', 'finops_csv', 'spot_arbitrage',
+        'initiate_cutover', 'migration_runbook', 'hash_validator', 'iac_rollback',
+        'soc2_audit', 'rotate_keys', 'kernel_probes', 'evidence_vault', 'new_ticket',
+        'ticket_history', 'dash_privacy', 'dash_sla'
+      ];
+      const adminDashParams = [
+        'admin_fleet_capacity', 'admin_notifications', 'admin_provision_cluster',
+        'admin_mesh_topology', 'admin_mesh_keys', 'admin_mesh_drain', 'admin_filter_planes',
+        'admin_add_plane', 'admin_new_tenant', 'admin_tenant_isolation', 'admin_burst_policy',
+        'admin_export_finops', 'admin_spot_policy', 'admin_arbitrage_settings',
+        'admin_aws_spend', 'admin_gcp_spend', 'admin_azure_spend', 'admin_drain_nodes',
+        'admin_add_hypervisor', 'admin_bare_metal_specs', 'admin_memory_compaction',
+        'admin_cve_scan', 'admin_rotate_keys', 'admin_hsm_vault', 'admin_security_logs',
+        'admin_dispatch_p1', 'admin_chaos_runbooks', 'admin_schedule_rotation',
+        'admin_clear_incidents', 'admin_security_policy', 'admin_compliance'
+      ];
+      const loginParams = ['forgot', 'login', 'cloud_sso', 'biometric_passkey', 'security_key', 'sso', 'passkey', 'key', 'signin', 'signup', 'auth'];
+
+      if (!returnPage) {
+        if (serviceParams.includes(fromParam)) {
+          returnPage = 'service.html';
+        } else if (aboutParams.includes(fromParam) || memberParam) {
+          returnPage = 'about.html';
+        } else if (blogParams.includes(fromParam) || articleParam) {
+          returnPage = 'blog.html';
+        } else if (contactParams.includes(fromParam)) {
+          returnPage = 'contact.html';
+        } else if (adminDashParams.includes(fromParam) || planeParam || tenantParam || poolParam || contactArchParam) {
+          returnPage = 'admindashboard.html';
+        } else if (userDashParams.includes(fromParam) || serviceParam || clusterParam || ticketParam || expertParam) {
+          returnPage = 'userdashboard.html';
+        } else if (loginParams.includes(fromParam)) {
+          returnPage = 'login.html';
+        } else if (sessionStorage.getItem('stackly_last_page')) {
+          returnPage = sessionStorage.getItem('stackly_last_page');
+        } else if (document.referrer) {
+          try {
+            const refUrl = new URL(document.referrer);
+            const refPath = refUrl.pathname.replace(/\\/g, '/');
+            const refPage = refPath.substring(refPath.lastIndexOf('/') + 1).split('?')[0].split('#')[0];
+            if (refPage && !refPage.includes('404.html')) {
+              returnPage = refPage;
+            }
+          } catch (e) {}
+        }
+      }
+
+      // Default fallback
+      if (!returnPage || returnPage.includes('404.html')) {
+        returnPage = 'index.html';
+      }
+
+      // 2. Determine Exact Return Scroll and Tab
+      const returnScroll = urlParams.get('return_scroll') || sessionStorage.getItem('stackly_last_scroll') || '';
+      const returnSection = urlParams.get('return_section') || urlParams.get('from') || sessionStorage.getItem('stackly_last_section') || '';
+      const returnTab = urlParams.get('return_tab') || sessionStorage.getItem('stackly_last_tab') || '';
+
+      // 3. Set flags in sessionStorage for zero-flash instant restoration on arrival
+      sessionStorage.setItem('stackly_instant_restore', 'true');
+      sessionStorage.setItem('stackly_last_page', returnPage);
+      if (returnScroll !== null && returnScroll !== '') {
+        sessionStorage.setItem('stackly_target_scroll', returnScroll);
+      }
+      if (returnSection) {
+        sessionStorage.setItem('stackly_target_section', returnSection);
+      }
+      if (returnTab) {
+        sessionStorage.setItem('stackly_target_tab', returnTab);
+      }
+
+      // 4. Construct target destination URL with exact scroll position
+      let targetUrl = returnPage;
+      const queryParts = [];
+      const hasValidScroll = returnScroll !== null && returnScroll !== '' && parseInt(returnScroll, 10) >= 0;
+
+      if (hasValidScroll) {
+        queryParts.push('restore_scroll=' + encodeURIComponent(returnScroll));
+      }
+      if (returnTab) {
+        queryParts.push('tab=' + encodeURIComponent(returnTab));
+      }
+      if (queryParts.length > 0) {
+        targetUrl += '?' + queryParts.join('&');
+      }
+      // Only append anchor hash if NO exact scroll position was recorded
+      if (returnSection && !hasValidScroll) {
+        targetUrl += '#' + encodeURIComponent(returnSection);
+      }
+
+      // 5. Navigate directly back to the exact page and section
+      window.location.replace(targetUrl);
+    }
+  </script>
+</body>
+</html>

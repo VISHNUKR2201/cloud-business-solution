@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly Cloud Business Solutions</title>
+  <meta name="description" content="Stackly architects, secures, and scales the cloud for revenue-critical teams - from first migration to a platform your leaders can actually trust.">
+  
+  <!-- Instant Position Restoration (Prevents Hero Section Flash) -->
+  <script>
+    (function() {
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var restoreScroll = urlParams.get('restore_scroll');
+        var isRestoring = (sessionStorage.getItem('stackly_instant_restore') === 'true' || restoreScroll !== null) && 
+                          (document.referrer.indexOf('404.html') !== -1 || restoreScroll !== null);
+        if (isRestoring) {
+          document.documentElement.classList.add('instant-restoring');
+          document.documentElement.style.scrollBehavior = 'auto';
+          var sVal = restoreScroll || sessionStorage.getItem('stackly_target_scroll') || sessionStorage.getItem('stackly_last_scroll');
+          if (sVal !== null && sVal !== '' && parseInt(sVal, 10) >= 0) {
+            window.scrollTo(0, parseInt(sVal, 10));
+          }
+        } else {
+          window.scrollTo(0, 0);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- AOS (Animate On Scroll) CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Futuristic 3D GSAP Animated Loading Page
+       ========================================================================== -->
+  <div id="siteLoader" class="site-loader" aria-label="Loading Stackly">
+    <!-- Ambient Background Lighting & Mesh -->
+    <div class="loader-ambient-glow cyan-ambient" aria-hidden="true"></div>
+    <div class="loader-ambient-glow indigo-ambient" aria-hidden="true"></div>
+    <div class="loader-grid-mesh" aria-hidden="true"></div>
+
+    <div class="loader-container">
+      <!-- 1. Brand Logo with 3D Float & Ambient Halo -->
+      <div class="loader-brand" id="loaderBrand">
+        <div class="loader-logo-halo" aria-hidden="true"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="loader-logo-img">
+        <div class="loader-tagline">
+          <span class="loader-tag-dot" aria-hidden="true"></span>
+          <span>CLOUD BUSINESS SOLUTIONS</span>
+        </div>
+      </div>
+
+      <!-- 2. 3D Gyroscope Video Core Stage -->
+      <div class="loader-stage-3d" id="loaderStage3D">
+        <!-- Concentric 3D Gyroscope Rings -->
+        <div class="loader-gyro-ring ring-outer" aria-hidden="true">
+          <div class="gyro-dot dot-1"></div>
+          <div class="gyro-dot dot-2"></div>
+        </div>
+        <div class="loader-gyro-ring ring-middle" aria-hidden="true">
+          <div class="gyro-dot dot-3"></div>
+        </div>
+        <div class="loader-gyro-ring ring-inner" aria-hidden="true"></div>
+
+        <!-- Spherical Looping Video Core with Holographic Glare -->
+        <div class="loader-video-orb" id="loaderVideoOrb">
+          <div class="loader-orb-aura" aria-hidden="true"></div>
+          <div class="loader-orb-rim" aria-hidden="true"></div>
+          <video 
+            class="loader-core-video" 
+            src="images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="auto"
+          ></video>
+          <div class="loader-orb-glare" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- 3. Cyber HUD Progress Counter & Status -->
+      <div class="loader-hud" id="loaderHud">
+        <div class="loader-counter-wrap">
+          <span class="loader-counter-num" id="loaderCounter">0</span>
+          <span class="loader-counter-pct">%</span>
+        </div>
+
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar" id="loaderProgressBar">
+            <span class="loader-progress-glow"></span>
+          </div>
+        </div>
+
+        <div class="loader-status" id="loaderStatus">
+          <span class="status-indicator"></span>
+          <span class="status-text" id="loaderStatusText">INITIALIZING CLOUD INFRASTRUCTURE...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Background Gradients -->
+  <div class="bg-gradient-glow top-glow" aria-hidden="true"></div>
+  <div class="bg-gradient-glow bottom-glow" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- 1. Header / Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      
+      <!-- Logo wrapped in anchor tag linking to index.html -->
+      <a href="index.html" class="logo-link" aria-label="Stackly Homepage">
+        <img 
+          src="images/logo.webp" 
+          alt="Logo" 
+          class="logo-img" 
+          onerror="this.src='images/logo.webp'">
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link magnetic-nav-item active">Home</a></li>
+          <li class="nav-item"><a href="service.html" class="nav-link magnetic-nav-item">Services</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link magnetic-nav-item">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link magnetic-nav-item">Contact</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link magnetic-nav-item">Blogs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult">
+          <span class="btn-consult-text">Book a consult</span>
+          <span class="pulse-aura" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+        <li><a href="service.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blogs</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <a href="login.html" class="mobile-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult mobile-consult">
+          <span class="btn-consult-text">Book a consult</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Hero Section -->
+  <main class="hero-section" id="home">
+    <!-- Dynamic Cinematic Background Video with Matching Brand Grading -->
+    <div class="hero-bg-video-wrapper" aria-hidden="true">
+      <video 
+        class="hero-bg-video" 
+        src="images/istockphoto-2281009791-640_adpp_is.mp4" 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        preload="auto"
+      ></video>
+      <div class="hero-video-gradient-overlay"></div>
+      <div class="hero-video-color-tint"></div>
+      <div class="hero-video-vignette"></div>
+      <div class="hero-video-grid-mesh"></div>
+    </div>
+
+    <div class="hero-container">
+      
+      <!-- 2. Hero Interactive Slider Section (3 Enterprise Cloud Slides) -->
+      <div class="hero-slider-wrapper" id="heroSliderWrapper" aria-roledescription="carousel" aria-label="Cloud Business Solutions Showcase">
+        
+        <!-- Track holding all slides -->
+        <div class="hero-slider-track" id="heroSliderTrack">
+
+          <!-- SLIDE 1: Clear Route (Current Approved Slide) -->
+          <div class="hero-slide active" data-slide="0" aria-roledescription="slide" aria-label="1 of 3: Cloud Complexity into Clear Route">
+            <div class="hero-text-content">
+              <!-- Tagline with Glowing Radar Dot -->
+              <div class="hero-tagline">
+                <span class="radar-dot radar-red" aria-hidden="true">
+                  <span class="radar-ping"></span>
+                  <span class="radar-core"></span>
+                </span>
+                <span class="tagline-text">CLOUD BUSINESS SOLUTIONS</span>
+              </div>
+
+              <!-- Main Heading -->
+              <div class="heading-wrapper">
+                <div class="heading-spotlight" aria-hidden="true"></div>
+                <div class="heading-ambient-glow" aria-hidden="true"></div>
+                <h1 class="hero-heading" aria-label="We turn cloud complexity into a clear route.">
+                  <span class="heading-line line-1" aria-hidden="true">We turn cloud complexity</span>
+                  <span class="heading-line line-2" aria-hidden="true">into a <span class="highlight-route">clear route.</span></span>
+                </h1>
+              </div>
+
+              <!-- Subheading -->
+              <p class="hero-subheading" aria-label="Stackly architects, secures, and scales the cloud for revenue-critical teams â€” from first migration to a platform your leaders can actually trust.">
+                Stackly architects, secures, and scales the cloud for revenue-critical teams â€” from first migration to a platform your leaders can actually trust.
+              </p>
+
+              <!-- CTA Buttons -->
+              <div class="hero-ctas">
+                <a href="404.html?from=home&amp;return_page=index.html" class="btn btn-primary">
+                  <span class="btn-label">Start a project</span>
+                  <i class="fa-solid fa-rocket btn-icon" aria-hidden="true"></i>
+                  <span class="btn-glow-layer"></span>
+                </a>
+                <a href="404.html?from=home&amp;return_page=index.html" class="btn btn-secondary">
+                  <span class="btn-label">See the process</span>
+                  <i class="fa-solid fa-compass btn-icon" aria-hidden="true"></i>
+                </a>
+              </div>
+
+              <!-- Trust Badges with Animated Glowing Dots -->
+              <div class="trust-badges">
+                <div class="badge-item">
+                  <span class="badge-dot green-glow"></span>
+                  <span class="badge-text">SOC 2 aligned</span>
+                </div>
+                <div class="badge-divider">â€¢</div>
+                <div class="badge-item">
+                  <span class="badge-dot cyan-glow"></span>
+                  <span class="badge-text">24/7 operations</span>
+                </div>
+                <div class="badge-divider">â€¢</div>
+                <div class="badge-item">
+                  <span class="badge-dot violet-glow"></span>
+                  <span class="badge-text">180+ migrations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: Scalable Cloud Engines (New Slide) -->
+          <div class="hero-slide" data-slide="1" aria-roledescription="slide" aria-label="2 of 3: Scalable Cloud Engines">
+            <div class="hero-text-content">
+              <!-- Tagline with Glowing Radar Dot -->
+              <div class="hero-tagline">
+                <span class="radar-dot radar-cyan" aria-hidden="true">
+                  <span class="radar-ping"></span>
+                  <span class="radar-core"></span>
+                </span>
+                <span class="tagline-text">NEXT-GEN CLOUD PLATFORMS</span>
+              </div>
+
+              <!-- Main Heading -->
+              <div class="heading-wrapper">
+                <div class="heading-spotlight" aria-hidden="true"></div>
+                <div class="heading-ambient-glow" aria-hidden="true"></div>
+                <h2 class="hero-heading" aria-label="Scale your enterprise with intelligent cloud engines.">
+                  <span class="heading-line line-1" aria-hidden="true">Scale your enterprise with</span>
+                  <span class="heading-line line-2" aria-hidden="true">intelligent <span class="highlight-scale">cloud engines.</span></span>
+                </h2>
+              </div>
+
+              <!-- Subheading -->
+              <p class="hero-subheading" aria-label="Modernize workloads with automated Kubernetes orchestration, microservices resilience, and multi-cloud elasticity engineered for hyper-growth.">
+                Modernize workloads with automated Kubernetes orchestration, microservices resilience, and multi-cloud elasticity engineered for hyper-growth.
+              </p>
+
+              <!-- CTA Buttons -->
+              <div class="hero-ctas">
+                <a href="404.html?from=home&amp;return_page=index.html" class="btn btn-primary">
+                  <span class="btn-label">Explore solutions</span>
+                  <i class="fa-solid fa-bolt btn-icon" aria-hidden="true"></i>
+                  <span class="btn-glow-layer"></span>
+                </a>
+                <a href="404.html?from=home&amp;return_page=index.html" class="btn btn-secondary">
+                  <span class="btn-label">View architecture</span>
+                  <i class="fa-solid fa-layer-group btn-icon" aria-hidden="true"></i>
+                </a>
+              </div>
+
+              <!-- Trust Badges with Animated Glowing Dots -->
+              <div class="trust-badges">
+                <div class="badge-item">
+                  <span class="badge-dot cyan-glow"></span>
+                  <span class="badge-text">99.99% SLA Uptime</span>
+                </div>
+                <div class="badge-divider">â€¢</div>
+                <div class="badge-item">
+                  <span class="badge-dot green-glow"></span>
+                  <span class="badge-text">Zero-Downtime Deploy</span>
+                </div>
+                <div class="badge-divider">â€¢</div>
+                <div class="badge-item">
+                  <span class="badge-dot violet-glow"></span>
+                  <span class="badge-text">Multi-Cloud Ready</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 3: Zero-Trust Cyber Resilience (New Slide) -->
+          <div class="hero-slide" data-slide="2" aria-roledescription="slide" aria-label="3 of 3: Zero-Trust Cyber Resilience">
+            <div class="hero-text-content">
+              <!-- Tagline with Glowing Radar Dot -->
+              <div class="hero-tagline">
+                <span class="radar-dot radar-violet" aria-hidden="true">
+                  <span class="radar-ping"></span>
+                  <span class="radar-core"></span>
+                </span>
+                <span class="tagline-text">ZERO-TRUST CYBER RESILIENCE</span>
+              </div>
+
+              <!-- Main Heading -->
+              <div class="heading-wrapper">
+                <div class="heading-spotlight" aria-hidden="true"></div>
+                <div class="heading-ambient-glow" aria-hidden="true"></div>
+                <h2 class="hero-heading" aria-label="Fortify mission-critical data with quantum defense.">
+                  <span class="heading-line line-1" aria-hidden="true">Fortify mission-critical data</span>
+                  <span class="heading-line line-2" aria-hidden="true">with <span class="highlight-shield">quantum defense.</span></span>
+                </h2>
+              </div>
+
+              <!-- Subheading -->
+              <p class="hero-subheading" aria-label="Safeguard infrastructure with automated compliance audits, AI-driven threat mitigation, and cryptographic protection across every cloud edge.">
+                Safeguard infrastructure with automated compliance audits, AI-driven threat mitigation, and cryptographic protection across every cloud edge.
+              </p>
+
+              <!-- CTA Buttons -->
+              <div class="hero-ctas">
+                <a href="404.html?from=home&amp;return_page=index.html" class="btn btn-primary">
+                  <span class="btn-label">Secure your cloud</span>
+                  <i class="fa-solid fa-shield-halved btn-icon" aria-hidden="true"></i>
+                  <span class="btn-glow-layer"></span>
+                </a>
+                <a href="404.html?from=home&amp;return_page=index.html" class="btn btn-secondary">
+                  <span class="btn-label">Audit assessment</span>
+                  <i class="fa-solid fa-file-shield btn-icon" aria-hidden="true"></i>
+                </a>
+              </div>
+
+              <!-- Trust Badges with Animated Glowing Dots -->
+              <div class="trust-badges">
+                <div class="badge-item">
+                  <span class="badge-dot violet-glow"></span>
+                  <span class="badge-text">ISO 27001 Certified</span>
+                </div>
+                <div class="badge-divider">â€¢</div>
+                <div class="badge-item">
+                  <span class="badge-dot cyan-glow"></span>
+                  <span class="badge-text">Real-Time Threat AI</span>
+                </div>
+                <div class="badge-divider">â€¢</div>
+                <div class="badge-item">
+                  <span class="badge-dot green-glow"></span>
+                  <span class="badge-text">Zero-Leak Guarantee</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Futuristic Cyber HUD Slider Navigation Dock -->
+        <div class="hero-slider-nav" id="heroSliderNav" aria-label="Slide Controls">
+          <button type="button" class="slider-nav-btn btn-prev" id="sliderPrevBtn" aria-label="Previous Slide">
+            <span class="nav-btn-bracket">[</span>
+            <span class="nav-btn-text">PREV</span>
+            <span class="nav-btn-bracket">]</span>
+          </button>
+
+          <div class="slider-pills" role="tablist" aria-label="Slide Tabs">
+            <button type="button" class="slide-pill active" role="tab" aria-selected="true" data-slide-target="0" aria-label="Go to Slide 1: Cloud Route">
+              <span class="pill-badge">01</span>
+              <span class="pill-label">Cloud Route</span>
+              <span class="pill-progress-track">
+                <span class="pill-progress-fill"></span>
+              </span>
+            </button>
+
+            <button type="button" class="slide-pill" role="tab" aria-selected="false" data-slide-target="1" aria-label="Go to Slide 2: Scalable Engines">
+              <span class="pill-badge">02</span>
+              <span class="pill-label">Scalable Engines</span>
+              <span class="pill-progress-track">
+                <span class="pill-progress-fill"></span>
+              </span>
+            </button>
+
+            <button type="button" class="slide-pill" role="tab" aria-selected="false" data-slide-target="2" aria-label="Go to Slide 3: Quantum Defense">
+              <span class="pill-badge">03</span>
+              <span class="pill-label">Quantum Defense</span>
+              <span class="pill-progress-track">
+                <span class="pill-progress-fill"></span>
+              </span>
+            </button>
+          </div>
+
+          <button type="button" class="slider-nav-btn btn-next" id="sliderNextBtn" aria-label="Next Slide">
+            <span class="nav-btn-bracket">[</span>
+            <span class="nav-btn-text">NEXT</span>
+            <span class="nav-btn-bracket">]</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 3. The 3D Sliced Image Section (Segmented 3D Parallax Layout) -->
+      <div class="hero-media-wrapper" id="heroMediaWrapper">
+        <div class="neon-border-frame">
+          <div class="neon-inner-ambient"></div>
+          
+          <!-- 3D Perspective Stage with Continuous Wave Animation -->
+          <div class="slice-grid-container" id="sliceContainer" style="--total-slices: 10;">
+            <!-- 10 Segmented Slices with continuous wave undulating background -->
+            <div class="image-slice" style="--slice-index: 0;" data-index="0">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 1;" data-index="1">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 2;" data-index="2">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 3;" data-index="3">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 4;" data-index="4">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 5;" data-index="5">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 6;" data-index="6">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 7;" data-index="7">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 8;" data-index="8">
+              <div class="slice-inner"></div>
+            </div>
+            <div class="image-slice" style="--slice-index: 9;" data-index="9">
+              <div class="slice-inner"></div>
+            </div>
+            
+            <!-- Dynamic Glare & Wave Light Beam Overlay -->
+            <div class="sheen-overlay" id="sheenOverlay" aria-hidden="true"></div>
+            <div class="wave-light-beam" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 4. Bottom Statistics Section (Scroll-Triggered Aggressive Counter) -->
+  <section class="stats-section" id="statsSection">
+    <div class="stats-container">
+      
+      <!-- Stat Column 1: 4.2x -->
+      <div class="stat-card" data-target="4.2" data-decimals="1" data-suffix="x">
+        <div class="stat-number-wrapper">
+          <span class="stat-number">0.0</span><span class="stat-suffix">x</span>
+        </div>
+        <p class="stat-label">Faster deployment cycles</p>
+      </div>
+
+      <!-- Stat Column 2: 68% -->
+      <div class="stat-card" data-target="68" data-decimals="0" data-suffix="%">
+        <div class="stat-number-wrapper">
+          <span class="stat-number">0</span><span class="stat-suffix">%</span>
+        </div>
+        <p class="stat-label">Lower cloud spend, year one</p>
+      </div>
+
+      <!-- Stat Column 3: 340+ -->
+      <div class="stat-card" data-target="340" data-decimals="0" data-suffix="+">
+        <div class="stat-number-wrapper">
+          <span class="stat-number">0</span><span class="stat-suffix">+</span>
+        </div>
+        <p class="stat-label">Enterprises shipped</p>
+      </div>
+
+      <!-- Stat Column 4: 99.99% -->
+      <div class="stat-card" data-target="99.99" data-decimals="2" data-suffix="%">
+        <div class="stat-number-wrapper">
+          <span class="stat-number">0.00</span><span class="stat-suffix">%</span>
+        </div>
+        <p class="stat-label">Uptime across managed fleets</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Modern Dark-Themed Services Section (3D Chamfered Cards Grid) -->
+  <section class="services-section" id="services">
+    <!-- Ambient Purple/Pink Glow -->
+    <div class="services-ambient-glow" aria-hidden="true"></div>
+
+    <div class="services-container">
+      
+      <!-- Section Header -->
+      <div class="services-header" id="servicesHeader">
+        <div class="services-pill-badge">
+          <span class="badge-dot-purple" aria-hidden="true"></span>
+          <span>Services</span>
+        </div>
+        <h2 class="services-heading">A route, not a toolshelf.</h2>
+        <p class="services-subheading">Three disciplines, one accountable partner, from strategy to steady-state operations.</p>
+      </div>
+
+      <!-- 3-Column Services Grid -->
+      <div class="services-grid" id="servicesGrid">
+        
+        <!-- Card 1: Cloud Architecture -->
+        <div class="service-card">
+          <div class="service-card-inner">
+            <div class="service-card-glare" aria-hidden="true"></div>
+            <div class="service-chamfer-notch" aria-hidden="true"></div>
+            <div class="service-card-img-wrap">
+              <img 
+                src="images/s1.webp" 
+                alt="Cloud Architecture" 
+                class="service-card-img" 
+                loading="lazy"
+                onerror="this.onerror=null;this.src='images/s1.webp';">
+              <div class="service-card-img-overlay"></div>
+              <div class="service-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                  <path d="m12 12-2 3h4l-2 3"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Cloud Architecture</h3>
+            <p class="service-description">Reference designs, landing zones, and a zero-trust baseline your auditors will sign off on.</p>
+            <a href="404.html?from=services&amp;return_page=index.html" class="service-link">
+              <span>Explore Services</span>
+              <i class="fa-solid fa-layer-group service-cta-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Migration and Modernization -->
+        <div class="service-card">
+          <div class="service-card-inner">
+            <div class="service-card-glare" aria-hidden="true"></div>
+            <div class="service-chamfer-notch" aria-hidden="true"></div>
+            <div class="service-card-img-wrap">
+              <img 
+                src="images/s2.webp" 
+                alt="Migration and Modernization" 
+                class="service-card-img" 
+                loading="lazy"
+                onerror="this.onerror=null;this.src='images/s2.webp';">
+              <div class="service-card-img-overlay"></div>
+              <div class="service-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+                  <path d="M12 12v9"/>
+                  <path d="m8 17 4 4 4-4"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Migration and Modernization</h3>
+            <p class="service-description">Move workloads with a clear migration plan, modernized patterns, and measurable business outcomes.</p>
+            <a href="404.html?from=services&amp;return_page=index.html" class="service-link">
+              <span>Explore More</span>
+              <i class="fa-solid fa-server service-cta-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Fin Ops and Optimization -->
+        <div class="service-card">
+          <div class="service-card-inner">
+            <div class="service-card-glare" aria-hidden="true"></div>
+            <div class="service-chamfer-notch" aria-hidden="true"></div>
+            <div class="service-card-img-wrap">
+              <img 
+                src="images/s3.webp" 
+                alt="Fin Ops and Optimization" 
+                class="service-card-img" 
+                loading="lazy"
+                onerror="this.onerror=null;this.src='images/s3.webp';">
+              <div class="service-card-img-overlay"></div>
+              <div class="service-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3v18h18"/>
+                  <path d="m19 9-5 5-4-4-3 3"/>
+                  <circle cx="19" cy="9" r="2" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Fin Ops and Optimization</h3>
+            <p class="service-description">Unit-economics dashboards and rightsizing that cut bill without cutting capability.</p>
+            <a href="404.html?from=services&amp;return_page=index.html" class="service-link">
+              <span>Explore More</span>
+              <i class="fa-solid fa-chart-line service-cta-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4: Security and Compliance -->
+        <div class="service-card">
+          <div class="service-card-inner">
+            <div class="service-card-glare" aria-hidden="true"></div>
+            <div class="service-chamfer-notch" aria-hidden="true"></div>
+            <div class="service-card-img-wrap">
+              <img 
+                src="images/s4.webp" 
+                alt="Security and Compliance" 
+                class="service-card-img" 
+                loading="lazy"
+                onerror="this.onerror=null;this.src='images/s4.webp';">
+              <div class="service-card-img-overlay"></div>
+              <div class="service-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Security and Compliance</h3>
+            <p class="service-description">Security controls, audit readiness, and compliance posture built into every delivery.</p>
+            <a href="404.html?from=services&amp;return_page=index.html" class="service-link">
+              <span>Explore More</span>
+              <i class="fa-solid fa-shield-halved service-cta-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 5: Managed Operations -->
+        <div class="service-card">
+          <div class="service-card-inner">
+            <div class="service-card-glare" aria-hidden="true"></div>
+            <div class="service-chamfer-notch" aria-hidden="true"></div>
+            <div class="service-card-img-wrap">
+              <img 
+                src="images/s5.webp" 
+                alt="Managed Operations" 
+                class="service-card-img" 
+                loading="lazy"
+                onerror="this.onerror=null;this.src='images/s5.webp';">
+              <div class="service-card-img-overlay"></div>
+              <div class="service-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Managed Operations</h3>
+            <p class="service-description">24/7 SRE on-call, observability, and a warm handoff your teams keep after day 90.</p>
+            <a href="404.html?from=services&amp;return_page=index.html" class="service-link">
+              <span>Explore More</span>
+              <i class="fa-solid fa-gears service-cta-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 6: Observability and Resilience -->
+        <div class="service-card">
+          <div class="service-card-inner">
+            <div class="service-card-glare" aria-hidden="true"></div>
+            <div class="service-chamfer-notch" aria-hidden="true"></div>
+            <div class="service-card-img-wrap">
+              <img 
+                src="images/s6.webp" 
+                alt="Observability and Resilience" 
+                class="service-card-img" 
+                loading="lazy"
+                onerror="this.onerror=null;this.src='images/s6.webp';">
+              <div class="service-card-img-overlay"></div>
+              <div class="service-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                  <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="service-title">Observability and Resilience</h3>
+            <p class="service-description">Signal-rich monitoring, latency visibility, and resilience patterns that improve over time.</p>
+            <a href="404.html?from=services&amp;return_page=index.html" class="service-link">
+              <span>Explore More</span>
+              <i class="fa-solid fa-chart-simple service-cta-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. Case Study & "How It Works" Two-Part Section
+       ========================================================================== -->
+  <section class="case-how-section" id="about">
+    <div id="how-it-works"></div>
+    
+    <!-- Part 1: Case Study Section (Top) -->
+    <div class="case-study-block" id="caseStudy">
+      <div class="case-study-container">
+        <div class="case-study-grid">
+          
+          <!-- Left Column: Story & Narrative -->
+          <div class="case-study-content">
+            <div class="case-study-overline">
+              <span class="overline-dot" aria-hidden="true">â—</span>
+              <span>CASE STUDY Â· MERIDIAN RETAIL</span>
+            </div>
+            <h2 class="case-study-heading">
+              Rebuilt their storefront on a 9-week route to 99.99%.
+            </h2>
+            <p class="case-study-subheading">
+              A right-sized platform and safer release path helped their retail team move faster without carrying more cloud risk.
+            </p>
+          </div>
+
+          <!-- Right Column: Dual Off-White Stat Cards -->
+          <div class="case-study-stats">
+            
+            <!-- Card 1: -31% p95 latency -->
+            <div class="case-stat-card" data-target="-31" data-prefix="-" data-suffix="%">
+              <div class="case-stat-value-wrap">
+                <span class="case-stat-value">0</span><span class="case-stat-percent">%</span>
+              </div>
+              <p class="case-stat-label">p95 latency</p>
+            </div>
+
+            <!-- Card 2: -44% monthly cloud bill -->
+            <div class="case-stat-card" data-target="-44" data-prefix="-" data-suffix="%">
+              <div class="case-stat-value-wrap">
+                <span class="case-stat-value">0</span><span class="case-stat-percent">%</span>
+              </div>
+              <p class="case-stat-label">monthly cloud bill</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Divider Line -->
+    <div class="case-how-divider" aria-hidden="true"></div>
+
+    <!-- Part 2: "How it works" Section (Bottom) -->
+    <div class="how-it-works-block" id="howItWorks">
+      <div class="how-container">
+        <div class="how-grid">
+          
+          <!-- Left Column: Intro, Large Heading, Features -->
+          <div class="how-intro-col">
+            <div class="how-overline">
+              <span class="how-purple-dot" aria-hidden="true">â—</span>
+              <span>HOW IT WORKS</span>
+            </div>
+
+            <h2 class="how-heading" id="howHeading">
+              A clear route from signal to steady state.
+            </h2>
+
+            <p class="how-paragraph">
+              We connect architecture, security, cost, and operations into one route - so every technical decision has a business reason behind it.
+            </p>
+
+            <!-- Vertically Stacked Feature List -->
+            <div class="how-feature-list">
+              
+              <!-- Feature 1: Layer Icon (Orange) -->
+              <div class="how-feature-item">
+                <div class="feature-icon-box orange">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <span class="feature-text">Architecture your team can own</span>
+              </div>
+
+              <!-- Feature 2: Shield Icon (Red) -->
+              <div class="how-feature-item">
+                <div class="feature-icon-box red">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <span class="feature-text">Security that holds under pressure</span>
+              </div>
+
+              <!-- Feature 3: Wave Icon (Red/Orange) -->
+              <div class="how-feature-item">
+                <div class="feature-icon-box rose">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/>
+                    <path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/>
+                  </svg>
+                </div>
+                <span class="feature-text">Operations that get quieter over time</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Column: Vertical Timeline -->
+          <div class="how-timeline-col">
+            <div class="timeline-track" id="timelineTrack">
+              <!-- Animated Glowing Connecting Line -->
+              <div class="timeline-line-glow" id="timelineLineGlow"></div>
+
+              <!-- Step 1 -->
+              <div class="timeline-step" data-step="1">
+                <div class="step-node blue-glow">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                </div>
+                <div class="step-content">
+                  <h3 class="step-heading">We start with the signal that matters.</h3>
+                  <p class="step-body">
+                    <span class="step-checkmark blue">âœ“</span>
+                    We map cost, risk, latency, and security posture before the first workload is spun up.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="timeline-step" data-step="2">
+                <div class="step-node purple-glow">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+                    <line x1="9" y1="3" x2="9" y2="18"/>
+                    <line x1="15" y1="6" x2="15" y2="21"/>
+                  </svg>
+                </div>
+                <div class="step-content">
+                  <h3 class="step-heading">We build a route your team can walk.</h3>
+                  <p class="step-body">
+                    <span class="step-checkmark purple">âœ“</span>
+                    Architecture, migration, security, cost, and operations are connected into one accountable delivery.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="timeline-step" data-step="3">
+                <div class="step-node deepblue-glow">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </div>
+                <div class="step-content">
+                  <h3 class="step-heading">We hand off a platform that improves over time.</h3>
+                  <p class="step-body">
+                    <span class="step-checkmark deepblue">âœ“</span>
+                    Managed operations, observability, and resilience keep the route clear long after launch.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==========================================================================
+       7. Upgraded Animated Testimonials Carousel Section
+       ========================================================================== -->
+  <section class="testimonials-section" id="testimonials">
+    <!-- Ambient Background Lighting -->
+    <div class="testimonials-ambient-glow" aria-hidden="true"></div>
+
+    <div class="testimonials-container">
+      
+      <!-- Section Header -->
+      <div class="testimonials-header" id="testimonialsHeader">
+        <div class="testimonials-pill-badge">
+          <span class="badge-dot-purple" aria-hidden="true"></span>
+          <span>Testimonials</span>
+        </div>
+        <h2 class="testimonials-heading" id="testimonialsHeading">
+          What our users <span class="highlight-say">say</span> about us
+        </h2>
+      </div>
+
+      <!-- Carousel Glassmorphism Container -->
+      <div class="testimonials-carousel-wrapper" id="testimonialsCarousel">
+        
+        <!-- Navigation: Left -->
+        <button class="carousel-nav-btn prev-btn" id="carouselPrev" aria-label="Previous Testimonial">
+          <i class="fa-solid fa-backward-step" aria-hidden="true"></i>
+        </button>
+
+        <!-- Carousel Viewport & 3D Coverflow Stage -->
+        <div class="testimonials-stage" id="testimonialsStage">
+          <div class="testimonials-track" id="testimonialsTrack">
+            
+            <!-- Card 1: Elena Rostova -->
+            <div class="testimonial-card" data-index="0">
+              <div class="card-glass-glow" aria-hidden="true"></div>
+              
+              <div class="testimonial-card-header">
+                <div class="author-avatar-wrap">
+                  <img 
+                    src="images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp" 
+                    alt="Elena Rostova" 
+                    class="author-avatar"
+                    onerror="this.src='images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp'">
+                </div>
+                
+                <div class="author-info">
+                  <h3 class="author-name">Elena Rostova</h3>
+                  <p class="author-role">Eng Director, FinFlow</p>
+                </div>
+
+                <div class="testimonial-meta">
+                  <span class="testimonial-timestamp">1 day ago</span>
+                  <div class="star-rating" aria-label="5 stars">
+                    â˜…â˜…â˜…â˜…â˜…
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-quote-body">
+                <svg class="quote-icon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+                <p class="testimonial-text">
+                  Stackly turned our multi-cloud migration from a quarterly panic into a predictable sprint. We shaved 44% off our monthly AWS bill while cutting p95 checkout latency in half. Their zero-trust blueprint was approved by our compliance board on day one.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2: Arjun Mehta -->
+            <div class="testimonial-card" data-index="1">
+              <div class="card-glass-glow" aria-hidden="true"></div>
+              
+              <div class="testimonial-card-header">
+                <div class="author-avatar-wrap">
+                  <img 
+                    src="images/portrait-young-indian-top-manager-t-shirt-tie-crossed-arms-smiling-white-isolated-wall.webp" 
+                    alt="Arjun Mehta" 
+                    class="author-avatar"
+                    onerror="this.src='images/portrait-young-indian-top-manager-t-shirt-tie-crossed-arms-smiling-white-isolated-wall.webp'">
+                </div>
+                
+                <div class="author-info">
+                  <h3 class="author-name">Arjun Mehta</h3>
+                  <p class="author-role">VP of Infrastructure, HyperScale</p>
+                </div>
+
+                <div class="testimonial-meta">
+                  <span class="testimonial-timestamp">3 days ago</span>
+                  <div class="star-rating" aria-label="5 stars">
+                    â˜…â˜…â˜…â˜…â˜…
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-quote-body">
+                <svg class="quote-icon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+                <p class="testimonial-text">
+                  The 24/7 SRE team gave us total peace of mind during our highest-traffic Black Friday in company history. Zero dropped transactions, zero outages, and automated failover that executed in under 200ms. Exceptional architecture.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3: Marcus Vance -->
+            <div class="testimonial-card" data-index="2">
+              <div class="card-glass-glow" aria-hidden="true"></div>
+              
+              <div class="testimonial-card-header">
+                <div class="author-avatar-wrap">
+                  <img 
+                    src="images/smiling-worker-with-tie-suit.webp" 
+                    alt="Marcus Vance" 
+                    class="author-avatar"
+                    onerror="this.src='images/smiling-worker-with-tie-suit.webp'">
+                </div>
+                
+                <div class="author-info">
+                  <h3 class="author-name">Marcus Vance</h3>
+                  <p class="author-role">Chief Technology Officer, Datavault</p>
+                </div>
+
+                <div class="testimonial-meta">
+                  <span class="testimonial-timestamp">1 week ago</span>
+                  <div class="star-rating" aria-label="5 stars">
+                    â˜…â˜…â˜…â˜…â˜…
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-quote-body">
+                <svg class="quote-icon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+                <p class="testimonial-text">
+                  Most cloud consultancies sell slide decks and leave. Stackly embedded directly with our platform teams, refactored our legacy Kubernetes clusters, and handed off a streamlined platform our own engineers love operating.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 4: Sarah Lin -->
+            <div class="testimonial-card" data-index="3">
+              <div class="card-glass-glow" aria-hidden="true"></div>
+              
+              <div class="testimonial-card-header">
+                <div class="author-avatar-wrap">
+                  <img 
+                    src="images/505d40315d02171f308a2ac9aa6f7683e4ed9c6d.webp" 
+                    alt="Sarah Lin" 
+                    class="author-avatar"
+                    onerror="this.src='images/505d40315d02171f308a2ac9aa6f7683e4ed9c6d.webp'">
+                </div>
+                
+                <div class="author-info">
+                  <h3 class="author-name">Sarah Lin</h3>
+                  <p class="author-role">Head of Cloud Security, Apex Health</p>
+                </div>
+
+                <div class="testimonial-meta">
+                  <span class="testimonial-timestamp">2 weeks ago</span>
+                  <div class="star-rating" aria-label="5 stars">
+                    â˜…â˜…â˜…â˜…â˜…
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-quote-body">
+                <svg class="quote-icon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+                <p class="testimonial-text">
+                  In healthcare, compliance is non-negotiable. Stackly locked down our HIPAA, SOC 2 Type II, and ISO 27001 posture while accelerating deployment frequency by 4x. They are hands down the most capable cloud team we've hired.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Navigation: Right -->
+        <button class="carousel-nav-btn next-btn" id="carouselNext" aria-label="Next Testimonial">
+          <i class="fa-solid fa-forward-step" aria-hidden="true"></i>
+        </button>
+
+      </div>
+
+      <!-- Pagination Dots -->
+      <div class="carousel-pagination" id="carouselPagination" aria-label="Testimonial Pagination">
+        <button class="pagination-dot active" data-index="0" aria-label="Slide 1"></button>
+        <button class="pagination-dot" data-index="1" aria-label="Slide 2"></button>
+        <button class="pagination-dot" data-index="2" aria-label="Slide 3"></button>
+        <button class="pagination-dot" data-index="3" aria-label="Slide 4"></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       BUILT FOR THE HARD PARTS SECTION
+       ============================================ -->
+  <section class="hard-parts-section" id="hard-parts">
+    <div class="hard-parts-container">
+      
+      <!-- Left Column: Content & Typography (~45% width) -->
+      <div class="hard-parts-left" id="hpLeftCol">
+        <!-- Overline Badge -->
+        <div class="hard-parts-overline">
+          <span class="hp-orange-dot"></span>
+          <span>BUILT FOR THE HARD PARTS</span>
+        </div>
+
+        <!-- Main Heading with Masked Words for Staggered Reveal -->
+        <h2 class="hard-parts-heading" id="hpHeading">Calm systems. Clear decisions.</h2>
+
+        <!-- Descriptive Paragraph -->
+        <p class="hard-parts-description" id="hpDescription">We connect architecture, security, cost, and operations into one route â€” so every technical decision has a business reason behind it.</p>
+
+        <!-- Feature List (Icon + Text) -->
+        <div class="hard-parts-features" id="hpFeatures">
+          
+          <!-- Feature Item 1: Layer / Stack -->
+          <div class="hp-feature-item">
+            <div class="hp-feature-icon-box" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span class="hp-feature-text">Architecture your team can own</span>
+          </div>
+
+          <!-- Feature Item 2: Shield -->
+          <div class="hp-feature-item">
+            <div class="hp-feature-icon-box" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <span class="hp-feature-text">Security that holds under pressure</span>
+          </div>
+
+          <!-- Feature Item 3: Pulse / Activity -->
+          <div class="hp-feature-item">
+            <div class="hp-feature-icon-box" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <span class="hp-feature-text">Operations that get quieter over time</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Image & 3D Interactive Parallax (~55% width) -->
+      <div class="hard-parts-right" id="hpRightCol">
+        <div class="hp-image-card-wrapper" id="hpImageWrapper">
+          <!-- Ambient Radial Glow Backdrop -->
+          <div class="hp-ambient-glow"></div>
+          
+          <!-- Glassmorphic Card Container with Asymmetrical Corners -->
+          <div class="hp-image-card" id="hpImageCard">
+            <img 
+              src="images/89da0239b4e7c748f3a2b82eb9954c8732bab55f (1).webp" 
+              alt="Cloud Infrastructure" 
+              class="hard-parts-img"
+              onerror="this.onerror=null;this.src='images/89da0239b4e7c748f3a2b82eb9954c8732bab55f (1).webp';"
+            >
+            <!-- Dynamic Specular Glare Overlay -->
+            <div class="hp-glare-overlay" id="hpGlareOverlay"></div>
+            <!-- Glass Rim Highlight -->
+            <div class="hp-glass-rim"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       INTERACTIVE CLOUD INTELLIGENCE NETWORK SECTION
+       ============================================ -->
+  <section class="network-section" id="intelligence">
+    <!-- Background Particle Canvas -->
+    <canvas class="network-particles-canvas" id="networkParticlesCanvas"></canvas>
+
+    <!-- Faint CSS Grid Overlay on Left Side -->
+    <div class="network-grid-overlay" aria-hidden="true"></div>
+
+    <div class="network-container">
+      
+      <!-- Left Column: Interactive Visual Graphic (~55% width) -->
+      <div class="network-visual-col" id="networkVisualCol">
+        <div class="network-stage" id="networkStage">
+          
+          <!-- Inline SVG Connecting Lines with Flowing Energy Paths -->
+          <svg class="network-svg-lines" viewBox="0 0 580 500" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="netCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#818cf8" stop-opacity="0.4"/>
+              </linearGradient>
+              <linearGradient id="netOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f97316" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#ec4899" stop-opacity="0.3"/>
+              </linearGradient>
+              <filter id="netGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            <!-- Static Network Baseline Paths -->
+            <path class="net-line-base" d="M 120 180 Q 200 120 280 130" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1.5" />
+            <path class="net-line-base" d="M 100 240 Q 180 260 270 245" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1.5" />
+            <path class="net-line-base" d="M 280 270 Q 230 360 180 400" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1.5" />
+            <path class="net-line-base" d="M 330 260 Q 400 300 420 340" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
+            <path class="net-line-base" d="M 340 160 Q 420 200 440 330" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+
+            <!-- Animated Dashed Lines (Flowing Energy / Real-time Data Moving) -->
+            <path class="net-energy-path energy-1" d="M 100 240 Q 180 260 270 245" stroke="url(#netCyanGrad)" stroke-width="2" stroke-dasharray="6,8" filter="url(#netGlow)" />
+            <path class="net-energy-path energy-2" d="M 280 130 Q 230 190 270 245" stroke="url(#netCyanGrad)" stroke-width="2" stroke-dasharray="7,9" />
+            <path class="net-energy-path energy-3" d="M 330 260 Q 400 300 420 340" stroke="url(#netOrangeGrad)" stroke-width="2.2" stroke-dasharray="6,8" filter="url(#netGlow)" />
+            <path class="net-energy-path energy-4" d="M 280 270 Q 230 360 180 400" stroke="url(#netCyanGrad)" stroke-width="1.8" stroke-dasharray="5,7" />
+          </svg>
+
+          <!-- Top Floating UI Card: "Cloud Optimization Strategies" -->
+          <div class="floating-widget card-strategies" id="cardOptStrategies">
+            <div class="widget-header">
+              <div class="widget-icon-wrap cyan-glow">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                </svg>
+              </div>
+              <span class="widget-title">Cloud Optimization Strategies</span>
+            </div>
+            <div class="widget-metrics">
+              <div class="metric-row">
+                <span class="metric-name">Auto-Scaling Efficiency</span>
+                <span class="metric-val text-cyan">94%</span>
+              </div>
+              <div class="metric-bar-track">
+                <div class="metric-bar-fill fill-cyan" style="width: 94%;"></div>
+              </div>
+              <div class="metric-row">
+                <span class="metric-name">Latency Mitigation</span>
+                <span class="metric-val text-orange">-42ms</span>
+              </div>
+              <div class="metric-bar-track">
+                <div class="metric-bar-fill fill-orange" style="width: 78%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Node 1 (Avatar 3.webp) -->
+          <div class="network-node node-1" id="networkNode1">
+            <div class="node-ring-pulse"></div>
+            <div class="node-avatar-frame">
+              <img 
+                src="images/3.webp" 
+                alt="Node 1"
+                class="node-img"
+                onerror="this.onerror=null;this.src='images/3.webp';"
+              >
+            </div>
+            <span class="node-badge">DevOps #1</span>
+          </div>
+
+          <!-- Center Node (Avatar 1.webp + "System Admin" badge) -->
+          <div class="network-node node-center" id="networkNodeCenter">
+            <div class="center-pill-widget">
+              <div class="center-avatar-frame">
+                <img 
+                  src="images/1.webp" 
+                  alt="Node 2"
+                  class="node-img"
+                  onerror="this.onerror=null;this.src='images/1.webp';"
+                >
+                <span class="live-status-dot"></span>
+              </div>
+              <div class="center-text-block">
+                <span class="center-role">System Admin</span>
+                <span class="center-status">Online â€¢ 99.98% SLA</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Node 3 (Avatar 2.webp) -->
+          <div class="network-node node-3" id="networkNode3">
+            <div class="node-ring-pulse orange-pulse"></div>
+            <div class="node-avatar-frame frame-orange">
+              <img 
+                src="images/2.webp" 
+                alt="Node 3"
+                class="node-img"
+                onerror="this.onerror=null;this.src='images/2.webp';"
+              >
+            </div>
+            <span class="node-badge orange-badge">SecOps #3</span>
+          </div>
+
+          <!-- Bottom Right Floating UI Card: "The Graph" (Quarterly Cloud Spend + graph.webp) -->
+          <div class="floating-widget card-spend-graph" id="cardSpendGraph">
+            <div class="graph-card-header">
+              <span class="graph-card-title">Quarterly Cloud Spend</span>
+              <span class="graph-status-badge">Live</span>
+            </div>
+            <div class="graph-card-body">
+              <div class="graph-stat-col">
+                <div class="graph-main-percent">71%</div>
+                <div class="graph-trend text-emerald">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                  </svg>
+                  <span>Optimized</span>
+                </div>
+              </div>
+              <!-- Circular Arc Progress Bar -->
+              <div class="graph-arc-container">
+                <svg class="graph-arc-svg" width="60" height="60" viewBox="0 0 60 60">
+                  <circle cx="30" cy="30" r="24" stroke="rgba(255, 255, 255, 0.08)" stroke-width="5" fill="none"/>
+                  <circle 
+                    class="graph-arc-circle" 
+                    cx="30" cy="30" r="24" 
+                    stroke="url(#netCyanGrad)" 
+                    stroke-width="5" 
+                    stroke-linecap="round" 
+                    fill="none" 
+                    stroke-dasharray="150" 
+                    stroke-dashoffset="43"
+                  />
+                </svg>
+                <div class="graph-arc-center-val">71%</div>
+              </div>
+            </div>
+
+            <!-- Moving Graph Image Asset with slow pan -->
+            <div class="graph-image-window">
+              <img 
+                src="images/graph.webp" 
+                alt="Graph" 
+                class="graph-panning-img"
+                onerror="this.onerror=null;this.src='images/graph.webp';"
+              >
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Content & Typography (~45% width) -->
+      <div class="network-content-col" id="networkContentCol">
+        <!-- Main Heading -->
+        <h2 class="network-heading" id="networkHeading">
+          Optimize your cloud with real-time intelligence
+        </h2>
+
+        <!-- Subheading -->
+        <p class="network-subheading" id="networkSubheading">
+          Gain instant visibility and improve efficiency with real-time cost tracking and smart performance analysis.
+        </p>
+
+        <!-- Feature List with Glowing Checkmarks -->
+        <div class="network-features-list" id="networkFeaturesList">
+          
+          <!-- Item 1 -->
+          <div class="network-feature-item">
+            <div class="network-check-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="network-feature-info">
+              <h3 class="network-feature-title">Streamline deployments instantly</h3>
+              <p class="network-feature-desc">Simplify workflows and boost productivity with seamless, real-time operational control.</p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="network-feature-item">
+            <div class="network-check-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="network-feature-info">
+              <h3 class="network-feature-title">Analyze performance efficiently</h3>
+              <p class="network-feature-desc">Track key metrics and uncover insights quickly to drive smart, data-based decisions.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA Button -->
+        <div class="network-cta-wrap" id="networkCtaWrap">
+          <a href="404.html?from=intelligence&amp;return_page=index.html" class="network-pill-btn" id="networkBtn" aria-label="Explore more cloud intelligence solutions">
+            <span>Explore more</span>
+            <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       CLIENT LOGOS & EXPERT ANSWERS (FAQ) SECTION
+       ============================================ -->
+  <section class="clients-faq-section" id="faq">
+    
+    <!-- Part 1: Client Logos Single-Line Auto-Moving Marquee -->
+    <div class="client-logos-block" id="clientLogosBlock">
+      <div class="client-logos-marquee-wrapper" id="clientLogosMarquee">
+        <div class="client-logos-track" id="clientLogosTrack">
+          
+          <!-- Logo 1 (c7.webp) -->
+          <div class="client-logo-item">
+            <img 
+              src="images/c7.webp" 
+              alt="Client 1" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c7.webp';"
+            >
+          </div>
+
+          <!-- Logo 2 (c1.webp) -->
+          <div class="client-logo-item">
+            <img 
+              src="images/c1.webp" 
+              alt="Client 2" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c1.webp';"
+            >
+          </div>
+
+          <!-- Logo 3 (c2.webp) -->
+          <div class="client-logo-item">
+            <img 
+              src="images/c2.webp" 
+              alt="Client 3" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c2.webp';"
+            >
+          </div>
+
+          <!-- Logo 4 (c3.webp) -->
+          <div class="client-logo-item">
+            <img 
+              src="images/c3.webp" 
+              alt="Client 4" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c3.webp';"
+            >
+          </div>
+
+          <!-- Logo 5 (c4.webp) -->
+          <div class="client-logo-item">
+            <img 
+              src="images/c4.webp" 
+              alt="Client 5" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c4.webp';"
+            >
+          </div>
+
+          <!-- Logo 6 (c5.webp) -->
+          <div class="client-logo-item">
+            <img 
+              src="images/c5.webp" 
+              alt="Client 6" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c5.webp';"
+            >
+          </div>
+
+          <!-- Logo 7 (c6.webp) -->
+          <div class="client-logo-item">
+            <img 
+              src="images/c6.webp" 
+              alt="Client 7" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c6.webp';"
+            >
+          </div>
+
+          <!-- Seamless Duplicate Set for Continuous Infinite Loop -->
+          <div class="client-logo-item" aria-hidden="true">
+            <img 
+              src="images/c7.webp" 
+              alt="Client 1" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c7.webp';"
+            >
+          </div>
+
+          <div class="client-logo-item" aria-hidden="true">
+            <img 
+              src="images/c1.webp" 
+              alt="Client 2" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c1.webp';"
+            >
+          </div>
+
+          <div class="client-logo-item" aria-hidden="true">
+            <img 
+              src="images/c2.webp" 
+              alt="Client 3" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c2.webp';"
+            >
+          </div>
+
+          <div class="client-logo-item" aria-hidden="true">
+            <img 
+              src="images/c3.webp" 
+              alt="Client 4" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c3.webp';"
+            >
+          </div>
+
+          <div class="client-logo-item" aria-hidden="true">
+            <img 
+              src="images/c4.webp" 
+              alt="Client 5" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c4.webp';"
+            >
+          </div>
+
+          <div class="client-logo-item" aria-hidden="true">
+            <img 
+              src="images/c5.webp" 
+              alt="Client 6" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c5.webp';"
+            >
+          </div>
+
+          <div class="client-logo-item" aria-hidden="true">
+            <img 
+              src="images/c6.webp" 
+              alt="Client 7" 
+              class="client-logo-img"
+              onerror="this.onerror=null;this.src='images/c6.webp';"
+            >
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider Line -->
+    <div class="faq-divider-line"></div>
+
+    <!-- Part 2: Split-Screen FAQ / Expert Answers -->
+    <div class="faq-main-block" id="faqMainBlock">
+      <div class="faq-container">
+        <div class="faq-grid">
+          
+          <!-- Left Column: Content & Interactive Accordion (~50% width) -->
+          <div class="faq-left-col" id="faqLeftCol">
+            
+            <!-- Overline: FAQ's with glowing red dot -->
+            <div class="faq-overline">
+              <span class="faq-red-dot"></span>
+              <span>FAQ'S</span>
+            </div>
+
+            <!-- Main Heading: Automatically split by JavaScript for Masked Stagger Reveal -->
+            <h2 class="faq-heading" id="faqHeading">Expert Answers</h2>
+
+            <!-- Interactive Accordion -->
+            <div class="faq-accordion" id="faqAccordion">
+              
+              <!-- Item 1 -->
+              <div class="faq-item active">
+                <button class="faq-trigger" aria-expanded="true">
+                  <span class="faq-question">What kind of cloud services do you offer?</span>
+                  <span class="faq-icon-wrap" aria-hidden="true">
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" class="vert-line"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-answer-panel" style="max-height: 200px;">
+                  <div class="faq-answer-content">
+                    We specialize in end-to-end cloud infrastructure architecting, automated CI/CD migrations, multi-cloud governance (AWS, Azure, GCP), automated cost optimization, and enterprise DevSecOps.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="faq-item">
+                <button class="faq-trigger" aria-expanded="false">
+                  <span class="faq-question">How do you ensure data security?</span>
+                  <span class="faq-icon-wrap" aria-hidden="true">
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" class="vert-line"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-answer-panel">
+                  <div class="faq-answer-content">
+                    Security is embedded at the foundational level with zero-trust network policies, SOC 2 / ISO 27001 compliance standards, automated vulnerability scanning, and end-to-end encryption for data in transit and at rest.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="faq-item">
+                <button class="faq-trigger" aria-expanded="false">
+                  <span class="faq-question">What is your migration process?</span>
+                  <span class="faq-icon-wrap" aria-hidden="true">
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" class="vert-line"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-answer-panel">
+                  <div class="faq-answer-content">
+                    We employ a proven 4-stage migration route: discovery & risk assessment, automated blue/green staging, seamless zero-downtime cutover, and post-migration performance telemetry.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="faq-item">
+                <button class="faq-trigger" aria-expanded="false">
+                  <span class="faq-question">Do you provide 24/7 support?</span>
+                  <span class="faq-icon-wrap" aria-hidden="true">
+                    <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" class="vert-line"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-answer-panel">
+                  <div class="faq-answer-content">
+                    Yes. We offer 24/7/365 proactive monitoring with automated incident remediations, guaranteed 15-minute SLA response times for critical services, and dedicated cloud reliability engineering teams.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Right Column: Image & Rotating Badge (~50% width) -->
+          <div class="faq-right-col" id="faqRightCol">
+            
+            <!-- Rotating Typography Badge Element -->
+            <div class="faq-badge-wrapper" aria-hidden="true">
+              <svg class="faq-badge-svg" viewBox="0 0 140 140">
+                <defs>
+                  <path id="faqCirclePath" d="M 70, 70 m -48, 0 a 48,48 0 1,1 96,0 a 48,48 0 1,1 -96,0" />
+                </defs>
+                <text class="faq-badge-text">
+                  <textPath href="#faqCirclePath" startOffset="0%">
+                    CONNECT NOW âœ¦ CONNECT NOW âœ¦
+                  </textPath>
+                </text>
+              </svg>
+              <div class="faq-badge-center-star">â˜…</div>
+            </div>
+
+            <!-- Main Image Asset (Tall, Cover, Rounded) -->
+            <div class="faq-img-wrapper" id="faqImgWrapper">
+              <img 
+                src="images/fawq (1).webp" 
+                alt="Cloud Experts" 
+                class="faq-main-img"
+                onerror="this.onerror=null;this.src='images/fawq (1).webp';"
+              >
+              <div class="faq-img-overlay"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================
+       INTEGRATIONS CONSTELLATION SECTION
+       ============================================ -->
+  <section class="integrations-section" id="integrations">
+    
+    <!-- Background Starry Night Canvas & Ambient Glow -->
+    <canvas class="integrations-stars-canvas" id="integrationsStarsCanvas"></canvas>
+    <div class="integrations-ambient-glow" aria-hidden="true"></div>
+
+    <div class="integrations-container">
+      
+      <!-- Top Content (Cloud Business Solutions Context) -->
+      <div class="integrations-header">
+        <div class="integrations-badge" data-aos="fade-up" data-aos-duration="800">
+          <span class="badge-sparkle">âœ¦</span>
+          <span>ENTERPRISE ECOSYSTEM</span>
+        </div>
+        
+        <h2 class="integrations-heading" data-aos="fade-up" data-aos-duration="1000">
+          Seamless Cloud Integrations
+        </h2>
+        
+        <p class="integrations-subheading" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+          Automate your workflows and connect your existing tools to our unified cloud infrastructure. Our platform synchronizes your enterprise stack to solve real-world challenges in real-time.
+        </p>
+      </div>
+
+      <!-- The Interactive "Constellation" Graphic -->
+      <div class="integrations-stage" id="integrationsStage" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1200">
+        
+        <!-- Concentric Orbit Rings -->
+        <div class="orbit-ring orbit-ring-1" aria-hidden="true">
+          <div class="orbit-dot orbit-dot-1"></div>
+        </div>
+        <div class="orbit-ring orbit-ring-2" aria-hidden="true">
+          <div class="orbit-dot orbit-dot-2"></div>
+        </div>
+        <div class="orbit-ring orbit-ring-3" aria-hidden="true">
+          <div class="orbit-dot orbit-dot-3"></div>
+        </div>
+
+        <!-- Central Looping Video Core -->
+        <div class="central-core-wrapper">
+          <div class="central-core-aura" aria-hidden="true"></div>
+          <div class="central-core-ring" aria-hidden="true"></div>
+          <video 
+            class="central-core-video" 
+            src="images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            onerror="this.onerror=null;this.src='images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4';"
+          ></video>
+        </div>
+
+        <!-- 10 Floating Pill-Shaped Cards ("Satellites") -->
+        <!-- 1. AWS Connect -->
+        <div class="integration-pill pill-pos-1" data-id="aws">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+            </svg>
+          </span>
+          <span class="pill-text">AWS Connect</span>
+        </div>
+
+        <!-- 2. Azure Sync -->
+        <div class="integration-pill pill-pos-2" data-id="azure">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 16 6-12 6 12"></path>
+              <path d="M8 12h8"></path>
+            </svg>
+          </span>
+          <span class="pill-text">Azure Sync</span>
+        </div>
+
+        <!-- 3. Salesforce CRM -->
+        <div class="integration-pill pill-pos-3" data-id="salesforce">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+            </svg>
+          </span>
+          <span class="pill-text">Salesforce CRM</span>
+        </div>
+
+        <!-- 4. GitHub Actions -->
+        <div class="integration-pill pill-pos-4" data-id="github">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="6" y1="3" x2="6" y2="15"></line>
+              <circle cx="18" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M18 9a9 9 0 0 1-9 9"></path>
+            </svg>
+          </span>
+          <span class="pill-text">GitHub Actions</span>
+        </div>
+
+        <!-- 5. Docker Hub -->
+        <div class="integration-pill pill-pos-5" data-id="docker">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 11h16a3 3 0 0 1 0 6H5a4 4 0 0 1-4-4V7a2 2 0 0 1 2-2h4"></path>
+              <rect x="7" y="7" width="2" height="2"></rect>
+              <rect x="11" y="7" width="2" height="2"></rect>
+              <rect x="15" y="7" width="2" height="2"></rect>
+            </svg>
+          </span>
+          <span class="pill-text">Docker Hub</span>
+        </div>
+
+        <!-- 6. Slack Ops -->
+        <div class="integration-pill pill-pos-6" data-id="slack">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="13" y="2" width="3" height="8" rx="1.5"></rect>
+              <path d="M19 8.5a2.5 2.5 0 0 1-5 0V6a2.5 2.5 0 0 1 5 0z"></path>
+              <rect x="8" y="14" width="3" height="8" rx="1.5"></rect>
+              <path d="M5 15.5a2.5 2.5 0 0 1 5 0V18a2.5 2.5 0 0 1-5 0z"></path>
+            </svg>
+          </span>
+          <span class="pill-text">Slack Ops</span>
+        </div>
+
+        <!-- 7. Datadog -->
+        <div class="integration-pill pill-pos-7" data-id="datadog">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20"></path>
+              <path d="m17 5-5-3-5 3"></path>
+              <path d="m17 19-5 3-5-3"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+          </span>
+          <span class="pill-text">Datadog</span>
+        </div>
+
+        <!-- 8. Kubernetes -->
+        <div class="integration-pill pill-pos-8" data-id="kubernetes">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 3v18"></path>
+              <path d="M3 12h18"></path>
+              <path d="m5.6 5.6 12.8 12.8"></path>
+              <path d="m5.6 18.4 12.8-12.8"></path>
+            </svg>
+          </span>
+          <span class="pill-text">Kubernetes</span>
+        </div>
+
+        <!-- 9. Terraform Cloud -->
+        <div class="integration-pill pill-pos-9" data-id="terraform">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </span>
+          <span class="pill-text">Terraform Cloud</span>
+        </div>
+
+        <!-- 10. Snowflake Data -->
+        <div class="integration-pill pill-pos-10" data-id="snowflake">
+          <span class="pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="2" x2="12" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+              <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
+            </svg>
+          </span>
+          <span class="pill-text">Snowflake Data</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       FINAL CALL TO ACTION (CTA) SECTION
+       ============================================ -->
+  <div id="contact" style="position: relative; top: -60px; visibility: hidden;"></div>
+  <section class="final-cta-section" id="cta">
+    <div class="final-cta-container">
+      
+      <!-- Rounded Container with Ambient Depth -->
+      <div class="final-cta-card" id="ctaCard">
+        
+        <!-- Moving 3D Wave Background Layer -->
+        <div 
+          class="cta-bg-wave" 
+          id="ctaBgWave"
+          style="background-image: url('images/main.webp');"
+        ></div>
+
+        <!-- Subtle Dark Linear Gradient Overlay for High Legibility -->
+        <div class="cta-gradient-overlay"></div>
+
+        <!-- Subtle Glassmorphic Rim -->
+        <div class="cta-card-rim"></div>
+
+        <!-- Centered Typography & Content -->
+        <div class="cta-content" id="ctaContent">
+          
+          <!-- Main Heading: Words split for GSAP Masked Stagger Reveal -->
+          <h2 class="cta-heading" id="ctaHeading">
+            <span class="cta-word-mask"><span class="cta-word-inner">Ready</span></span>
+            <span class="cta-word-mask"><span class="cta-word-inner">to</span></span>
+            <span class="cta-word-mask"><span class="cta-word-inner">find</span></span>
+            <span class="cta-word-mask"><span class="cta-word-inner">your</span></span>
+            <span class="cta-word-mask"><span class="cta-word-inner">clear</span></span>
+            <span class="cta-word-mask"><span class="cta-word-inner">route?</span></span>
+          </h2>
+
+          <!-- Subheading: Smooth fade-in & slide-up -->
+          <p class="cta-subheading" id="ctaSubheading">
+            Book a 30-minute route audit and leave with a written plan - no strings.
+          </p>
+
+          <!-- Pill-shaped CTA Button with Calendar Icon -->
+          <div class="cta-button-wrap" id="ctaButtonWrap">
+            <a href="404.html?from=cta&amp;return_page=index.html" class="cta-pill-btn" id="ctaButton" aria-label="Book a route audit">
+              <i class="fa-regular fa-calendar-check cta-cal-icon" aria-hidden="true"></i>
+              <span class="cta-btn-label">Book a route audit</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       STACKLY FOOTER SECTION
+       ========================================================================== -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-container">
+
+      <!-- 4-Column Grid -->
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand -->
+        <div class="footer-col footer-col-brand" data-aos="fade-up" data-aos-duration="800">
+          <a href="index.html" class="footer-brand-logo" aria-label="Stackly Homepage">
+            <img 
+              src="images/logo.webp" 
+              alt="Stackly Logo" 
+              class="footer-logo-img" 
+              onerror="this.src='images/logo.webp'">
+          </a>
+          <p class="footer-brand-desc">
+            A warm signal through the cloud layer - complexity turned into a route your team can walk.
+          </p>
+        </div>
+
+        <!-- Column 2: Company -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-link-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="service.html" class="footer-link">Our Solutions</a></li>
+            <li><a href="404.html?from=footer&amp;return_page=index.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-link-list">
+            <li><a href="index.html" class="footer-link active">Home</a></li>
+            <li><a href="service.html" class="footer-link">Services</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="blog.html" class="footer-link">Blogs</a></li>
+            <li><a href="login.html" class="footer-link">Sign In</a></li>
+            <li><a href="contact.html" class="footer-link">Book a Consult</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-col footer-col-contact" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-info">
+            <a href="404.html?from=footer&amp;return_page=index.html" class="footer-contact-item">
+              <i class="fa-regular fa-envelope footer-contact-icon" aria-hidden="true"></i>
+              <span>hello@Stackly.net.in</span>
+            </a>
+            <a href="404.html?from=footer&amp;return_page=index.html" class="footer-contact-item">
+              <i class="fa-solid fa-phone footer-contact-icon" aria-hidden="true"></i>
+              <span>+91 89052 46537</span>
+            </a>
+            <div class="footer-contact-item footer-contact-address">
+              <i class="fa-solid fa-location-dot footer-contact-icon" aria-hidden="true"></i>
+              <span>MMR Complex, China Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animated Divider Line -->
+      <div class="footer-divider-wrap">
+        <div class="footer-divider-line" id="footerDivider"></div>
+      </div>
+
+      <!-- Bottom Footer: Copyright & Socials -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2026 Stackly Technologies. All rights reserved.
+        </p>
+        
+        <div class="footer-social-links" aria-label="Social Media">
+          <a href="404.html?from=footer&amp;return_page=index.html" class="footer-social-btn" aria-label="Stackly on LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=index.html" class="footer-social-btn" aria-label="Stackly on Twitter / X" title="Twitter / X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=index.html" class="footer-social-btn" aria-label="Stackly on Instagram" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+

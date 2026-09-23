@@ -1,0 +1,1627 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superadmin Master Control Stackly Cloud Business Solutions</title>
+  <meta name="description" content="Stackly Enterprise Superadmin Command Center. Global multi-cloud control plane, tenant organization governance, aggregate wholesale margin analytics, bare-metal compute fleets, zero-trust security & CVE mitigation, and 24/7 SRE incident war-room dispatch.">
+
+  <!-- Instant Position Restoration (Prevents Flash on 404 Return) -->
+  <script>
+    (function() {
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var restoreScroll = urlParams.get('restore_scroll');
+        var isRestoring = (sessionStorage.getItem('stackly_instant_restore') === 'true' || restoreScroll !== null) && 
+                          (document.referrer.indexOf('404.html') !== -1 || restoreScroll !== null);
+        if (isRestoring) {
+          document.documentElement.classList.add('instant-restoring');
+          document.documentElement.style.scrollBehavior = 'auto';
+          var sVal = restoreScroll || sessionStorage.getItem('stackly_target_scroll') || sessionStorage.getItem('stackly_last_scroll');
+          if (sVal !== null && sVal !== '' && parseInt(sVal, 10) >= 0) {
+            window.scrollTo(0, parseInt(sVal, 10));
+          }
+        } else {
+          window.scrollTo(0, 0);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome Icons 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- AOS (Animate On Scroll) CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body class="dashboard-page admin-dashboard-page">
+
+  <!-- Ambient Global Glow & Grid Background -->
+  <div class="dash-ambient-glow glow-primary" aria-hidden="true"></div>
+  <div class="dash-ambient-glow glow-secondary" aria-hidden="true"></div>
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div class="dash-backdrop" id="adminBackdrop" aria-hidden="true"></div>
+
+  <div class="dash-layout-wrapper">
+
+    <!-- ==========================================================================
+         SUPERADMIN SIDEBAR (Persistent Desktop 320px, Drawer on Mobile <= 1024px)
+         ========================================================================== -->
+    <aside class="dash-sidebar admin-sidebar" id="adminSidebar" aria-label="Superadmin Navigation Sidebar">
+      
+      <!-- Sidebar Header / Brand -->
+      <div class="dash-sidebar-header">
+        <a href="admindashboard.html" class="dash-brand-link" aria-label="Admin Dashboard">
+          <img 
+            src="images/logo.webp" 
+            alt="Stackly Cloud Logo" 
+            class="dash-brand-logo"
+            onerror="this.src='images/logo.webp'">
+        </a>
+        <!-- Mobile Close (X) Button -->
+        <button class="dash-sidebar-close-btn" id="adminSidebarClose" aria-label="Close Mobile Sidebar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Superadmin User Profile Box -->
+      <div class="dash-user-card">
+        <div class="dash-user-avatar-wrap">
+          <img 
+            src="images/team1.webp" 
+            alt="admin@stackly.io" 
+            class="dash-user-avatar"
+            onerror="this.src='images/team1.webp'">
+          <span class="dash-user-status-dot admin-status-dot" title="Active Superadmin Session (Tier 4)"></span>
+        </div>
+        <div class="dash-user-meta">
+          <span class="dash-user-name">admin@stackly.io</span>
+          <span class="dash-user-role">Infra Director &bull; Superadmin (L4)</span>
+        </div>
+      </div>
+
+      <!-- Navigation Section Label -->
+      <div class="dash-menu-label">
+        <span>ROOT COMMAND MENU</span>
+      </div>
+
+      <!-- Sidebar Menu Items (6 Superadmin Operational Tabs) -->
+      <nav class="dash-sidebar-nav" aria-label="Sidebar Menu List">
+        <ul class="dash-nav-list" id="adminNavList">
+
+          <li class="dash-nav-item">
+            <button class="dash-nav-btn active" data-tab="ctrl-plane" aria-selected="true">
+              <span class="dash-nav-icon-box"><i class="fa-solid fa-tower-broadcast"></i></span>
+              <span class="dash-nav-text">Control Plane &amp; Mesh</span>
+              <span class="dash-nav-badge badge-cyan">14 Clusters</span>
+            </button>
+          </li>
+
+          <li class="dash-nav-item">
+            <button class="dash-nav-btn" data-tab="tenants" aria-selected="false">
+              <span class="dash-nav-icon-box"><i class="fa-solid fa-users-gear"></i></span>
+              <span class="dash-nav-text">Tenant &amp; Quota Ops</span>
+              <span class="dash-nav-pill">1,280 Orgs</span>
+            </button>
+          </li>
+
+          <li class="dash-nav-item">
+            <button class="dash-nav-btn" data-tab="finops-gov" aria-selected="false">
+              <span class="dash-nav-icon-box"><i class="fa-solid fa-coins"></i></span>
+              <span class="dash-nav-text">FinOps &amp; Gross Margin</span>
+              <span class="dash-nav-badge badge-emerald">+58.4%</span>
+            </button>
+          </li>
+
+          <li class="dash-nav-item">
+            <button class="dash-nav-btn" data-tab="bare-metal" aria-selected="false">
+              <span class="dash-nav-icon-box"><i class="fa-solid fa-server"></i></span>
+              <span class="dash-nav-text">Compute &amp; Bare-Metal</span>
+              <span class="dash-nav-pill">9,420 Nodes</span>
+            </button>
+          </li>
+
+          <li class="dash-nav-item">
+            <button class="dash-nav-btn" data-tab="sec-ops" aria-selected="false">
+              <span class="dash-nav-icon-box"><i class="fa-solid fa-shield-halved"></i></span>
+              <span class="dash-nav-text">Zero-Trust &amp; CVE Radar</span>
+              <span class="dash-nav-badge badge-purple">0 Breaches</span>
+            </button>
+          </li>
+
+          <li class="dash-nav-item">
+            <button class="dash-nav-btn" data-tab="sre-warroom" aria-selected="false">
+              <span class="dash-nav-icon-box"><i class="fa-solid fa-triangle-exclamation"></i></span>
+              <span class="dash-nav-text">SRE Incident Command</span>
+              <span class="dash-nav-pill">P1 Ready</span>
+            </button>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Sidebar Global Infrastructure Utilization Meter -->
+      <div class="dash-quota-widget">
+        <div class="dash-quota-header">
+          <span class="dash-quota-title"><i class="fa-solid fa-microchip"></i> Global Fleet Load</span>
+          <span class="dash-quota-val">79% CPU &bull; 84% RAM</span>
+        </div>
+        <div class="dash-progress-track">
+          <div class="dash-progress-bar bar-coral" style="width: 79%;"></div>
+        </div>
+        <div class="dash-quota-footer">
+          <span class="dash-quota-note">154,800 vCPUs &bull; 4.8 PB NVMe</span>
+          <a href="404.html?from=admin_fleet_capacity&amp;return_page=admindashboard.html" class="dash-quota-action" title="Adjust Provisioning Gates">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Gates</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar Direct Portals & Sign Out -->
+      <div class="dash-sidebar-footer">
+        <a href="userdashboard.html" class="dash-site-link" title="Switch to Client Portal View">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Client View</span>
+        </a>
+        <a href="index.html" class="dash-site-link" title="Return to Main Website">
+          <i class="fa-solid fa-globe"></i>
+          <span>Main Site</span>
+        </a>
+        <a href="login.html" class="dash-logout-btn" id="adminLogoutBtn" title="Terminate Superadmin Session">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN ADMIN DASHBOARD STAGE
+         ========================================================================== -->
+    <div class="dash-main-stage">
+
+      <!-- Top Admin Header Bar -->
+      <header class="dash-topbar" id="adminTopbar">
+        <div class="dash-topbar-left">
+          
+          <!-- Hamburger Toggle (Mobile and Tablet) -->
+          <button class="dash-hamburger-btn" id="adminHamburgerBtn" aria-label="Open Superadmin Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <!-- View Title -->
+          <h1 class="dash-view-title" id="adminViewTitle">Global Multi-Cloud Control Plane &amp; Fleet Orchestration</h1>
+
+        </div>
+
+        <div class="dash-topbar-right">
+
+          <!-- Notification Bell -->
+          <a href="404.html?from=admin_notifications&amp;return_page=admindashboard.html" class="dash-icon-btn" aria-label="View security dispatch alerts" title="5 Pending System Dispatches">
+            <i class="fa-regular fa-bell"></i>
+            <span class="dash-notification-count">5</span>
+          </a>
+
+          <!-- Quick Action CTA -->
+          <a href="404.html?from=admin_provision_cluster&amp;return_page=admindashboard.html" class="dash-cta-btn btn-coral">
+            <i class="fa-solid fa-server"></i>
+            <span>Provision Master Cluster</span>
+          </a>
+
+        </div>
+      </header>
+
+      <!-- Main Scrollable Admin Dashboard Content Area -->
+      <main class="dash-content-area" id="adminContentArea">
+
+        <!-- ====================================================================
+             TAB 1: GLOBAL CONTROL PLANE & MESH
+             ==================================================================== -->
+        <section class="dash-tab-section active" id="view-ctrl-plane" aria-label="Global Control Plane and Mesh Telemetry">
+
+          <!-- 4 High-Impact Stat Cards Grid -->
+          <div class="dash-stats-grid">
+            
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Global Transaction Throughput</span>
+                <span class="dash-stat-icon-wrap icon-cyan"><i class="fa-solid fa-tower-broadcast"></i></span>
+              </div>
+              <div class="dash-stat-value">8.42M QPS</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-cyan"><i class="fa-solid fa-chart-line"></i> +14.2% Peak</span>
+                <span class="dash-stat-desc">Across 42 global edge PoPs</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Active Master Control Planes</span>
+                <span class="dash-stat-icon-wrap icon-emerald"><i class="fa-solid fa-network-wired"></i></span>
+              </div>
+              <div class="dash-stat-value">14 / 14</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-emerald"><i class="fa-solid fa-check"></i> 100% Quorum</span>
+                <span class="dash-stat-desc">Zero etcd leader re-elections</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">P99 Cross-Cloud Mesh Latency</span>
+                <span class="dash-stat-icon-wrap icon-coral"><i class="fa-solid fa-gauge-high"></i></span>
+              </div>
+              <div class="dash-stat-value">6.2 ms</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-coral"><i class="fa-solid fa-chart-line"></i> -1.8ms Delta</span>
+                <span class="dash-stat-desc">Kernel eBPF &bull; WireGuard tunnel</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Multi-Region SLA Uptime</span>
+                <span class="dash-stat-icon-wrap icon-purple"><i class="fa-solid fa-shield-halved"></i></span>
+              </div>
+              <div class="dash-stat-value">99.999%</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-purple"><i class="fa-solid fa-circle-check"></i> Five-Nines</span>
+                <span class="dash-stat-desc">Zero catastrophic partition events</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Section Row 1: Real-Time Global Telemetry SVG Chart & Mesh Visual Stage -->
+          <div class="dash-two-col-grid">
+
+            <!-- Global Ingress Throughput SVG Chart -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">Global Ingress Telemetry &amp; Transit Frequency</h3>
+                  <p class="dash-panel-subtitle">Aggregated multi-cloud packet transactions sampled across North America, EMEA, and APAC backbones.</p>
+                </div>
+                <div class="dash-panel-actions">
+                  <span class="dash-pill-live"><span class="pulse-dot"></span> 8.42M QPS</span>
+                </div>
+              </div>
+
+              <!-- SVG Interactive Line Graph -->
+              <div class="dash-chart-container">
+                <svg viewBox="0 0 700 240" class="dash-svg-chart" aria-label="Global Transaction Telemetry Chart">
+                  <defs>
+                    <linearGradient id="adminChartGradCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.32" />
+                      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0" />
+                    </linearGradient>
+                    <linearGradient id="adminChartGradCoral" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#ff5232" stop-opacity="0.25" />
+                      <stop offset="100%" stop-color="#ff5232" stop-opacity="0.0" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Chart Grid Lines -->
+                  <line x1="40" y1="40" x2="680" y2="40" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3" />
+                  <line x1="40" y1="90" x2="680" y2="90" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3" />
+                  <line x1="40" y1="140" x2="680" y2="140" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3" />
+                  <line x1="40" y1="190" x2="680" y2="190" stroke="rgba(255,255,255,0.08)" />
+
+                  <!-- Y-Axis Scale Labels -->
+                  <text x="32" y="44" fill="#64748b" font-size="10" text-anchor="end">10M</text>
+                  <text x="32" y="94" fill="#64748b" font-size="10" text-anchor="end">7.5M</text>
+                  <text x="32" y="144" fill="#64748b" font-size="10" text-anchor="end">5.0M</text>
+                  <text x="32" y="194" fill="#64748b" font-size="10" text-anchor="end">2.5M</text>
+
+                  <!-- Primary Line: Global Multi-Cloud Ingress (Cyan) -->
+                  <path 
+                    d="M 50 160 Q 120 140 180 110 T 310 95 T 440 65 T 560 55 T 670 45" 
+                    fill="none" 
+                    stroke="#38bdf8" 
+                    stroke-width="2.5" 
+                    stroke-linecap="round" />
+                  <path 
+                    d="M 50 160 Q 120 140 180 110 T 310 95 T 440 65 T 560 55 T 670 45 L 670 190 L 50 190 Z" 
+                    fill="url(#adminChartGradCyan)" />
+
+                  <!-- Secondary Line: Distributed Edge Mesh (Coral) -->
+                  <path 
+                    d="M 50 175 Q 130 165 200 150 T 330 135 T 460 115 T 570 95 T 670 80" 
+                    fill="none" 
+                    stroke="#ff5232" 
+                    stroke-width="2" 
+                    stroke-dasharray="4,3" 
+                    stroke-linecap="round" />
+                  <path 
+                    d="M 50 175 Q 130 165 200 150 T 330 135 T 460 115 T 570 95 T 670 80 L 670 190 L 50 190 Z" 
+                    fill="url(#adminChartGradCoral)" />
+
+                  <!-- Telemetry Points -->
+                  <circle cx="180" cy="110" r="4" fill="#38bdf8" />
+                  <circle cx="440" cy="65" r="4" fill="#38bdf8" />
+                  <circle cx="670" cy="45" r="5" fill="#38bdf8" stroke="#06070a" stroke-width="2" />
+                  <circle cx="570" cy="95" r="4" fill="#ff5232" />
+                </svg>
+
+                <div class="dash-chart-legend">
+                  <span class="legend-item"><span class="legend-color bg-cyan"></span> Multi-Cloud Global Ingress (8.42M QPS)</span>
+                  <span class="legend-item"><span class="legend-color bg-coral"></span> Distributed Edge POP Mesh (4.18M QPS)</span>
+                </div>
+              </div>
+
+              <!-- Quick Metric Strip -->
+              <div class="dash-chart-metrics-row">
+                <div class="dash-mini-metric">
+                  <span class="mini-label">Packet Ingestion Rate</span>
+                  <span class="mini-val">18.4 TB / hr</span>
+                </div>
+                <div class="dash-mini-metric">
+                  <span class="mini-label">Global 5xx Error Ratio</span>
+                  <span class="mini-val text-emerald">0.0004%</span>
+                </div>
+                <div class="dash-mini-metric">
+                  <span class="mini-label">Global Route Convergence</span>
+                  <span class="mini-val text-purple">120 ms</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Mesh Topology Card Featuring images/graph.webp -->
+            <div class="dash-panel-card dash-visual-card">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">Active Global Mesh Architecture</h3>
+                  <p class="dash-panel-subtitle">Automated WireGuard mesh interconnect topology across 14 master Kubernetes control planes.</p>
+                </div>
+                <a href="404.html?from=admin_mesh_topology&amp;return_page=admindashboard.html" class="dash-btn-sm">
+                  <i class="fa-solid fa-circle-nodes"></i>
+                  <span>Inspect Mesh</span>
+                </a>
+              </div>
+
+              <div class="dash-card-media-box">
+                <img 
+                  src="images/graph.webp" 
+                  alt="Global Multi-Cloud Topology Mesh" 
+                  class="dash-panel-img" 
+                  loading="lazy">
+                <div class="dash-media-badge-top">
+                  <span class="dash-live-beacon"></span>
+                  <span>14 Master Control Planes &bull; Synchronized</span>
+                </div>
+              </div>
+
+              <div class="dash-card-info-list">
+                <div class="info-row">
+                  <span class="info-key"><i class="fa-solid fa-shield-halved"></i> WireGuard Encryption</span>
+                  <span class="info-val text-cyan">ChaCha20-Poly1305 Active</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-key"><i class="fa-solid fa-server"></i> Consensus Quorum</span>
+                  <span class="info-val text-emerald">etcd v3.5.9 (14/14 healthy)</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-key"><i class="fa-solid fa-bolt"></i> Automated Failover SLA</span>
+                  <span class="info-val text-coral">&lt; 850 ms Automatic</span>
+                </div>
+              </div>
+
+              <div class="dash-actions-row">
+                <a href="404.html?from=admin_mesh_keys&amp;return_page=admindashboard.html" class="dash-action-btn btn-secondary">
+                  <i class="fa-solid fa-key"></i>
+                  <span>Rotate Mesh Keys</span>
+                </a>
+                <a href="404.html?from=admin_mesh_drain&amp;return_page=admindashboard.html" class="dash-action-btn btn-coral">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  <span>Simulate Chaos Partition</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Section Row 2: Master Kubernetes Control Planes Table -->
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Master Multi-Cloud Control Planes Directory</h3>
+                <p class="dash-panel-subtitle">Live health status, consensus response times, managed tenant worker nodes, and etcd replication latency.</p>
+              </div>
+              <div class="dash-table-controls">
+                <a href="404.html?from=admin_filter_planes&amp;return_page=admindashboard.html" class="dash-btn-sm">
+                  <i class="fa-solid fa-filter"></i>
+                  <span>Filter Zones</span>
+                </a>
+                <a href="404.html?from=admin_add_plane&amp;return_page=admindashboard.html" class="dash-btn-sm btn-primary">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Add Control Plane</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="dash-table-responsive">
+              <table class="dash-table dash-telemetry-table" aria-label="Master Control Planes Directory">
+                <thead>
+                  <tr>
+                    <th>Control Plane Name</th>
+                    <th>Cloud Provider &amp; Zone</th>
+                    <th>Node Fleet</th>
+                    <th>etcd Latency</th>
+                    <th>Transit Health</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-coral"><i class="fa-solid fa-server"></i></span>
+                        <div>
+                          <div class="dash-service-name">us-east-master-01</div>
+                          <div class="dash-service-sub">Primary North America Cluster Hub</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="zone-badge">AWS EKS &bull; us-east-1</span></td>
+                    <td>2,450 Nodes &bull; 18,200 Pods</td>
+                    <td><span class="text-emerald font-semibold">1.2 ms</span></td>
+                    <td><span class="metric-pill pill-cyan">0.00% Packet Loss</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Quorum Leader</span></td>
+                    <td>
+                      <a href="404.html?plane=us-east-01&amp;return_page=admindashboard.html" class="dash-row-action" title="Configure Master Plane">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-cyan"><i class="fa-solid fa-server"></i></span>
+                        <div>
+                          <div class="dash-service-name">eu-west-master-02</div>
+                          <div class="dash-service-sub">EMEA Core Banking &amp; GDPR Gateway</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="zone-badge">GCP GKE &bull; europe-west1</span></td>
+                    <td>3,120 Nodes &bull; 24,100 Pods</td>
+                    <td><span class="text-emerald font-semibold">1.8 ms</span></td>
+                    <td><span class="metric-pill pill-cyan">0.00% Packet Loss</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Quorum Follower</span></td>
+                    <td>
+                      <a href="404.html?plane=eu-west-02&amp;return_page=admindashboard.html" class="dash-row-action" title="Configure Master Plane">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-purple"><i class="fa-solid fa-server"></i></span>
+                        <div>
+                          <div class="dash-service-name">ap-south-master-03</div>
+                          <div class="dash-service-sub">APAC High-Frequency Transaction Hub</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="zone-badge">Azure AKS &bull; southeastasia</span></td>
+                    <td>1,850 Nodes &bull; 14,300 Pods</td>
+                    <td><span class="text-emerald font-semibold">2.4 ms</span></td>
+                    <td><span class="metric-pill pill-cyan">0.01% Packet Loss</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Quorum Follower</span></td>
+                    <td>
+                      <a href="404.html?plane=ap-south-03&amp;return_page=admindashboard.html" class="dash-row-action" title="Configure Master Plane">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-emerald"><i class="fa-solid fa-server"></i></span>
+                        <div>
+                          <div class="dash-service-name">metal-dc-central-04</div>
+                          <div class="dash-service-sub">Bare-Metal Equinix Private Cloud</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="zone-badge">Equinix Bare-Metal &bull; Ashburn DC</span></td>
+                    <td>2,000 Nodes &bull; 16,800 Pods</td>
+                    <td><span class="text-emerald font-semibold">0.8 ms</span></td>
+                    <td><span class="metric-pill pill-cyan">0.00% Packet Loss</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Bare-Metal Standby</span></td>
+                    <td>
+                      <a href="404.html?plane=metal-04&amp;return_page=admindashboard.html" class="dash-row-action" title="Configure Master Plane">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ====================================================================
+             TAB 2: TENANT & ORGANIZATION GOVERNANCE
+             ==================================================================== -->
+        <section class="dash-tab-section" id="view-tenants" aria-label="Tenant Organization Governance and Quotas">
+
+          <!-- Section Header -->
+          <div class="dash-section-header">
+            <div>
+              <h2 class="dash-section-headline">Multi-Tenant Enterprise Organizations &amp; Quotas</h2>
+              <p class="dash-section-desc">Govern compute allocation, tenant namespace isolation barriers, enterprise SLA boundaries, and API rate limits.</p>
+            </div>
+            <div class="dash-section-actions">
+              <a href="404.html?from=admin_new_tenant&amp;return_page=admindashboard.html" class="dash-cta-btn btn-coral">
+                <i class="fa-solid fa-plus"></i>
+                <span>Provision Enterprise Tenant</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4 Tenant KPI Cards -->
+          <div class="dash-stats-grid">
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Active Enterprise Tenants</span>
+                <span class="dash-stat-icon-wrap icon-cyan"><i class="fa-solid fa-building"></i></span>
+              </div>
+              <div class="dash-stat-value">1,280 Orgs</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-emerald"><i class="fa-solid fa-check"></i> +42 this month</span>
+                <span class="dash-stat-desc">Tier 1 &bull; Tier 2 &bull; Tier 3</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Active Managed Pods</span>
+                <span class="dash-stat-icon-wrap icon-emerald"><i class="fa-solid fa-cubes"></i></span>
+              </div>
+              <div class="dash-stat-value">73,400</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-emerald"><i class="fa-solid fa-chart-line"></i> 99.8% Healthy</span>
+                <span class="dash-stat-desc">Strict cgroups v2 boundaries</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Global Tenant Quota Burn</span>
+                <span class="dash-stat-icon-wrap icon-coral"><i class="fa-solid fa-chart-pie"></i></span>
+              </div>
+              <div class="dash-stat-value">68.4%</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-coral"><i class="fa-solid fa-chart-line"></i> Headroom OK</span>
+                <span class="dash-stat-desc">31.6% Reserve Capacity</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">SLA Guarantee Compliance</span>
+                <span class="dash-stat-icon-wrap icon-purple"><i class="fa-solid fa-certificate"></i></span>
+              </div>
+              <div class="dash-stat-value">100%</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-purple"><i class="fa-solid fa-circle-check"></i> Zero SLA Breaches</span>
+                <span class="dash-stat-desc">Contractual 99.99% Met</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tenant Isolation & Quota Card Featuring images/Card Visual.webp -->
+          <div class="dash-two-col-grid">
+
+            <div class="dash-panel-card dash-rich-card">
+              <div class="dash-rich-media">
+                <img src="images/Card Visual.webp" alt="Multi-Tenant Namespace Isolation" class="dash-rich-img" loading="lazy">
+                <span class="dash-rich-tag badge-cyan">ZERO-TRUST MULTI-TENANCY</span>
+              </div>
+              <div class="dash-rich-body">
+                <h3 class="dash-rich-title">Cryptographic Micro-Segmentation &amp; Pod Isolation</h3>
+                <p class="dash-rich-desc">Cilium eBPF network security policies enforce strict L3/L4/L7 kernel boundaries between tenant namespaces. No cross-tenant data leaks or unauthorized transit packets.</p>
+                <div class="dash-rich-metrics-pill-row">
+                  <span class="metric-pill"><i class="fa-solid fa-lock"></i> mTLS Strict</span>
+                  <span class="metric-pill"><i class="fa-solid fa-shield-halved"></i> WireGuard Enclave</span>
+                  <span class="metric-pill"><i class="fa-solid fa-microchip"></i> Hard Memory Cgroup</span>
+                </div>
+                <a href="404.html?from=admin_tenant_isolation&amp;return_page=admindashboard.html" class="dash-action-btn btn-primary">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Inspect Isolation Enclaves</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Tenant Quota Limits & Throttles -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">Active Quota Enforcers &amp; Rate Limits</h3>
+                  <p class="dash-panel-subtitle">Dynamic traffic shaping policies automatically throttle runaway tenant batch scripts before noisy neighbor impacts occur.</p>
+                </div>
+              </div>
+
+              <div class="dash-quota-list">
+                <div class="dash-quota-item">
+                  <div class="dash-quota-top">
+                    <span class="dash-quota-name"><i class="fa-solid fa-fire"></i> Acme FinTech (Tier 1 Global)</span>
+                    <span class="dash-quota-stat">88% of 12,000 vCPU</span>
+                  </div>
+                  <div class="dash-progress-track">
+                    <div class="dash-progress-bar bar-coral" style="width: 88%;"></div>
+                  </div>
+                </div>
+
+                <div class="dash-quota-item">
+                  <div class="dash-quota-top">
+                    <span class="dash-quota-name"><i class="fa-solid fa-hospital"></i> Veloce Health (HIPAA Enclave)</span>
+                    <span class="dash-quota-stat">64% of 8,500 vCPU</span>
+                  </div>
+                  <div class="dash-progress-track">
+                    <div class="dash-progress-bar bar-cyan" style="width: 64%;"></div>
+                  </div>
+                </div>
+
+                <div class="dash-quota-item">
+                  <div class="dash-quota-top">
+                    <span class="dash-quota-name"><i class="fa-solid fa-truck-fast"></i> Nexus Global Logistics (Tier 2)</span>
+                    <span class="dash-quota-stat">42% of 6,000 vCPU</span>
+                  </div>
+                  <div class="dash-progress-track">
+                    <div class="dash-progress-bar bar-emerald" style="width: 42%;"></div>
+                  </div>
+                </div>
+
+                <div class="dash-quota-item">
+                  <div class="dash-quota-top">
+                    <span class="dash-quota-name"><i class="fa-solid fa-cart-shopping"></i> ShopStream eCommerce (Tier 1)</span>
+                    <span class="dash-quota-stat">76% of 10,000 vCPU</span>
+                  </div>
+                  <div class="dash-progress-track">
+                    <div class="dash-progress-bar bar-purple" style="width: 76%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dash-actions-row" style="margin-top: 24px;">
+                <a href="404.html?from=admin_burst_policy&amp;return_page=admindashboard.html" class="dash-action-btn btn-secondary">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>Configure Burst Allocations</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Tenant Directory Table -->
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Enterprise Tenant Organizations Directory</h3>
+                <p class="dash-panel-subtitle">Active enterprise customer accounts, provisioned pods, assigned VPC networks, and compliance scopes.</p>
+              </div>
+            </div>
+
+            <div class="dash-table-responsive">
+              <table class="dash-table dash-telemetry-table" aria-label="Enterprise Tenant Directory">
+                <thead>
+                  <tr>
+                    <th>Tenant Organization</th>
+                    <th>Contract Tier</th>
+                    <th>Allocated Pods</th>
+                    <th>Memory Quota</th>
+                    <th>Compliance Enclave</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-coral"><i class="fa-solid fa-landmark"></i></span>
+                        <div>
+                          <div class="dash-service-name">Acme FinTech Corp</div>
+                          <div class="dash-service-sub">Tenant ID: ten-99214 &bull; New York</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="dash-badge badge-coral">Tier 1 Enterprise</span></td>
+                    <td>10,560 / 12,000</td>
+                    <td>42 TB NVMe RAM</td>
+                    <td><span class="zone-badge">PCI-DSS 4.0 &bull; SOC 2</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Operational</span></td>
+                    <td>
+                      <a href="404.html?tenant=acme&amp;return_page=admindashboard.html" class="dash-row-action" title="Manage Tenant Quotas">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-cyan"><i class="fa-solid fa-heart-pulse"></i></span>
+                        <div>
+                          <div class="dash-service-name">Veloce Health Systems</div>
+                          <div class="dash-service-sub">Tenant ID: ten-88102 &bull; Zurich</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="dash-badge badge-cyan">Tier 1 Healthcare</span></td>
+                    <td>5,440 / 8,500</td>
+                    <td>24 TB NVMe RAM</td>
+                    <td><span class="zone-badge">HIPAA &bull; GDPR BAA</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Operational</span></td>
+                    <td>
+                      <a href="404.html?tenant=veloce&amp;return_page=admindashboard.html" class="dash-row-action" title="Manage Tenant Quotas">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-emerald"><i class="fa-solid fa-dolly"></i></span>
+                        <div>
+                          <div class="dash-service-name">Nexus Global Logistics</div>
+                          <div class="dash-service-sub">Tenant ID: ten-77412 &bull; Singapore</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="dash-badge badge-emerald">Tier 2 Standard</span></td>
+                    <td>2,520 / 6,000</td>
+                    <td>12 TB NVMe RAM</td>
+                    <td><span class="zone-badge">ISO 27001</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Operational</span></td>
+                    <td>
+                      <a href="404.html?tenant=nexus&amp;return_page=admindashboard.html" class="dash-row-action" title="Manage Tenant Quotas">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ====================================================================
+             TAB 3: FINOPS & GROSS MARGIN GOVERNANCE
+             ==================================================================== -->
+        <section class="dash-tab-section" id="view-finops-gov" aria-label="FinOps and Gross Margin Governance">
+
+          <!-- Section Header -->
+          <div class="dash-section-header">
+            <div>
+              <h2 class="dash-section-headline">FinOps &amp; Infrastructure Gross Margin Governance</h2>
+              <p class="dash-section-desc">Wholesale multi-cloud provider billing, automated spot market arbitration yield, and customer contract gross profit margins.</p>
+            </div>
+            <div class="dash-section-actions">
+              <a href="404.html?from=admin_export_finops&amp;return_page=admindashboard.html" class="dash-cta-btn btn-secondary">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span>Export Provider Invoices</span>
+              </a>
+              <a href="404.html?from=admin_spot_policy&amp;return_page=admindashboard.html" class="dash-cta-btn btn-emerald">
+                <i class="fa-solid fa-coins"></i>
+                <span>Optimize Spot Commitments</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- FinOps Metrics Banner -->
+          <div class="dash-finops-banner">
+            <div class="dash-finops-banner-left">
+              <span class="banner-badge"><i class="fa-solid fa-piggy-bank"></i> AGGREGATE GROSS MARGIN RUN-RATE</span>
+              <h3 class="banner-title">$5,284,100 <span class="banner-highlight">Quarterly Infrastructure Margin (+58.4%)</span></h3>
+              <p class="banner-desc">Wholesale cloud provider commitments (AWS Savings Plans &bull; GCP CUDs &bull; Azure Reservations) combined with autonomous spot bin-packing yielded a record 58.4% gross margin on tenant billing.</p>
+            </div>
+            <div class="dash-finops-banner-right">
+              <div class="finops-stat-item">
+                <span class="finops-stat-label">Wholesale Provider Bill</span>
+                <span class="finops-stat-number text-coral">$3,840,200</span>
+                <span class="finops-stat-sub">AWS 48% &bull; GCP 32% &bull; Az 20%</span>
+              </div>
+              <div class="finops-stat-item">
+                <span class="finops-stat-label">Tenant Billings Realized</span>
+                <span class="finops-stat-number text-emerald">$9,124,300</span>
+                <span class="finops-stat-sub">1,280 Enterprise Organizations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comparative Margin Chart & Arbitrage Cards Featuring images/Card Visual-1.webp -->
+          <div class="dash-two-col-grid">
+
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">12-Month Wholesale Cost vs. Tenant Revenue</h3>
+                  <p class="dash-panel-subtitle">Monthly provider expenditure compared against realized tenant infrastructure billings.</p>
+                </div>
+              </div>
+
+              <!-- Bar Comparison Chart -->
+              <div class="dash-chart-container">
+                <svg viewBox="0 0 700 240" class="dash-svg-chart" aria-label="Cost vs Revenue Bar Chart">
+                  <line x1="40" y1="40" x2="680" y2="40" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3" />
+                  <line x1="40" y1="90" x2="680" y2="90" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3" />
+                  <line x1="40" y1="140" x2="680" y2="140" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3" />
+                  <line x1="40" y1="190" x2="680" y2="190" stroke="rgba(255,255,255,0.12)" />
+
+                  <text x="32" y="44" fill="#64748b" font-size="10" text-anchor="end">$10M</text>
+                  <text x="32" y="94" fill="#64748b" font-size="10" text-anchor="end">$7.5M</text>
+                  <text x="32" y="144" fill="#64748b" font-size="10" text-anchor="end">$5.0M</text>
+                  <text x="32" y="194" fill="#64748b" font-size="10" text-anchor="end">$0</text>
+
+                  <!-- 6 Months Groups: Wholesale (Coral) vs Billing (Emerald) -->
+                  <!-- Month 1 -->
+                  <rect x="70" y="125" width="28" height="65" fill="#ff5232" rx="4" />
+                  <rect x="102" y="70" width="28" height="120" fill="#10b981" rx="4" />
+                  <text x="100" y="212" fill="#64748b" font-size="11" text-anchor="middle">Oct</text>
+
+                  <!-- Month 2 -->
+                  <rect x="170" y="120" width="28" height="70" fill="#ff5232" rx="4" />
+                  <rect x="202" y="65" width="28" height="125" fill="#10b981" rx="4" />
+                  <text x="200" y="212" fill="#64748b" font-size="11" text-anchor="middle">Nov</text>
+
+                  <!-- Month 3 -->
+                  <rect x="270" y="115" width="28" height="75" fill="#ff5232" rx="4" />
+                  <rect x="302" y="60" width="28" height="130" fill="#10b981" rx="4" />
+                  <text x="300" y="212" fill="#64748b" font-size="11" text-anchor="middle">Dec</text>
+
+                  <!-- Month 4 -->
+                  <rect x="370" y="110" width="28" height="80" fill="#ff5232" rx="4" />
+                  <rect x="402" y="55" width="28" height="135" fill="#10b981" rx="4" />
+                  <text x="400" y="212" fill="#64748b" font-size="11" text-anchor="middle">Jan</text>
+
+                  <!-- Month 5 -->
+                  <rect x="470" y="105" width="28" height="85" fill="#ff5232" rx="4" />
+                  <rect x="502" y="50" width="28" height="140" fill="#10b981" rx="4" />
+                  <text x="500" y="212" fill="#64748b" font-size="11" text-anchor="middle">Feb</text>
+
+                  <!-- Month 6 -->
+                  <rect x="570" y="100" width="28" height="90" fill="#ff5232" rx="4" />
+                  <rect x="602" y="44" width="28" height="146" fill="#10b981" rx="4" />
+                  <text x="600" y="212" fill="#64748b" font-size="11" text-anchor="middle">Mar</text>
+                </svg>
+
+                <div class="dash-chart-legend">
+                  <span class="legend-item"><span class="legend-color bg-coral"></span> Cloud Wholesale Spend ($3.8M)</span>
+                  <span class="legend-item"><span class="legend-color bg-emerald"></span> Realized Tenant Billings ($9.1M)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Spot Market Arbitrage Featuring images/Card Visual-1.webp -->
+            <div class="dash-panel-card dash-rich-card">
+              <div class="dash-rich-media">
+                <img src="images/Card Visual-1.webp" alt="Autonomous Spot Arbitrage" class="dash-rich-img" loading="lazy">
+                <span class="dash-rich-tag badge-emerald">AUTONOMOUS ARBITRAGE ENGINE</span>
+              </div>
+              <div class="dash-rich-body">
+                <h3 class="dash-rich-title">Multi-Cloud Spot Market Dynamic Compaction</h3>
+                <p class="dash-rich-desc">Stackly Karpenter controllers continuously bid on ephemeral spot instances across AWS, GCP, and Azure with 450ms graceful migration before spot evictions occur.</p>
+                <div class="dash-rich-metrics-pill-row">
+                  <span class="metric-pill"><i class="fa-solid fa-bolt"></i> 450ms Zero-Drop</span>
+                  <span class="metric-pill"><i class="fa-solid fa-coins"></i> 72% Spot Discount</span>
+                  <span class="metric-pill"><i class="fa-solid fa-chart-pie"></i> Dynamic Binning</span>
+                </div>
+                <a href="404.html?from=admin_arbitrage_settings&amp;return_page=admindashboard.html" class="dash-action-btn btn-primary">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Manage Spot Bidding Parameters</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Cloud Provider Breakdown Cards -->
+          <div class="dash-three-col-grid">
+            
+            <div class="dash-cost-breakdown-card">
+              <div class="cost-card-header">
+                <div class="cost-card-icon icon-coral"><i class="fa-brands fa-aws"></i></div>
+                <div>
+                  <h4 class="cost-card-title">Amazon Web Services</h4>
+                  <span class="cost-card-zone">12 Regions Active</span>
+                </div>
+              </div>
+              <div class="cost-card-amount">$1,843,290 <span class="cost-card-period">/ mo</span></div>
+              <div class="cost-card-progress">
+                <div class="dash-progress-track">
+                  <div class="dash-progress-bar bar-coral" style="width: 48%;"></div>
+                </div>
+                <span class="cost-card-percent">48% of Cloud Wholesale</span>
+              </div>
+              <p class="cost-card-desc">3-Year Compute Savings Plans &bull; 88% Spot Worker Nodes &bull; Graviton3 Instances</p>
+              <a href="404.html?from=admin_aws_spend&amp;return_page=admindashboard.html" class="cost-card-link">
+                <span>View AWS Breakdown</span>
+                <i class="fa-solid fa-circle-chevron-right"></i>
+              </a>
+            </div>
+
+            <div class="dash-cost-breakdown-card">
+              <div class="cost-card-header">
+                <div class="cost-card-icon icon-cyan"><i class="fa-brands fa-google"></i></div>
+                <div>
+                  <h4 class="cost-card-title">Google Cloud Platform</h4>
+                  <span class="cost-card-zone">8 Regions Active</span>
+                </div>
+              </div>
+              <div class="cost-card-amount">$1,228,860 <span class="cost-card-period">/ mo</span></div>
+              <div class="cost-card-progress">
+                <div class="dash-progress-track">
+                  <div class="dash-progress-bar bar-cyan" style="width: 32%;"></div>
+                </div>
+                <span class="cost-card-percent">32% of Cloud Wholesale</span>
+              </div>
+              <p class="cost-card-desc">GCP CUDs &bull; Tau T2A ARM Nodes &bull; BigQuery Storage Reservation Commitments</p>
+              <a href="404.html?from=admin_gcp_spend&amp;return_page=admindashboard.html" class="cost-card-link">
+                <span>View GCP Breakdown</span>
+                <i class="fa-solid fa-circle-chevron-right"></i>
+              </a>
+            </div>
+
+            <div class="dash-cost-breakdown-card">
+              <div class="cost-card-header">
+                <div class="cost-card-icon icon-purple"><i class="fa-brands fa-microsoft"></i></div>
+                <div>
+                  <h4 class="cost-card-title">Microsoft Azure</h4>
+                  <span class="cost-card-zone">6 Regions Active</span>
+                </div>
+              </div>
+              <div class="cost-card-amount">$768,050 <span class="cost-card-period">/ mo</span></div>
+              <div class="cost-card-progress">
+                <div class="dash-progress-track">
+                  <div class="dash-progress-bar bar-purple" style="width: 20%;"></div>
+                </div>
+                <span class="cost-card-percent">20% of Cloud Wholesale</span>
+              </div>
+              <p class="cost-card-desc">Azure Reserved Virtual Machine Instances &bull; Spot Node Pools &bull; ExpressRoute</p>
+              <a href="404.html?from=admin_azure_spend&amp;return_page=admindashboard.html" class="cost-card-link">
+                <span>View Azure Breakdown</span>
+                <i class="fa-solid fa-circle-chevron-right"></i>
+              </a>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ====================================================================
+             TAB 4: COMPUTE & BARE-METAL FLEET
+             ==================================================================== -->
+        <section class="dash-tab-section" id="view-bare-metal" aria-label="Compute and Bare-Metal Fleet Management">
+
+          <!-- Section Header -->
+          <div class="dash-section-header">
+            <div>
+              <h2 class="dash-section-headline">Compute Fleet &amp; Bare-Metal Hypervisors</h2>
+              <p class="dash-section-desc">Inspect bare-metal hypervisor pools, CPU thermal loads, kernel patch versions, and automated node pool autoscalers.</p>
+            </div>
+            <div class="dash-section-actions">
+              <a href="404.html?from=admin_drain_nodes&amp;return_page=admindashboard.html" class="dash-cta-btn btn-secondary">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Drain &amp; Cordon Routine</span>
+              </a>
+              <a href="404.html?from=admin_add_hypervisor&amp;return_page=admindashboard.html" class="dash-cta-btn btn-coral">
+                <i class="fa-solid fa-plus"></i>
+                <span>Register Hypervisor</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bare-Metal KPI Metrics Grid -->
+          <div class="dash-stats-grid">
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Active Compute Cores</span>
+                <span class="dash-stat-icon-wrap icon-coral"><i class="fa-solid fa-microchip"></i></span>
+              </div>
+              <div class="dash-stat-value">154,800 vCPUs</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-coral"><i class="fa-solid fa-server"></i> 9,420 Nodes</span>
+                <span class="dash-stat-desc">AMD EPYC &bull; ARM Neoverse</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Global NVMe Fabric Storage</span>
+                <span class="dash-stat-icon-wrap icon-cyan"><i class="fa-solid fa-hard-drive"></i></span>
+              </div>
+              <div class="dash-stat-value">4.82 PB</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-cyan"><i class="fa-solid fa-bolt"></i> 1.2M IOPS P99</span>
+                <span class="dash-stat-desc">Sub-100 microsecond latency</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Fleet Power Efficiency (PUE)</span>
+                <span class="dash-stat-icon-wrap icon-emerald"><i class="fa-solid fa-leaf"></i></span>
+              </div>
+              <div class="dash-stat-value">1.12 PUE</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-emerald"><i class="fa-solid fa-check"></i> Eco-Optimized</span>
+                <span class="dash-stat-desc">100% Renewable Matching</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Fleet Thermal Stability</span>
+                <span class="dash-stat-icon-wrap icon-purple"><i class="fa-solid fa-temperature-half"></i></span>
+              </div>
+              <div class="dash-stat-value">58.2 &deg;C</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-purple"><i class="fa-solid fa-circle-check"></i> Nominal Range</span>
+                <span class="dash-stat-desc">Zero thermal throttling alerts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bare-Metal Rack Enclave Featuring images/Visual Side.webp -->
+          <div class="dash-two-col-grid">
+
+            <div class="dash-panel-card dash-rich-card">
+              <div class="dash-rich-media">
+                <img src="images/Visual Side.webp" alt="Bare-Metal Data Center Infrastructure" class="dash-rich-img" loading="lazy">
+                <span class="dash-rich-tag badge-purple">EQUINIX METAL ENCLAVE</span>
+              </div>
+              <div class="dash-rich-body">
+                <h3 class="dash-rich-title">Carrier-Neutral Bare-Metal Infrastructure &amp; POP Backbone</h3>
+                <p class="dash-rich-desc">Dedicated bare-metal hypervisors running KVM and customized Linux 6.8 kernels provide dedicated tenant isolation without hypervisor overhead, delivering maximum compute yield.</p>
+                <div class="dash-rich-metrics-pill-row">
+                  <span class="metric-pill"><i class="fa-solid fa-network-wired"></i> 100 Gbps RoCE v2</span>
+                  <span class="metric-pill"><i class="fa-solid fa-microchip"></i> Hardware TPM 2.0</span>
+                  <span class="metric-pill"><i class="fa-solid fa-shield-halved"></i> Memory Encryption</span>
+                </div>
+                <a href="404.html?from=admin_bare_metal_specs&amp;return_page=admindashboard.html" class="dash-action-btn btn-primary">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Inspect Hypervisor Telemetry</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Memory Headroom Compaction Featuring images/ab3.webp -->
+            <div class="dash-panel-card dash-rich-card">
+              <div class="dash-rich-media">
+                <img src="images/ab3.webp" alt="Memory Headroom Compaction" class="dash-rich-img" loading="lazy">
+                <span class="dash-rich-tag badge-cyan">AUTONOMOUS BIN-PACKING</span>
+              </div>
+              <div class="dash-rich-body">
+                <h3 class="dash-rich-title">Autonomous RAM Overcommit &amp; Swap Binning</h3>
+                <p class="dash-rich-desc">Kernel memory reclamation routines intelligently swap idle tenant cache buffers to ultra-fast NVMe storage, increasing node density by 34% with zero P99 latency impact.</p>
+                <div class="dash-rich-metrics-pill-row">
+                  <span class="metric-pill"><i class="fa-solid fa-chart-line"></i> +34% Density</span>
+                  <span class="metric-pill"><i class="fa-solid fa-check"></i> Zero OOM Kills</span>
+                  <span class="metric-pill"><i class="fa-solid fa-hard-drive"></i> zRAM Compressed</span>
+                </div>
+                <a href="404.html?from=admin_memory_compaction&amp;return_page=admindashboard.html" class="dash-action-btn btn-primary">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Tune Overcommit Policies</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bare-Metal Node Pool Health Table -->
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Bare-Metal Node Pools &amp; Hypervisor Health</h3>
+                <p class="dash-panel-subtitle">Real-time status of physical cluster pools, kernel versions, memory pressure, and drainage status.</p>
+              </div>
+            </div>
+
+            <div class="dash-table-responsive">
+              <table class="dash-table dash-telemetry-table" aria-label="Bare-Metal Node Pools">
+                <thead>
+                  <tr>
+                    <th>Pool Identifier</th>
+                    <th>Hardware Profile</th>
+                    <th>Allocated Cores</th>
+                    <th>Memory Pressure</th>
+                    <th>Kernel Version</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-coral"><i class="fa-solid fa-server"></i></span>
+                        <div>
+                          <div class="dash-service-name">pool-ashburn-epyc-01</div>
+                          <div class="dash-service-sub">Ashburn DC &bull; Rack 12-A</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>2x AMD EPYC 9654 (192 Cores &bull; 1.5TB)</td>
+                    <td>178 / 192 vCPU</td>
+                    <td><span class="text-emerald font-semibold">18.4% (Healthy)</span></td>
+                    <td><span class="zone-badge">Linux 6.8.0-stackly-pgo</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Operational</span></td>
+                    <td>
+                      <a href="404.html?pool=ashburn-01&amp;return_page=admindashboard.html" class="dash-row-action" title="Node Pool Console">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-cyan"><i class="fa-solid fa-server"></i></span>
+                        <div>
+                          <div class="dash-service-name">pool-frankfurt-arm-02</div>
+                          <div class="dash-service-sub">Frankfurt DC &bull; Rack 08-C</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Ampere Altra Max (128 Cores &bull; 1TB)</td>
+                    <td>112 / 128 vCPU</td>
+                    <td><span class="text-emerald font-semibold">22.1% (Healthy)</span></td>
+                    <td><span class="zone-badge">Linux 6.8.0-arm64-perf</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Operational</span></td>
+                    <td>
+                      <a href="404.html?pool=frankfurt-02&amp;return_page=admindashboard.html" class="dash-row-action" title="Node Pool Console">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="dash-service-cell">
+                        <span class="dash-service-avatar icon-purple"><i class="fa-solid fa-server"></i></span>
+                        <div>
+                          <div class="dash-service-name">pool-tokyo-nvme-03</div>
+                          <div class="dash-service-sub">Tokyo Equinix &bull; Rack 04-B</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>2x Intel Xeon Platinum (128 Cores &bull; 2TB)</td>
+                    <td>98 / 128 vCPU</td>
+                    <td><span class="text-emerald font-semibold">14.6% (Healthy)</span></td>
+                    <td><span class="zone-badge">Linux 6.8.0-stackly-nvme</span></td>
+                    <td><span class="dash-status-pill pill-healthy"><i class="fa-solid fa-check"></i> Operational</span></td>
+                    <td>
+                      <a href="404.html?pool=tokyo-03&amp;return_page=admindashboard.html" class="dash-row-action" title="Node Pool Console">
+                        <i class="fa-solid fa-sliders"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ====================================================================
+             TAB 5: ZERO-TRUST & CVE RADAR
+             ==================================================================== -->
+        <section class="dash-tab-section" id="view-sec-ops" aria-label="Security Operations and Zero-Day CVE Radar">
+
+          <!-- Section Header -->
+          <div class="dash-section-header">
+            <div>
+              <h2 class="dash-section-headline">Zero-Trust Operations &amp; CVE Vulnerability Radar</h2>
+              <p class="dash-section-desc">Automated zero-day exploit neutralization, cryptographic key management, SOC 2 continuous audit telemetry, and hardware enclave health.</p>
+            </div>
+            <div class="dash-section-actions">
+              <a href="404.html?from=admin_cve_scan&amp;return_page=admindashboard.html" class="dash-cta-btn btn-secondary">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Trigger Fleet Vulnerability Scan</span>
+              </a>
+              <a href="404.html?from=admin_rotate_keys&amp;return_page=admindashboard.html" class="dash-cta-btn btn-purple">
+                <i class="fa-solid fa-key"></i>
+                <span>Rotate HSM Master Keys</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4 Global Threat Metrics -->
+          <div class="dash-stats-grid">
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Exploits Auto-Quarantined</span>
+                <span class="dash-stat-icon-wrap icon-purple"><i class="fa-solid fa-shield-virus"></i></span>
+              </div>
+              <div class="dash-stat-value">4,210 Blocked</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-purple"><i class="fa-solid fa-bolt"></i> Zero Breaches</span>
+                <span class="dash-stat-desc">Kernel eBPF instant drop</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Continuous SOC 2 Audit Pass</span>
+                <span class="dash-stat-icon-wrap icon-emerald"><i class="fa-solid fa-clipboard-check"></i></span>
+              </div>
+              <div class="dash-stat-value">124 / 124</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-emerald"><i class="fa-solid fa-check"></i> 100% Controls</span>
+                <span class="dash-stat-desc">Type II continuous evidence</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Hardware Security Modules</span>
+                <span class="dash-stat-icon-wrap icon-cyan"><i class="fa-solid fa-microchip"></i></span>
+              </div>
+              <div class="dash-stat-value">32 / 32 Online</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-cyan"><i class="fa-solid fa-lock"></i> FIPS 140-3 L3</span>
+                <span class="dash-stat-desc">Tamper-evident active zeroing</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Unpatched Critical CVEs</span>
+                <span class="dash-stat-icon-wrap icon-coral"><i class="fa-solid fa-bug"></i></span>
+              </div>
+              <div class="dash-stat-value">0 Found</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-emerald"><i class="fa-solid fa-circle-check"></i> Fleet Clean</span>
+                <span class="dash-stat-desc">Average patch cycle: 4.2 hours</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Management & Threat Intelligence Featuring images/Card Visual-2.webp -->
+          <div class="dash-two-col-grid">
+
+            <div class="dash-panel-card dash-rich-card">
+              <div class="dash-rich-media">
+                <img src="images/Card Visual-2.webp" alt="Cryptographic Vault and HSM Key Governance" class="dash-rich-img" loading="lazy">
+                <span class="dash-rich-tag badge-purple">HARDWARE SECURITY MODULE VAULT</span>
+              </div>
+              <div class="dash-rich-body">
+                <h3 class="dash-rich-title">Zero-Trust Cryptographic Identity &amp; Key Governance</h3>
+                <p class="dash-rich-desc">Every inter-cluster transaction is signed with hardware-backed ephemeral ed25519 tokens. Keys automatically expire and re-roll every 60 minutes with zero developer intervention.</p>
+                <div class="dash-rich-metrics-pill-row">
+                  <span class="metric-pill"><i class="fa-solid fa-rotate-left"></i> 60m Key Roll</span>
+                  <span class="metric-pill"><i class="fa-solid fa-shield-halved"></i> Kyber Post-Quantum</span>
+                  <span class="metric-pill"><i class="fa-solid fa-fingerprint"></i> Hardware TPM</span>
+                </div>
+                <a href="404.html?from=admin_hsm_vault&amp;return_page=admindashboard.html" class="dash-action-btn btn-primary">
+                  <i class="fa-solid fa-key"></i>
+                  <span>Inspect Key Inventory</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- CVE Vulnerability Radar Panel -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">Real-Time Threat &amp; CVE Quarantine Stream</h3>
+                  <p class="dash-panel-subtitle">Live detection of malicious ingress payloads, memory buffer overflows, and unauthorized API traversal attempts.</p>
+                </div>
+              </div>
+
+              <div class="dash-audit-list">
+                <div class="dash-audit-item">
+                  <div class="dash-audit-icon icon-coral"><i class="fa-solid fa-ban"></i></div>
+                  <div class="dash-audit-content">
+                    <div class="dash-audit-title">CVE-2026-41829 Exploit Attempt Mitigated</div>
+                    <div class="dash-audit-meta">eBPF dropped crafted HTTP/2 frame &bull; IP 198.51.100.42 quarantined</div>
+                  </div>
+                  <span class="dash-audit-time">2m ago</span>
+                </div>
+
+                <div class="dash-audit-item">
+                  <div class="dash-audit-icon icon-emerald"><i class="fa-solid fa-rotate-left"></i></div>
+                  <div class="dash-audit-content">
+                    <div class="dash-audit-title">Automated Root Certificate Roll Completed</div>
+                    <div class="dash-audit-meta">All 14 control planes re-anchored to Stackly Root CA 2026</div>
+                  </div>
+                  <span class="dash-audit-time">18m ago</span>
+                </div>
+
+                <div class="dash-audit-item">
+                  <div class="dash-audit-icon icon-cyan"><i class="fa-solid fa-user-shield"></i></div>
+                  <div class="dash-audit-content">
+                    <div class="dash-audit-title">Privileged Access Session Authorized</div>
+                    <div class="dash-audit-meta">Elena Rostova granted Level 4 emergency console access</div>
+                  </div>
+                  <span class="dash-audit-time">45m ago</span>
+                </div>
+
+                <div class="dash-audit-item">
+                  <div class="dash-audit-icon icon-purple"><i class="fa-solid fa-file-shield"></i></div>
+                  <div class="dash-audit-content">
+                    <div class="dash-audit-title">SOC 2 Automated Audit Attestation Signed</div>
+                    <div class="dash-audit-meta">Continuous compliance evidence pushed to BigQuery trust vault</div>
+                  </div>
+                  <span class="dash-audit-time">1h ago</span>
+                </div>
+              </div>
+
+              <div class="dash-actions-row" style="margin-top: 24px;">
+                <a href="404.html?from=admin_security_logs&amp;return_page=admindashboard.html" class="dash-action-btn btn-secondary">
+                  <i class="fa-solid fa-terminal"></i>
+                  <span>Open Security Audit Log</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ====================================================================
+             TAB 6: SRE INCIDENT COMMAND & WAR-ROOM
+             ==================================================================== -->
+        <section class="dash-tab-section" id="view-sre-warroom" aria-label="SRE Incident Command and War-Room Dispatch">
+
+          <!-- Section Header -->
+          <div class="dash-section-header">
+            <div>
+              <h2 class="dash-section-headline">SRE Incident Command &amp; War-Room Dispatch</h2>
+              <p class="dash-section-desc">Real-time P1/P2 incident dispatch, distributed trace latency bottlenecks, engineer on-call rotation roster, and automated self-healing runbooks.</p>
+            </div>
+            <div class="dash-section-actions">
+              <a href="404.html?from=admin_dispatch_p1&amp;return_page=admindashboard.html" class="dash-cta-btn btn-coral">
+                <i class="fa-solid fa-phone"></i>
+                <span>Open Incident Bridge</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- SRE War-Room Incident Command Status Strip -->
+          <div class="dash-stats-grid">
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Active P1 Incidents</span>
+                <span class="dash-stat-icon-wrap icon-emerald"><i class="fa-solid fa-triangle-exclamation"></i></span>
+              </div>
+              <div class="dash-stat-value">0 Active</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-emerald"><i class="fa-solid fa-check"></i> Green Condition</span>
+                <span class="dash-stat-desc">Zero platform outages</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Mean Time to Detect (MTTD)</span>
+                <span class="dash-stat-icon-wrap icon-cyan"><i class="fa-solid fa-stopwatch"></i></span>
+              </div>
+              <div class="dash-stat-value">42 Seconds</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-cyan"><i class="fa-solid fa-bolt"></i> Real-time eBPF</span>
+                <span class="dash-stat-desc">Anomaly detection in kernel</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Mean Time to Repair (MTTR)</span>
+                <span class="dash-stat-icon-wrap icon-coral"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+              </div>
+              <div class="dash-stat-value">840 ms</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-coral"><i class="fa-solid fa-rotate-left"></i> Auto-Rollback</span>
+                <span class="dash-stat-desc">Self-healing ArgoCD gates</span>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-top">
+                <span class="dash-stat-label">Automated Runbook Success</span>
+                <span class="dash-stat-icon-wrap icon-purple"><i class="fa-solid fa-microchip"></i></span>
+              </div>
+              <div class="dash-stat-value">98.4%</div>
+              <div class="dash-stat-bottom">
+                <span class="dash-badge badge-purple"><i class="fa-solid fa-check"></i> 1,420 Executed</span>
+                <span class="dash-stat-desc">No human page needed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chaos Engineering & Self-Healing Featuring images/ss1.webp -->
+          <div class="dash-two-col-grid">
+
+            <div class="dash-panel-card dash-rich-card">
+              <div class="dash-rich-media">
+                <img src="images/ss1.webp" alt="Automated Self-Healing Telemetry" class="dash-rich-img" loading="lazy">
+                <span class="dash-rich-tag badge-coral">CHAOS RUNBOOK CONTROLLER</span>
+              </div>
+              <div class="dash-rich-body">
+                <h3 class="dash-rich-title">Autonomous Self-Healing Runbooks &amp; Partition Gates</h3>
+                <p class="dash-rich-desc">Stackly Sentinel actively injects synthetic packet drop tests into non-critical routes to ensure distributed consensus rings gracefully self-heal without paging human SREs.</p>
+                <div class="dash-rich-metrics-pill-row">
+                  <span class="metric-pill"><i class="fa-solid fa-rotate-left"></i> 800ms Auto-Rollback</span>
+                  <span class="metric-pill"><i class="fa-solid fa-shield-halved"></i> Cryptographic Consensus</span>
+                  <span class="metric-pill"><i class="fa-solid fa-bolt"></i> Zero Packet Loss</span>
+                </div>
+                <a href="404.html?from=admin_chaos_runbooks&amp;return_page=admindashboard.html" class="dash-action-btn btn-primary">
+                  <i class="fa-solid fa-terminal"></i>
+                  <span>Inspect Active Runbooks</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- On-Call SRE Roster Featuring images/team1.webp & images/team2.webp -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">Active SRE On-Call Escalation Roster</h3>
+                  <p class="dash-panel-subtitle">Primary incident commander and secondary systems architects currently holding the P1 incident pager.</p>
+                </div>
+              </div>
+
+              <div class="dash-architects-list">
+                
+                <div class="dash-architect-card">
+                  <img src="images/team1.webp" alt="Marcus Vance" class="architect-photo">
+                  <div class="architect-info">
+                    <h4 class="architect-name">Marcus Vance</h4>
+                    <span class="architect-role">Primary Incident Commander &bull; Distributed Storage</span>
+                    <div class="architect-badges">
+                      <span class="dash-badge badge-emerald"><i class="fa-solid fa-phone"></i> Pager Active</span>
+                      <span class="dash-badge badge-cyan">&lt; 3m P1 Response</span>
+                    </div>
+                  </div>
+                  <a href="404.html?contact_architect=marcus_admin&amp;return_page=admindashboard.html" class="dash-btn-sm" title="Dispatch Marcus">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                    <span>Page</span>
+                  </a>
+                </div>
+
+                <div class="dash-architect-card">
+                  <img src="images/team2.webp" alt="Zaria Chen" class="architect-photo">
+                  <div class="architect-info">
+                    <h4 class="architect-name">Zaria Chen</h4>
+                    <span class="architect-role">Secondary Commander &bull; Multi-Cloud Networking</span>
+                    <div class="architect-badges">
+                      <span class="dash-badge badge-purple">On-Call Standby</span>
+                      <span class="dash-badge badge-cyan">&lt; 5m Response</span>
+                    </div>
+                  </div>
+                  <a href="404.html?contact_architect=zaria_admin&amp;return_page=admindashboard.html" class="dash-btn-sm" title="Dispatch Zaria">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                    <span>Page</span>
+                  </a>
+                </div>
+
+                <div class="dash-architect-card">
+                  <img src="images/smiling-worker-with-tie-suit.webp" alt="Julian Keller" class="architect-photo">
+                  <div class="architect-info">
+                    <h4 class="architect-name">Julian Keller</h4>
+                    <span class="architect-role">Principal FinOps &amp; Security Escalation Lead</span>
+                    <div class="architect-badges">
+                      <span class="dash-badge badge-coral">Escalation Tier 3</span>
+                      <span class="dash-badge badge-cyan">SLA 15m</span>
+                    </div>
+                  </div>
+                  <a href="404.html?contact_architect=julian_admin&amp;return_page=admindashboard.html" class="dash-btn-sm" title="Dispatch Julian">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                    <span>Page</span>
+                  </a>
+                </div>
+
+              </div>
+
+              <div class="dash-actions-row" style="margin-top: 20px;">
+                <a href="404.html?from=admin_schedule_rotation&amp;return_page=admindashboard.html" class="dash-action-btn btn-secondary">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Manage 24/7 On-Call Schedules</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Incident Event Stream -->
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">SRE Incident Command Telemetry Feed</h3>
+                <p class="dash-panel-subtitle">Real-time infrastructure self-healing events, node restarts, network re-routes, and automated capacity shifts.</p>
+              </div>
+              <a href="404.html?from=admin_clear_incidents&amp;return_page=admindashboard.html" class="dash-btn-sm">
+                <i class="fa-solid fa-broom"></i>
+                <span>Acknowledge All</span>
+              </a>
+            </div>
+
+            <div class="dash-audit-list">
+              <div class="dash-audit-item">
+                <div class="dash-audit-icon icon-emerald"><i class="fa-solid fa-rotate-left"></i></div>
+                <div class="dash-audit-content">
+                  <div class="dash-audit-title">Auto-Replaced Degraded Spot Node in ap-southeast-1</div>
+                  <div class="dash-audit-meta">AWS notification received &bull; 42 pods migrated to node-ap-329 in 380ms with zero dropped connections</div>
+                </div>
+                <span class="dash-audit-time">4m ago</span>
+              </div>
+
+              <div class="dash-audit-item">
+                <div class="dash-audit-icon icon-cyan"><i class="fa-solid fa-network-wired"></i></div>
+                <div class="dash-audit-content">
+                  <div class="dash-audit-title">Dynamic Route Optimization &bull; Transatlantic Ingress</div>
+                  <div class="dash-audit-meta">Subsea cable latency increased 12ms &bull; WireGuard mesh re-routed 4.2 Gbps through Dublin edge gateway</div>
+                </div>
+                <span class="dash-audit-time">19m ago</span>
+              </div>
+
+              <div class="dash-audit-item">
+                <div class="dash-audit-icon icon-purple"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="dash-audit-content">
+                  <div class="dash-audit-title">Automated Canary Gate Passed: billing-v2.14.0</div>
+                  <div class="dash-audit-meta">5% &bull; 25% &bull; 100% phased rollout verified &bull; P99 latency stayed under 14.2ms &bull; Promoted to prod</div>
+                </div>
+                <span class="dash-audit-time">38m ago</span>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- Dashboard Footer -->
+      <footer class="dash-footer">
+        <div class="dash-footer-left">
+          <span>&copy; 2026 Stackly Cloud Technologies &bull; Enterprise Root Command Center</span>
+        </div>
+        <div class="dash-footer-right">
+          <span class="dash-badge badge-purple"><i class="fa-solid fa-shield-halved"></i> FIPS 140-3 &amp; SOC 2 Level 4</span>
+          <a href="404.html?from=admin_security_policy&amp;return_page=admindashboard.html" class="dash-footer-link">Root Security Policy</a>
+          <a href="404.html?from=admin_compliance&amp;return_page=admindashboard.html" class="dash-footer-link">Master Audit Vault</a>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly — Next-Gen Managed Cloud Services</title>
+  <meta name="description" content="Stackly designs, deploys, and manages robust, zero-trust cloud infrastructure for hyper-growth enterprises — ensuring speed, continuous compliance, and direct cost savings.">
+
+  <!-- Instant Position Restoration (Prevents Hero Section Flash) -->
+  <script>
+    (function() {
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        var urlParams = new URLSearchParams(window.location.search);
+        var restoreScroll = urlParams.get('restore_scroll');
+        var isRestoring = (sessionStorage.getItem('stackly_instant_restore') === 'true' || restoreScroll !== null) && 
+                          (document.referrer.indexOf('404.html') !== -1 || restoreScroll !== null);
+        if (isRestoring) {
+          document.documentElement.classList.add('instant-restoring');
+          document.documentElement.style.scrollBehavior = 'auto';
+          var sVal = restoreScroll || sessionStorage.getItem('stackly_target_scroll') || sessionStorage.getItem('stackly_last_scroll');
+          if (sVal !== null && sVal !== '' && parseInt(sVal, 10) >= 0) {
+            window.scrollTo(0, parseInt(sVal, 10));
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- AOS (Animate On Scroll) CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body class="service-page-body">
+
+  <!-- ==========================================================================
+       Futuristic 3D GSAP Animated Loading Page
+       ========================================================================== -->
+  <div id="siteLoader" class="site-loader" aria-label="Loading Stackly">
+    <!-- Ambient Background Lighting & Mesh -->
+    <div class="loader-ambient-glow cyan-ambient" aria-hidden="true"></div>
+    <div class="loader-ambient-glow indigo-ambient" aria-hidden="true"></div>
+    <div class="loader-grid-mesh" aria-hidden="true"></div>
+
+    <div class="loader-container">
+      <!-- 1. Brand Logo with 3D Float & Ambient Halo -->
+      <div class="loader-brand" id="loaderBrand">
+        <div class="loader-logo-halo" aria-hidden="true"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="loader-logo-img">
+        <div class="loader-tagline">
+          <span class="loader-tag-dot" aria-hidden="true"></span>
+          <span>CLOUD BUSINESS SOLUTIONS</span>
+        </div>
+      </div>
+
+      <!-- 2. 3D Gyroscope Video Core Stage -->
+      <div class="loader-stage-3d" id="loaderStage3D">
+        <!-- Concentric 3D Gyroscope Rings -->
+        <div class="loader-gyro-ring ring-outer" aria-hidden="true">
+          <div class="gyro-dot dot-1"></div>
+          <div class="gyro-dot dot-2"></div>
+        </div>
+        <div class="loader-gyro-ring ring-middle" aria-hidden="true">
+          <div class="gyro-dot dot-3"></div>
+        </div>
+        <div class="loader-gyro-ring ring-inner" aria-hidden="true"></div>
+
+        <!-- Spherical Looping Video Core with Holographic Glare -->
+        <div class="loader-video-orb" id="loaderVideoOrb">
+          <div class="loader-orb-aura" aria-hidden="true"></div>
+          <div class="loader-orb-rim" aria-hidden="true"></div>
+          <video 
+            class="loader-core-video" 
+            src="images/68ded5e86edba923e5d7240d_695bf9a9063a860dc7a13b7b_GettyImages-1253328011_mp4.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="auto"
+          ></video>
+          <div class="loader-orb-glare" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- 3. Cyber HUD Progress Counter & Status -->
+      <div class="loader-hud" id="loaderHud">
+        <div class="loader-counter-wrap">
+          <span class="loader-counter-num" id="loaderCounter">0</span>
+          <span class="loader-counter-pct">%</span>
+        </div>
+
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar" id="loaderProgressBar">
+            <span class="loader-progress-glow"></span>
+          </div>
+        </div>
+
+        <div class="loader-status" id="loaderStatus">
+          <span class="status-indicator"></span>
+          <span class="status-text" id="loaderStatusText">INITIALIZING CLOUD INFRASTRUCTURE...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Glow Effects -->
+  <div class="bg-gradient-glow top-glow" aria-hidden="true"></div>
+  <div class="bg-gradient-glow bottom-glow" aria-hidden="true"></div>
+
+  <!-- 1. Header / Navigation (Matching index.html) -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      
+      <!-- Brand Logo linking to Homepage -->
+      <a href="index.html" class="logo-link" aria-label="Stackly Homepage">
+        <img 
+          src="images/logo.webp" 
+          alt="Stackly Logo" 
+          class="logo-img" 
+          onerror="this.src='images/logo.webp'">
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link magnetic-nav-item">Home</a></li>
+          <li class="nav-item"><a href="service.html" class="nav-link magnetic-nav-item active">Services</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link magnetic-nav-item">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link magnetic-nav-item">Contact</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link magnetic-nav-item">Blogs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="nav-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult">
+          <span class="btn-consult-text">Book a consult</span>
+          <span class="pulse-aura" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="service.html" class="mobile-nav-link active">Services</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blogs</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <a href="login.html" class="mobile-signin">Sign in</a>
+        <a href="contact.html" class="btn-consult mobile-consult">
+          <span class="btn-consult-text">Book a consult</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Service Hero Section with Automated 3D Background Slider -->
+  <main class="service-hero-section" id="serviceHero">
+
+    <!-- 3D Sliding Background Slider (Behind Content) -->
+    <div class="service-bg-slider-3d" id="serviceBgSlider3D" aria-hidden="true">
+      <div class="slide-item active" data-index="0">
+        <img 
+          src="images/1 (2).webp" 
+          alt="Cloud Infrastructure Slide 1" 
+          class="slide-image"
+          onerror="this.onerror=null;this.src='images/1%20(2).webp';">
+      </div>
+      <div class="slide-item" data-index="1">
+        <img 
+          src="images/2 (2).webp" 
+          alt="Cloud Operations Slide 2" 
+          class="slide-image"
+          onerror="this.onerror=null;this.src='images/2%20(2).webp';">
+      </div>
+      <div class="slide-item" data-index="2">
+        <img 
+          src="images/3 (2).webp" 
+          alt="Cloud Architecture Slide 3" 
+          class="slide-image"
+          onerror="this.onerror=null;this.src='images/3%20(2).webp';">
+      </div>
+
+      <!-- Dark Gradient Semi-Transparent Overlay for Maximum Legibility -->
+      <div class="slider-dark-overlay"></div>
+      
+      <!-- Subtle Technological Mesh Grid Texture -->
+      <div class="slider-mesh-overlay"></div>
+    </div>
+
+    <!-- Hero Foreground Content Container -->
+    <div class="service-hero-container">
+      <div class="service-hero-content">
+
+        <!-- 3. Overline Tagline with Pulsing Red Dot -->
+        <div class="service-overline" id="serviceOverline">
+          <span class="pulse-dot-red" aria-hidden="true">
+            <span class="pulse-ring"></span>
+            <span class="dot-core"></span>
+          </span>
+          <span class="overline-text">NEXT-GEN MANAGED CLOUD</span>
+        </div>
+
+        <!-- Main Heading: Split-Text Running Letter Reveal -->
+        <h1 class="service-main-heading" id="serviceHeroHeading" aria-label="Powering Your Cloud. Simplifying Your Future.">
+          <span class="heading-phrase">Powering Your Cloud.</span>
+          <span class="heading-phrase gradient-highlight">Simplifying Your Future.</span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="service-subheading" id="serviceSubheading">
+          Stackly designs, deploys, and manages robust, zero-trust cloud infrastructure for hyper-growth enterprises — ensuring speed, continuous compliance, and direct cost savings.
+        </p>
+
+        <!-- 4. Glassmorphic Call-to-Action Buttons -->
+        <div class="service-cta-group" id="serviceCtaGroup">
+          <a href="404.html?from=explore-services&amp;return_page=service.html" class="btn-glass btn-glass-primary">
+            <span class="btn-glass-text">Explore Services</span>
+            <i class="fa-solid fa-compass btn-icon" aria-hidden="true"></i>
+            <span class="btn-glass-glow"></span>
+          </a>
+          <a href="404.html?from=service-expert&amp;return_page=service.html" class="btn-glass btn-glass-secondary">
+            <span class="btn-glass-text">Talk to an Expert</span>
+            <i class="fa-solid fa-comments btn-icon" aria-hidden="true"></i>
+            <span class="btn-glass-glow"></span>
+          </a>
+        </div>
+
+        <!-- 5. Bottom Trust Badges Flex Row -->
+        <div class="service-trust-badges" id="serviceTrustBadges">
+          <div class="trust-badge-item">
+            <span class="glowing-dot dot-green" aria-hidden="true"></span>
+            <span class="badge-label">SOC 2 Aligned &amp; Certified</span>
+          </div>
+          <div class="trust-badge-separator" aria-hidden="true"><i class="fa-solid fa-circle" style="font-size: 4px;"></i></div>
+          <div class="trust-badge-item">
+            <span class="glowing-dot dot-blue" aria-hidden="true"></span>
+            <span class="badge-label">24/7 Managed Operations</span>
+          </div>
+          <div class="trust-badge-separator" aria-hidden="true"><i class="fa-solid fa-circle" style="font-size: 4px;"></i></div>
+          <div class="trust-badge-item">
+            <span class="glowing-dot dot-purple" aria-hidden="true"></span>
+            <span class="badge-label">99.999% SLA Uptime</span>
+          </div>
+          <div class="trust-badge-separator" aria-hidden="true"><i class="fa-solid fa-circle" style="font-size: 4px;"></i></div>
+          <div class="trust-badge-item">
+            <span class="glowing-dot dot-orange" aria-hidden="true"></span>
+            <span class="badge-label">Zero Vendor Lock-in</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Slider Indicators & Controls -->
+      <div class="slider-indicators" id="sliderIndicators" aria-label="Slide Selection">
+        <button class="indicator-bar active" data-index="0" aria-label="Go to slide 1"><span class="progress-fill"></span></button>
+        <button class="indicator-bar" data-index="1" aria-label="Go to slide 2"><span class="progress-fill"></span></button>
+        <button class="indicator-bar" data-index="2" aria-label="Go to slide 3"><span class="progress-fill"></span></button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       ENTERPRISE CLOUD DISCIPLINES SECTION (Capabilities 3x2 Grid)
+       ========================================================================== -->
+  <section class="disciplines-section" id="disciplines">
+    <div class="disciplines-ambient-glow" aria-hidden="true"></div>
+    <div class="disciplines-container">
+
+      <!-- 1. Section Header -->
+      <div class="disciplines-header">
+        <div class="disciplines-pill-badge" id="disciplinesBadge">
+          <span>OUR CAPABILITY</span>
+        </div>
+        <h2 class="disciplines-main-heading" id="disciplinesHeading" aria-label="Enterprise Cloud Disciplines">
+          <span class="disc-word-wrap">Enterprise</span>
+          <span class="disc-word-wrap">Cloud</span>
+          <span class="disc-word-wrap">Disciplines</span>
+        </h2>
+        <p class="disciplines-subheading" id="disciplinesSubheading">
+          Accountable engineering pods handling your heaviest infrastructure challenges from start to steady-state operations.
+        </p>
+      </div>
+
+      <!-- 2. 3x2 Responsive Cards Grid -->
+      <div class="disciplines-grid" id="disciplinesGrid">
+
+        <!-- Card 1: Cloud Architecture -->
+        <article class="discipline-card" data-card-index="0">
+          <div class="card-glare-layer" aria-hidden="true"></div>
+          <div class="card-image-wrap">
+            <img 
+              src="images/s1.webp" 
+              alt="Cloud Architecture" 
+              class="card-img"
+              onerror="this.onerror=null;this.src='images/s1.webp';">
+            <div class="card-img-gradient"></div>
+          </div>
+          <div class="card-content">
+            <div class="card-title-row">
+              <div class="card-icon-box" aria-hidden="true">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <h3 class="card-title">Cloud Architecture</h3>
+            </div>
+            <p class="card-description">
+              Reference designs, secure landing zones, and zero-trust templates built specifically for rigorous financial and health compliance.
+            </p>
+            <a href="404.html?from=cloud-architecture&amp;return_page=service.html" class="card-cta-link">
+              <span class="cta-link-text">Learn More</span>
+              <i class="fa-solid fa-circle-info cta-link-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2: Cloud Migration -->
+        <article class="discipline-card" data-card-index="1">
+          <div class="card-glare-layer" aria-hidden="true"></div>
+          <div class="card-image-wrap">
+            <img 
+              src="images/s2.webp" 
+              alt="Cloud Migration" 
+              class="card-img"
+              onerror="this.onerror=null;this.src='images/s2.webp';">
+            <div class="card-img-gradient"></div>
+          </div>
+          <div class="card-content">
+            <div class="card-title-row">
+              <div class="card-icon-box" aria-hidden="true">
+                <i class="fa-solid fa-cloud-bolt"></i>
+              </div>
+              <h3 class="card-title">Cloud Migration</h3>
+            </div>
+            <p class="card-description">
+              Seamless data and application migrations with zero downtime. Built on automated runbooks designed to eliminate drift.
+            </p>
+            <a href="404.html?from=cloud-migration&amp;return_page=service.html" class="card-cta-link">
+              <span class="cta-link-text">Learn More</span>
+              <i class="fa-solid fa-circle-info cta-link-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3: DevOps & Automation -->
+        <article class="discipline-card" data-card-index="2">
+          <div class="card-glare-layer" aria-hidden="true"></div>
+          <div class="card-image-wrap">
+            <img 
+              src="images/s3.webp" 
+              alt="DevOps & Automation" 
+              class="card-img"
+              onerror="this.onerror=null;this.src='images/s3.webp';">
+            <div class="card-img-gradient"></div>
+          </div>
+          <div class="card-content">
+            <div class="card-title-row">
+              <div class="card-icon-box" aria-hidden="true">
+                <i class="fa-solid fa-gears"></i>
+              </div>
+              <h3 class="card-title">DevOps & Automation</h3>
+            </div>
+            <p class="card-description">
+              GitOps pipeline automation, Infrastructure-as-Code deployment, and Kubernetes cluster management for scalable services.
+            </p>
+            <a href="404.html?from=devops-automation&amp;return_page=service.html" class="card-cta-link">
+              <span class="cta-link-text">Learn More</span>
+              <i class="fa-solid fa-circle-info cta-link-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4: Security & Compliance -->
+        <article class="discipline-card" data-card-index="3">
+          <div class="card-glare-layer" aria-hidden="true"></div>
+          <div class="card-image-wrap">
+            <img 
+              src="images/s4.webp" 
+              alt="Security & Compliance" 
+              class="card-img"
+              onerror="this.onerror=null;this.src='images/s4.webp';">
+            <div class="card-img-gradient"></div>
+          </div>
+          <div class="card-content">
+            <div class="card-title-row">
+              <div class="card-icon-box" aria-hidden="true">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <h3 class="card-title">Security & Compliance</h3>
+            </div>
+            <p class="card-description">
+              Continuous guardrails mapping infrastructure state to regulatory frameworks (HIPAA, SOC 2, PCI-DSS) automatically.
+            </p>
+            <a href="404.html?from=security-compliance&amp;return_page=service.html" class="card-cta-link">
+              <span class="cta-link-text">Learn More</span>
+              <i class="fa-solid fa-circle-info cta-link-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 5: Managed Operations -->
+        <article class="discipline-card" data-card-index="4">
+          <div class="card-glare-layer" aria-hidden="true"></div>
+          <div class="card-image-wrap">
+            <img 
+              src="images/s5.webp" 
+              alt="Managed Operations" 
+              class="card-img"
+              onerror="this.onerror=null;this.src='images/s5.webp';">
+            <div class="card-img-gradient"></div>
+          </div>
+          <div class="card-content">
+            <div class="card-title-row">
+              <div class="card-icon-box" aria-hidden="true">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <h3 class="card-title">Managed Operations</h3>
+            </div>
+            <p class="card-description">
+              24/7/365 active monitoring, incident mitigation, SRE escalation, and system health checks to protect your runtime.
+            </p>
+            <a href="404.html?from=managed-operations&amp;return_page=service.html" class="card-cta-link">
+              <span class="cta-link-text">Learn More</span>
+              <i class="fa-solid fa-circle-info cta-link-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 6: Cost Optimization -->
+        <article class="discipline-card" data-card-index="5">
+          <div class="card-glare-layer" aria-hidden="true"></div>
+          <div class="card-image-wrap">
+            <img 
+              src="images/s6.webp" 
+              alt="Cost Optimization" 
+              class="card-img"
+              onerror="this.onerror=null;this.src='images/s6.webp';">
+            <div class="card-img-gradient"></div>
+          </div>
+          <div class="card-content">
+            <div class="card-title-row">
+              <div class="card-icon-box" aria-hidden="true">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <h3 class="card-title">Cost Optimization</h3>
+            </div>
+            <p class="card-description">
+              Proactive FinOps auditing, intelligent resource sizing, and container optimization to drop waste without losing horsepower.
+            </p>
+            <a href="404.html?from=cost-optimization&amp;return_page=service.html" class="card-cta-link">
+              <span class="cta-link-text">Learn More</span>
+              <i class="fa-solid fa-circle-info cta-link-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       STEP-BY-STEP DELIVERY SECTION (Alternating Zig-Zag Timeline)
+       ========================================================================== -->
+  <section class="delivery-section" id="delivery">
+    <div class="delivery-ambient-glow" aria-hidden="true"></div>
+    <div class="delivery-container">
+
+      <!-- 1. Section Header -->
+      <div class="delivery-header">
+        <div class="delivery-pill-badge" id="deliveryBadge">
+          <span>THE ROUTE</span>
+        </div>
+        <h2 class="delivery-main-heading" id="deliveryHeading" aria-label="Step-by-Step Delivery">
+          <span class="delivery-word-wrap">Step-by-Step</span>
+          <span class="delivery-word-wrap">Delivery</span>
+        </h2>
+        <p class="delivery-subheading" id="deliverySubheading">
+          An structured roadmap from assessing your baseline system health to executing zero-drift auto-scaling fleets.
+        </p>
+      </div>
+
+      <!-- 2. The Zig-Zag Alternating Timeline Rows -->
+      <div class="delivery-timeline-wrap" id="deliveryTimelineWrap">
+
+        <!-- Row 1: Text on Left, Image on Right -->
+        <div class="delivery-row delivery-row-ltr" data-step="1">
+          <div class="delivery-col delivery-col-text">
+            <div class="delivery-badge-title-row">
+              <div class="step-num-badge badge-orange">01</div>
+              <h3 class="step-title">Assess &amp; Audit</h3>
+            </div>
+            <p class="step-paragraph">
+              We perform a rigorous deep-dive into your existing infrastructure, identifying architectural blockages, security liabilities, and over-provisioned resources. You receive a complete technical health score and optimization report with zero commitment.
+            </p>
+          </div>
+          <div class="delivery-col delivery-col-image">
+            <div class="delivery-image-box">
+              <div class="delivery-glare" aria-hidden="true"></div>
+              <img 
+                src="images/ss1.webp" 
+                alt="Assess and Audit" 
+                class="delivery-img"
+                onerror="this.onerror=null;this.src='images/ss1.webp';">
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Image on Left, Text on Right -->
+        <div class="delivery-row delivery-row-rtl" data-step="2">
+          <div class="delivery-col delivery-col-image">
+            <div class="delivery-image-box">
+              <div class="delivery-glare" aria-hidden="true"></div>
+              <img 
+                src="images/ss2.webp" 
+                alt="Design the Route" 
+                class="delivery-img"
+                onerror="this.onerror=null;this.src='images/ss2.webp';">
+            </div>
+          </div>
+          <div class="delivery-col delivery-col-text">
+            <div class="delivery-badge-title-row">
+              <div class="step-num-badge badge-blue">02</div>
+              <h3 class="step-title">Design the Route</h3>
+            </div>
+            <p class="step-paragraph">
+              Our principal cloud architects engineer a custom, robust platform design. This plan defines the migration pathways, cost-optimized parameters, and secure boundaries required to scale seamlessly.
+            </p>
+          </div>
+        </div>
+
+        <!-- Row 3: Text on Left, Image on Right -->
+        <div class="delivery-row delivery-row-ltr" data-step="3">
+          <div class="delivery-col delivery-col-text">
+            <div class="delivery-badge-title-row">
+              <div class="step-num-badge badge-orange">03</div>
+              <h3 class="step-title">Migrate &amp; Build</h3>
+            </div>
+            <p class="step-paragraph">
+              We handle the heavy lifting. Using state-of-the-art automation blueprints and verified runbooks, we migrate your workloads safely with absolutely zero impact to your customer-facing uptime.
+            </p>
+          </div>
+          <div class="delivery-col delivery-col-image">
+            <div class="delivery-image-box">
+              <div class="delivery-glare" aria-hidden="true"></div>
+              <img 
+                src="images/ss3.webp" 
+                alt="Migrate and Build" 
+                class="delivery-img"
+                onerror="this.onerror=null;this.src='images/ss3.webp';">
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4: Image on Left, Text on Right -->
+        <div class="delivery-row delivery-row-rtl" data-step="4">
+          <div class="delivery-col delivery-col-image">
+            <div class="delivery-image-box">
+              <div class="delivery-glare" aria-hidden="true"></div>
+              <img 
+                src="images/ss4.webp" 
+                alt="Optimize and Scale" 
+                class="delivery-img"
+                onerror="this.onerror=null;this.src='images/ss4.webp';">
+            </div>
+          </div>
+          <div class="delivery-col delivery-col-text">
+            <div class="delivery-badge-title-row">
+              <div class="step-num-badge badge-blue">04</div>
+              <h3 class="step-title">Optimize &amp; Scale</h3>
+            </div>
+            <p class="step-paragraph">
+              Launch is day zero. Stackly continuously optimizes your compute metrics and cloud spending parameters, ensuring your managed system grows with your scale without eating your margin.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       THE INTELLIGENCE LAYER FEATURE SECTION (Bidirectional Slide-In Panel)
+       ========================================================================== -->
+  <section class="intel-layer-section" id="intel-layer">
+    <div class="intel-layer-ambient-glow" aria-hidden="true"></div>
+    <div class="intel-layer-container">
+      <div class="intel-layer-grid">
+
+        <!-- Left Column: Text Cluster (~45% width) -->
+        <div class="intel-col-text" id="intelColText">
+          <!-- Pill Badge Overline with Glowing Red-Orange Dot -->
+          <div class="intel-pill-badge" id="intelBadge">
+            <span class="intel-badge-dot" aria-hidden="true"></span>
+            <span>UNIFIED PLATFORM INTELLIGENCE</span>
+          </div>
+
+          <!-- Main Heading with Masked Spans -->
+          <h2 class="intel-main-heading" id="intelHeading" aria-label="The Intelligence Layer for Your Cloud Estate.">
+            <span class="intel-word-wrap">The</span>
+            <span class="intel-word-wrap">Intelligence</span>
+            <span class="intel-word-wrap">Layer</span>
+            <span class="intel-word-wrap">for</span>
+            <span class="intel-word-wrap">Your</span>
+            <span class="intel-word-wrap">Cloud</span>
+            <span class="intel-word-wrap">Estate.</span>
+          </h2>
+
+          <!-- Subheading -->
+          <p class="intel-subheading" id="intelSubheading">
+            Our platform gives your team one view into the cost, security, and runtime signals that matter, simplifying governance while accelerating innovation.
+          </p>
+
+          <!-- Secondary Feature Points (Revealed via Intersection Observer) -->
+          <ul class="intel-feature-list" id="intelFeatureList">
+            <li class="intel-feature-item">
+              <div class="intel-feature-icon" aria-hidden="true">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="intel-feature-content">
+                <strong class="intel-feature-title">Real-Time Telemetry:</strong>
+                <span class="intel-feature-desc">Microsecond runtime anomaly detection and automated drift remediation.</span>
+              </div>
+            </li>
+            <li class="intel-feature-item">
+              <div class="intel-feature-icon" aria-hidden="true">
+                <i class="fa-solid fa-fingerprint"></i>
+              </div>
+              <div class="intel-feature-content">
+                <strong class="intel-feature-title">Automated Governance:</strong>
+                <span class="intel-feature-desc">Zero-trust policy enforcement mapped across multi-cloud enterprise boundaries.</span>
+              </div>
+            </li>
+            <li class="intel-feature-item">
+              <div class="intel-feature-icon" aria-hidden="true">
+                <i class="fa-solid fa-chart-pie"></i>
+              </div>
+              <div class="intel-feature-content">
+                <strong class="intel-feature-title">Unified FinOps:</strong>
+                <span class="intel-feature-desc">Real-time resource right-sizing with actionable unit-cost intelligence.</span>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Action CTA -->
+          <div class="intel-actions">
+            <a href="404.html?from=intelligence-layer&amp;return_page=service.html" class="intel-cta-btn">
+              <span>Explore Platform Intelligence</span>
+              <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Main Image Visual (~55% width) -->
+        <div class="intel-col-visual" id="intelColVisual">
+          <div class="intel-visual-card" id="intelVisualCard">
+            <div class="intel-card-glare" id="intelGlare" aria-hidden="true"></div>
+            <div class="intel-image-wrapper">
+              <img 
+                src="images/061f5ada6dc1d46647286f3ceb88b3bc7d4e169a.webp" 
+                alt="Platform Intelligence Visual" 
+                class="intel-main-img"
+                id="intelMainImg"
+                onerror="this.onerror=null;this.src='images/061f5ada6dc1d46647286f3ceb88b3bc7d4e169a.webp';">
+              <div class="intel-img-overlay-glow" aria-hidden="true"></div>
+            </div>
+            <!-- Glassmorphic floating signal chip badge -->
+            <div class="intel-signal-chip" aria-hidden="true">
+              <span class="signal-chip-dot"></span>
+              <span class="signal-chip-text">Live Estate Stream: 99.99% Signal Fidelity</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       WHAT OUR CLIENTS SAY (ENDORSEMENTS) SECTION
+       Continuous Left-to-Right Single Line Auto-Moving Cards
+       ========================================================================== -->
+  <section class="endorsements-section" id="endorsements">
+    <div class="endorsements-ambient-glow" aria-hidden="true"></div>
+    <div class="endorsements-container">
+
+      <!-- Centered Header: Pill Badge & Heading -->
+      <div class="endorsements-header">
+        <div class="endorsements-pill-badge" id="endorsementsBadge">
+          <span>ENDORSEMENTS</span>
+        </div>
+        <h2 class="endorsements-heading" id="endorsementsHeading" aria-label="What Our Clients Say">
+          <span class="end-word-wrap">What</span>
+          <span class="end-word-wrap">Our</span>
+          <span class="end-word-wrap">Clients</span>
+          <span class="end-word-wrap">Say</span>
+        </h2>
+      </div>
+
+    </div>
+
+    <!-- Continuous Marquee Viewport (Single Line, Moving Left to Right) -->
+    <div class="endorsements-marquee-viewport" id="endorsementsViewport">
+      <!-- Edge Fade Gradients for Seamless Borderless Transition -->
+      <div class="endorsements-fade-edge left-edge" aria-hidden="true"></div>
+      <div class="endorsements-fade-edge right-edge" aria-hidden="true"></div>
+
+      <!-- Marquee Track (Set 1 + Set 2 for Seamless Infinite Loop) -->
+      <div class="endorsements-marquee-track" id="endorsementsTrack">
+
+        <!-- ===== SET 1 ===== -->
+        <!-- Card 1: Marcus Vance -->
+        <article class="endorsements-card" data-card="1">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars" aria-label="5 stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;Achieving SOC 2 compliance used to require months of paperwork and systems auditing. Stackily integrated automated compliance guardrails directly into our CI/CD from day one, shaving months off our roadmap.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/smiling-worker-with-tie-suit.webp" 
+                alt="Marcus Vance" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/smiling-worker-with-tie-suit.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Marcus Vance</h3>
+              <p class="client-role">CTO, Finflow Inc.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Elena Rostova (Featured Orange Glowing Border) -->
+        <article class="endorsements-card card-featured" data-card="2">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars" aria-label="5 stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;We migrated over 180 legacy workloads to AWS using Stackily's engineered migration route. The entire transition completed with zero disruption to our active customers. Exceptional technical execution.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp" 
+                alt="Elena Rostova" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Elena Rostova</h3>
+              <p class="client-role">VP of Engineering, Meridian Retail</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Devon Miller -->
+        <article class="endorsements-card" data-card="3">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars" aria-label="5 stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;FinOps is typically a reactive game. Stackily changed that for us by providing real-time cost transparency and continuous cluster right-sizing that knocked out 44% of our monthly server bill instantly.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/Pic (2).webp" 
+                alt="Devon Miller" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/Pic%20(2).webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Devon Miller</h3>
+              <p class="client-role">Head of DevOps, StackFlow</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: Sarah Lin (New Card 1) -->
+        <article class="endorsements-card" data-card="4">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars" aria-label="5 stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;Deploying zero-trust landing zones across our multi-region footprint seemed like a multi-year effort. Stackily delivered fully automated, drift-free Terraform modules that had us audit-ready in weeks.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/Pic-2.webp" 
+                alt="Sarah Lin" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/Pic-2.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Sarah Lin</h3>
+              <p class="client-role">Head of Cloud Security, Apex Health</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5: Arjun Mehta (New Card 2) -->
+        <article class="endorsements-card" data-card="5">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars" aria-label="5 stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;Stackily’s 24/7 managed operations and proactive SRE pods eliminated our recurring latency spikes. Our checkout platform handled record traffic with 99.999% availability and zero customer degradation.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/Pic-1.webp" 
+                alt="Arjun Mehta" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/Pic-1.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Arjun Mehta</h3>
+              <p class="client-role">VP of Infrastructure, HyperScale</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== SET 2 (Identical Duplicate for Seamless Left-to-Right Loop) ===== -->
+        <!-- Card 1 Duplicate -->
+        <article class="endorsements-card" data-card="1" aria-hidden="true">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;Achieving SOC 2 compliance used to require months of paperwork and systems auditing. Stackily integrated automated compliance guardrails directly into our CI/CD from day one, shaving months off our roadmap.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/smiling-worker-with-tie-suit.webp" 
+                alt="Marcus Vance" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/smiling-worker-with-tie-suit.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Marcus Vance</h3>
+              <p class="client-role">CTO, Finflow Inc.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 Duplicate (Featured) -->
+        <article class="endorsements-card card-featured" data-card="2" aria-hidden="true">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;We migrated over 180 legacy workloads to AWS using Stackily's engineered migration route. The entire transition completed with zero disruption to our active customers. Exceptional technical execution.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp" 
+                alt="Elena Rostova" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/2095b0e96996f62b4e5d412e736c01dce69af72b.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Elena Rostova</h3>
+              <p class="client-role">VP of Engineering, Meridian Retail</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 Duplicate -->
+        <article class="endorsements-card" data-card="3" aria-hidden="true">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;FinOps is typically a reactive game. Stackily changed that for us by providing real-time cost transparency and continuous cluster right-sizing that knocked out 44% of our monthly server bill instantly.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/Pic (2).webp" 
+                alt="Devon Miller" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/Pic%20(2).webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Devon Miller</h3>
+              <p class="client-role">Head of DevOps, StackFlow</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 Duplicate -->
+        <article class="endorsements-card" data-card="4" aria-hidden="true">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;Deploying zero-trust landing zones across our multi-region footprint seemed like a multi-year effort. Stackily delivered fully automated, drift-free Terraform modules that had us audit-ready in weeks.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/Pic-2.webp" 
+                alt="Sarah Lin" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/Pic-2.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Sarah Lin</h3>
+              <p class="client-role">Head of Cloud Security, Apex Health</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 Duplicate -->
+        <article class="endorsements-card" data-card="5" aria-hidden="true">
+          <div class="endorsements-glare" aria-hidden="true"></div>
+          <div class="endorsements-card-top">
+            <div class="endorsements-stars">
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg class="star-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <p class="endorsements-quote">
+              &ldquo;Stackily’s 24/7 managed operations and proactive SRE pods eliminated our recurring latency spikes. Our checkout platform handled record traffic with 99.999% availability and zero customer degradation.&rdquo;
+            </p>
+          </div>
+          <div class="endorsements-client-profile">
+            <div class="client-avatar-wrap">
+              <img 
+                src="images/Pic-1.webp" 
+                alt="Arjun Mehta" 
+                class="client-avatar-img"
+                onerror="this.onerror=null;this.src='images/Pic-1.webp';">
+            </div>
+            <div class="client-details">
+              <h3 class="client-name">Arjun Mehta</h3>
+              <p class="client-role">VP of Infrastructure, HyperScale</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PROVEN PERFORMANCE IN PRODUCTION (SUCCESS STORY) SECTION
+       ========================================================================== -->
+  <section class="proven-perf-section" id="proven-performance">
+    <div class="proven-ambient-glow" aria-hidden="true"></div>
+    <div class="proven-container">
+
+      <!-- Left-Aligned Section Header -->
+      <div class="proven-header">
+        <div class="proven-pill-badge" id="provenBadge">
+          <span>SUCCESS STORY</span>
+        </div>
+        <h2 class="proven-main-heading" id="provenHeading" aria-label="Proven Performance in Production">
+          <span class="prov-word-wrap">Proven</span>
+          <span class="prov-word-wrap">Performance</span>
+          <span class="prov-word-wrap">in</span>
+          <span class="prov-word-wrap">Production</span>
+        </h2>
+      </div>
+
+      <!-- Main Feature Card -->
+      <div class="proven-card" id="provenCard">
+        <div class="proven-card-glare" id="provenGlare" aria-hidden="true"></div>
+
+        <!-- Left Column: Storefront Image Visual -->
+        <div class="proven-col-image" id="provenColImage">
+          <div class="proven-image-box">
+            <img 
+              src="images/27c898e333a4058f901fa778842561575ba79e86.webp" 
+              alt="Meridian Retail Storefront Lumina" 
+              class="proven-img"
+              id="provenImg"
+              onerror="this.onerror=null;this.src='images/27c898e333a4058f901fa778842561575ba79e86.webp';">
+            <div class="proven-img-glow-overlay" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Right Column: Case Study Narrative & Dual Stat Cards -->
+        <div class="proven-col-content" id="provenColContent">
+          <!-- Overline with Orange Dot -->
+          <div class="proven-overline">
+            <i class="fa-solid fa-circle proven-dot" aria-hidden="true"></i>
+            <span>MERIDIAN RETAIL PARTNERSHIP</span>
+          </div>
+
+          <!-- Story Title -->
+          <h3 class="proven-story-title">
+            How Meridian Retail rebuilt their storefront on a 9-week route to 99.99%.
+          </h3>
+
+          <!-- Story Paragraph -->
+          <p class="proven-story-desc">
+            With over 3 million monthly users, Meridian needed to escape their unstable legacy server setup. Stackily designed and executed a migration route that lowered latencies and slashed operating costs completely on-schedule.
+          </p>
+
+          <!-- Dual Beige / Off-White Stat Cards -->
+          <div class="proven-stats-row">
+            <!-- Stat Card 1 -->
+            <div class="proven-stat-card">
+              <span class="proven-stat-value">&minus;31%</span>
+              <span class="proven-stat-label">p95 job latency</span>
+            </div>
+
+            <!-- Stat Card 2 -->
+            <div class="proven-stat-card">
+              <span class="proven-stat-value">&minus;44%</span>
+              <span class="proven-stat-label">monthly cloud bill</span>
+            </div>
+          </div>
+
+          <!-- Action CTA Button -->
+          <div class="proven-action-row">
+            <a href="404.html?from=case-study-meridian&amp;return_page=service.html" class="proven-cta-btn">
+              <span>Read Case Study</span>
+              <i class="fa-solid fa-book-open btn-icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       1. ENTERPRISE BENTO GRID ARCHITECTURE ("Stackly Cloud Mesh Core")
+       ========================================================================== -->
+  <section class="bento-mesh-section" id="cloud-mesh-bento">
+    <div class="bento-ambient-glow" aria-hidden="true"></div>
+    <div class="bento-container">
+
+      <!-- Section Header -->
+      <div class="bento-header">
+        <div class="bento-pill-badge" id="bentoBadge">
+          <span>CLOUD MESH ARCHITECTURE</span>
+        </div>
+        <h2 class="bento-main-heading" id="bentoHeading" aria-label="Engineered for Zero-Drift Enterprise Scale">
+          <span class="bento-word-wrap">Engineered</span>
+          <span class="bento-word-wrap">for</span>
+          <span class="bento-word-wrap">Zero-Drift</span>
+          <span class="bento-word-wrap">Enterprise</span>
+          <span class="bento-word-wrap">Scale</span>
+        </h2>
+        <p class="bento-subheading" id="bentoSubheading">
+          A modular infrastructure blueprint unifying multi-cloud fabrics, automated compliance guardrails, and real-time cost containment into one command surface.
+        </p>
+      </div>
+
+      <!-- The 4-Card Bento Grid with Hover Spotlight & 3D Tilt -->
+      <div class="bento-grid" id="bentoGrid">
+
+        <!-- Bento Card 1: 2-Column Wide Card (Top Left) -->
+        <article class="bento-card bento-card-wide" data-bento="1">
+          <div class="bento-spotlight" aria-hidden="true"></div>
+          <div class="bento-card-inner">
+            <div class="bento-content-col">
+              <span class="bento-overline">01 / MULTI-CLOUD FABRIC</span>
+              <h3 class="bento-title">Global Network Mesh &amp; Sub-Millisecond Transit</h3>
+              <p class="bento-desc">
+                Connect distributed AWS, GCP, and Azure workloads through automated WireGuard and eBPF transit overlays with end-to-end cryptographic integrity.
+              </p>
+              <div class="bento-tags-row">
+                <span class="bento-tag"><i class="fa-brands fa-aws"></i> AWS Transit</span>
+                <span class="bento-tag"><i class="fa-brands fa-google"></i> GCP Interconnect</span>
+                <span class="bento-tag"><i class="fa-brands fa-microsoft"></i> Azure Route</span>
+              </div>
+              <div class="bento-status-badge">
+                <span class="pulse-dot emerald-dot"></span>
+                <span>99.999% Mesh Availability <i class="fa-solid fa-circle" style="font-size: 4px; vertical-align: middle; margin: 0 6px; opacity: 0.6;"></i> 12ms P95 Latency</span>
+              </div>
+            </div>
+            <div class="bento-image-col">
+              <div class="bento-image-frame">
+                <img 
+                  src="images/Rectangle-1.webp" 
+                  alt="Global Network Mesh" 
+                  class="bento-img"
+                  onerror="this.onerror=null;this.src='images/Rectangle-1.webp';">
+                <div class="bento-img-gradient"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bento Card 2: 1-Column Card (Top Right) -->
+        <article class="bento-card bento-card-tall" data-bento="2">
+          <div class="bento-spotlight" aria-hidden="true"></div>
+          <div class="bento-card-inner flex-column">
+            <div class="bento-card-header-compact">
+              <span class="bento-overline">02 / CODE REVISION GUARD</span>
+              <h3 class="bento-title">Self-Healing Drift Defense</h3>
+              <p class="bento-desc">
+                Continuous state inspection comparing live infrastructure against GitOps blueprints with instant automated rollbacks.
+              </p>
+            </div>
+            <div class="bento-image-frame-compact">
+              <img 
+                src="images/Rectangle-2.webp" 
+                alt="Drift Defense Code Matrix" 
+                class="bento-img"
+                onerror="this.onerror=null;this.src='images/Rectangle-2.webp';">
+              <div class="bento-img-gradient"></div>
+              <div class="bento-floating-chip top-chip">
+                <i class="fa-solid fa-code-commit"></i>
+                <span>Terraform State: Synced</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bento Card 3: 1-Column Card (Bottom Left) -->
+        <article class="bento-card bento-card-tall" data-bento="3">
+          <div class="bento-spotlight" aria-hidden="true"></div>
+          <div class="bento-card-inner flex-column">
+            <div class="bento-card-header-compact">
+              <span class="bento-overline">03 / FINOPS INTELLIGENCE</span>
+              <h3 class="bento-title">Proactive Compute Arbiter</h3>
+              <p class="bento-desc">
+                Dynamic rightsizing and automated Spot arbitrage eliminating idle resources without starving critical microservices.
+              </p>
+            </div>
+            <div class="bento-image-frame-compact">
+              <img 
+                src="images/Rectangle-5.webp" 
+                alt="FinOps Cost Analytics Dashboard" 
+                class="bento-img"
+                onerror="this.onerror=null;this.src='images/Rectangle-5.webp';">
+              <div class="bento-img-gradient"></div>
+              <div class="bento-floating-chip bottom-chip">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>&minus;44% Average Waste Slashed</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bento Card 4: 2-Column Wide Card (Bottom Right) -->
+        <article class="bento-card bento-card-wide" data-bento="4">
+          <div class="bento-spotlight" aria-hidden="true"></div>
+          <div class="bento-card-inner">
+            <div class="bento-content-col">
+              <span class="bento-overline">04 / 24/7 SRE NOC</span>
+              <h3 class="bento-title">Command Center &amp; Automated Incident Triage</h3>
+              <p class="bento-desc">
+                Senior SRE pods actively monitoring telemetry across all distributed regions. Sub-2 minute incident mitigation with automated runbooks and dedicated Slack war rooms.
+              </p>
+              <div class="bento-stats-pair">
+                <div class="bento-mini-stat">
+                  <span class="stat-num">Sub-90s</span>
+                  <span class="stat-text">MTTR Response SLA</span>
+                </div>
+                <div class="bento-mini-stat">
+                  <span class="stat-num">100%</span>
+                  <span class="stat-text">Automated Failover</span>
+                </div>
+              </div>
+              <div class="bento-status-badge">
+                <span class="pulse-dot blue-dot"></span>
+                <span>All 6 Global Regions Fully Operational</span>
+              </div>
+            </div>
+            <div class="bento-image-col">
+              <div class="bento-image-frame">
+                <img 
+                  src="images/Rectangle-4.webp" 
+                  alt="Operations Command Center" 
+                  class="bento-img"
+                  onerror="this.onerror=null;this.src='images/Rectangle-4.webp';">
+                <div class="bento-img-gradient"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. INTERACTIVE HORIZONTAL STICKY ROUTE ("Enterprise Migration Pathways")
+       ========================================================================== -->
+  <section class="pathways-section" id="migration-pathways">
+    <div class="pathways-ambient-glow" aria-hidden="true"></div>
+    <div class="pathways-container">
+
+      <!-- Section Header -->
+      <div class="pathways-header">
+        <div class="pathways-pill-badge" id="pathwaysBadge">
+          <span>MIGRATION PATHWAYS</span>
+        </div>
+        <h2 class="pathways-main-heading" id="pathwaysHeading" aria-label="Interactive 4-Stage Enterprise Route">
+          <span class="path-word-wrap">Interactive</span>
+          <span class="path-word-wrap">4-Stage</span>
+          <span class="path-word-wrap">Enterprise</span>
+          <span class="path-word-wrap">Route</span>
+        </h2>
+        <p class="pathways-subheading" id="pathwaysSubheading">
+          Explore how Stackly transitions massive monoliths and microservices into zero-drift, auto-scaling platforms with guaranteed zero disruption.
+        </p>
+
+        <!-- Stage Navigation Tabs -->
+        <div class="pathways-tabs" id="pathwaysTabs" role="tablist">
+          <button class="pathway-tab active" data-target="0" role="tab" aria-selected="true">
+            <span class="tab-num">01</span> Zero-Trust Foundation
+          </button>
+          <button class="pathway-tab" data-target="1" role="tab" aria-selected="false">
+            <span class="tab-num">02</span> Pipelines &amp; Canaries
+          </button>
+          <button class="pathway-tab" data-target="2" role="tab" aria-selected="false">
+            <span class="tab-num">03</span> Autonomous Scaling
+          </button>
+          <button class="pathway-tab" data-target="3" role="tab" aria-selected="false">
+            <span class="tab-num">04</span> Steady-State NOC
+          </button>
+        </div>
+      </div>
+
+      <!-- 3D Flip Card Showcase Stage -->
+      <div class="pathways-stage-wrapper">
+        <div class="pathways-cards-slider" id="pathwaysSlider">
+
+          <!-- Stage 1 Card (with 3D Flip & Benchmarks) -->
+          <div class="pathway-flip-card active" data-index="0">
+            <div class="flip-card-inner">
+              <!-- Card Front -->
+              <div class="flip-card-face flip-card-front">
+                <div class="pathway-card-img-wrap">
+                  <img 
+                    src="images/Visual Side.webp" 
+                    alt="Zero-Trust Architecture" 
+                    class="pathway-card-img"
+                    onerror="this.onerror=null;this.src='images/Visual%20Side.webp';">
+                  <div class="card-tag-badge">STAGE 01</div>
+                </div>
+                <div class="pathway-card-body">
+                  <h3 class="pathway-card-title">Zero-Trust Landing Zone Inception</h3>
+                  <p class="pathway-card-text">
+                    We provision immutable VPC topologies, federated IAM, and hardened perimeter firewalls verified against rigorous CIS and SOC 2 benchmarks.
+                  </p>
+                  <div class="pathway-meta-row">
+                    <span class="meta-pill"><i class="fa-solid fa-shield-halved"></i> 100% Policy-as-Code</span>
+                    <span class="meta-pill"><i class="fa-solid fa-clock"></i> 48h Landing Zone Setup</span>
+                  </div>
+                  <a href="404.html?from=technical-specs-stage-1&amp;return_page=service.html" class="flip-toggle-btn" aria-label="View technical specifications for stage 1">
+                    <span>View Technical Specs</span> <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+              <!-- Card Back (Technical Specs) -->
+              <div class="flip-card-face flip-card-back">
+                <div class="flip-back-content">
+                  <div class="flip-back-header">
+                    <span class="back-tag">STAGE 01 SPECS</span>
+                    <h4 class="back-title">Architecture Parameters</h4>
+                  </div>
+                  <ul class="back-specs-list">
+                    <li><strong>Compliance:</strong> SOC 2 Type II, ISO 27001, HIPAA ready</li>
+                    <li><strong>Network:</strong> Dual transit hubs with automated VPC peering</li>
+                    <li><strong>Identity:</strong> Role-based zero-standing privilege &amp; SSO</li>
+                    <li><strong>IaC Engine:</strong> 42 verified Terraform &amp; OpenTofu modules</li>
+                  </ul>
+                  <button class="flip-toggle-btn flip-back-btn" aria-label="Flip card back to overview">
+                    <i class="fa-solid fa-table-cells-large"></i> <span>Back to Overview</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2 Card (with 3D Flip) -->
+          <div class="pathway-flip-card" data-index="1">
+            <div class="flip-card-inner">
+              <div class="flip-card-face flip-card-front">
+                <div class="pathway-card-img-wrap">
+                  <img 
+                    src="images/Card Visual-1.webp" 
+                    alt="Canary Deployments" 
+                    class="pathway-card-img"
+                    onerror="this.onerror=null;this.src='images/Card%20Visual-1.webp';">
+                  <div class="card-tag-badge">STAGE 02</div>
+                </div>
+                <div class="pathway-card-body">
+                  <h3 class="pathway-card-title">Automated CI/CD &amp; Canary Pipelines</h3>
+                  <p class="pathway-card-text">
+                    Progressive traffic migration using ArgoCD and service mesh canaries. Every release is validated against automated synthetic health checks.
+                  </p>
+                  <div class="pathway-meta-row">
+                    <span class="meta-pill"><i class="fa-solid fa-bolt"></i> 0 Downtime Migration</span>
+                    <span class="meta-pill"><i class="fa-solid fa-rotate-left"></i> Rollback &lt; 500ms</span>
+                  </div>
+                  <a href="404.html?from=technical-specs-stage-2&amp;return_page=service.html" class="flip-toggle-btn" aria-label="View technical specifications for stage 2">
+                    <span>View Technical Specs</span> <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="flip-card-face flip-card-back">
+                <div class="flip-back-content">
+                  <div class="flip-back-header">
+                    <span class="back-tag">STAGE 02 SPECS</span>
+                    <h4 class="back-title">Pipeline Architecture</h4>
+                  </div>
+                  <ul class="back-specs-list">
+                    <li><strong>Canary Steps:</strong> 5% <i class="fa-solid fa-circle" style="font-size: 0.45em; opacity: 0.6; margin: 0 6px; vertical-align: middle;"></i> 25% <i class="fa-solid fa-circle" style="font-size: 0.45em; opacity: 0.6; margin: 0 6px; vertical-align: middle;"></i> 100% traffic progression</li>
+                    <li><strong>Synthetic Testing:</strong> 15,000 req/sec load validation</li>
+                    <li><strong>Error Threshold:</strong> Automatic abort if errors &gt; 0.01%</li>
+                    <li><strong>Security:</strong> Container vulnerability scanning pre-deploy</li>
+                  </ul>
+                  <button class="flip-toggle-btn flip-back-btn" aria-label="Flip card back to overview">
+                    <i class="fa-solid fa-table-cells-large"></i> <span>Back to Overview</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3 Card (with 3D Flip) -->
+          <div class="pathway-flip-card" data-index="2">
+            <div class="flip-card-inner">
+              <div class="flip-card-face flip-card-front">
+                <div class="pathway-card-img-wrap">
+                  <img 
+                    src="images/Rectangle-3.webp" 
+                    alt="Autonomous Kubernetes Scaling" 
+                    class="pathway-card-img"
+                    onerror="this.onerror=null;this.src='images/Rectangle-3.webp';">
+                  <div class="card-tag-badge">STAGE 03</div>
+                </div>
+                <div class="pathway-card-body">
+                  <h3 class="pathway-card-title">Autonomous Kubernetes Scaling Mesh</h3>
+                  <p class="pathway-card-text">
+                    Dynamic HPA and Karpenter cluster autoscaling tuning compute to burst demand in seconds without manual overhead or costly over-provisioning.
+                  </p>
+                  <div class="pathway-meta-row">
+                    <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> 3.5x Throughput Burst</span>
+                    <span class="meta-pill"><i class="fa-solid fa-server"></i> Sub-Second Pod Spin</span>
+                  </div>
+                  <a href="404.html?from=technical-specs-stage-3&amp;return_page=service.html" class="flip-toggle-btn" aria-label="View technical specifications for stage 3">
+                    <span>View Technical Specs</span> <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="flip-card-face flip-card-back">
+                <div class="flip-back-content">
+                  <div class="flip-back-header">
+                    <span class="back-tag">STAGE 03 SPECS</span>
+                    <h4 class="back-title">Compute Scaling Matrix</h4>
+                  </div>
+                  <ul class="back-specs-list">
+                    <li><strong>Autoscaler:</strong> Karpenter v0.35+ dynamic node provisioner</li>
+                    <li><strong>Node Spin-up:</strong> 42 seconds from trigger to running pod</li>
+                    <li><strong>Topology:</strong> Multi-AZ spread with topology-aware routing</li>
+                    <li><strong>Over-provisioning:</strong> 0% idle capacity overhead</li>
+                  </ul>
+                  <button class="flip-toggle-btn flip-back-btn" aria-label="Flip card back to overview">
+                    <i class="fa-solid fa-table-cells-large"></i> <span>Back to Overview</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 4 Card (with 3D Flip) -->
+          <div class="pathway-flip-card" data-index="3">
+            <div class="flip-card-inner">
+              <div class="flip-card-face flip-card-front">
+                <div class="pathway-card-img-wrap">
+                  <img 
+                    src="images/Card Visual-2.webp" 
+                    alt="Steady-State Operations" 
+                    class="pathway-card-img"
+                    onerror="this.onerror=null;this.src='images/Card%20Visual-2.webp';">
+                  <div class="card-tag-badge">STAGE 04</div>
+                </div>
+                <div class="pathway-card-body">
+                  <h3 class="pathway-card-title">Steady-State Operations &amp; FinOps</h3>
+                  <p class="pathway-card-text">
+                    Hands-off peace of mind. Ongoing 24/7/365 active monitoring, automated incident mitigation, and weekly FinOps unit economics reports.
+                  </p>
+                  <div class="pathway-meta-row">
+                    <span class="meta-pill"><i class="fa-solid fa-check-double"></i> 99.999% SLA Uptime</span>
+                    <span class="meta-pill"><i class="fa-solid fa-headset"></i> Dedicated SRE Pod</span>
+                  </div>
+                  <a href="404.html?from=technical-specs-stage-4&amp;return_page=service.html" class="flip-toggle-btn" aria-label="View technical specifications for stage 4">
+                    <span>View Technical Specs</span> <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="flip-card-face flip-card-back">
+                <div class="flip-back-content">
+                  <div class="flip-back-header">
+                    <span class="back-tag">STAGE 04 SPECS</span>
+                    <h4 class="back-title">SLA &amp; Operations SLA</h4>
+                  </div>
+                  <ul class="back-specs-list">
+                    <li><strong>Incident Response:</strong> &lt; 2 minute escalation to senior SRE</li>
+                    <li><strong>Comms:</strong> Direct bidirectional Slack/Teams incident bridge</li>
+                    <li><strong>FinOps:</strong> Weekly unit cost reports &amp; automated arbitrage</li>
+                    <li><strong>Testing:</strong> Monthly automated chaos engineering drills</li>
+                  </ul>
+                  <button class="flip-toggle-btn flip-back-btn" aria-label="Flip card back to overview">
+                    <i class="fa-solid fa-table-cells-large"></i> <span>Back to Overview</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. EXPANDABLE ACCORDION & ADVISORY HUB ("Frequently Addressed Cloud Queries")
+       ========================================================================== -->
+  <section class="faq-advisory-section" id="cloud-faq-advisory">
+    <div class="faq-ambient-glow" aria-hidden="true"></div>
+    <div class="faq-container">
+
+      <!-- Section Header -->
+      <div class="faq-header">
+        <div class="faq-pill-badge" id="faqBadge">
+          <span>ADVISORY &amp; FAQ</span>
+        </div>
+        <h2 class="faq-main-heading" id="faqHeading" aria-label="Frequently Addressed Cloud Inquiries">
+          <span class="faq-word-wrap">Frequently</span>
+          <span class="faq-word-wrap">Addressed</span>
+          <span class="faq-word-wrap">Cloud</span>
+          <span class="faq-word-wrap">Inquiries</span>
+        </h2>
+        <p class="faq-subheading" id="faqSubheading">
+          Clear, transparent answers from principal infrastructure architects on migration risks, security compliance, and guaranteed delivery.
+        </p>
+      </div>
+
+      <!-- Two-Column Layout: Left Floating Pod Visual + Right Expandable Accordion -->
+      <div class="faq-grid">
+
+        <!-- Left Column: Floating Architectural Pod Card -->
+        <div class="faq-visual-col" id="faqVisualCol">
+          <div class="faq-visual-card" id="faqVisualCard">
+            <div class="faq-card-glare" aria-hidden="true"></div>
+            <div class="faq-img-wrapper">
+              <img 
+                src="images/fawq (1).webp" 
+                alt="Stackly Cloud Architects in Consultation" 
+                class="faq-main-img"
+                onerror="this.onerror=null;this.src='images/fawq (1).webp';">
+              <div class="faq-img-gradient"></div>
+            </div>
+
+            <!-- Floating Glassmorphic Badges -->
+            <div class="faq-floating-badge badge-top" aria-hidden="true">
+              <span class="pulse-dot emerald-dot"></span>
+              <span>99.999% Guaranteed SLA</span>
+            </div>
+
+            <div class="faq-floating-badge badge-middle" aria-hidden="true">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>SOC 2 Type II &amp; HIPAA Verified</span>
+            </div>
+
+            <div class="faq-floating-badge badge-bottom">
+              <div class="badge-avatar-row">
+                <span class="avatar-circle"><i class="fa-solid fa-bolt"></i></span>
+                <div>
+                  <strong>&lt; 15 Min Lead Architect Response</strong>
+                  <p>Direct Slack / Teams Escalation Channel</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Expandable Accordion Cards -->
+        <div class="faq-accordion-col" id="faqAccordionCol">
+          
+          <!-- Accordion Item 1 (Active by default) -->
+          <div class="faq-accordion-item active">
+            <button class="faq-accordion-trigger" aria-expanded="true">
+              <span class="faq-q-text">How does Stackly migrate mission-critical databases with zero downtime?</span>
+              <span class="faq-icon-box" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-body-inner">
+                <p>
+                  We deploy bi-directional Change Data Capture (CDC) replication proxies between your legacy database and target cloud engines (such as AWS Aurora or Cloud Spanner). Traffic is progressively mirrored and validated down to microsecond parity before cutting over DNS with zero transaction drops.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2 -->
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              <span class="faq-q-text">Can we integrate Stackly guardrails into our existing CI/CD without rewriting our Terraform?</span>
+              <span class="faq-icon-box" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-body-inner">
+                <p>
+                  Yes. We wrap your existing Terraform or OpenTofu modules with lightweight OPA (Open Policy Agent) and Checkov pre-flight checks directly within GitHub Actions, GitLab CI, or Jenkins. Your team continues committing standard code while gaining automated security boundaries and drift detection.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 3 -->
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              <span class="faq-q-text">What specific FinOps cost savings can our executive leadership expect within 30 days?</span>
+              <span class="faq-icon-box" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-body-inner">
+                <p>
+                  Our initial FinOps sprint typically uncovers 25% to 45% in direct waste within 72 hours—including orphaned snapshots, over-provisioned idle instances, unattached EBS volumes, and suboptimal storage tiers. We implement automated scheduling and spot arbitrage that locks in immediate cash savings.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 4 -->
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              <span class="faq-q-text">How does Stackly handle a severity-1 production incident on weekends or holidays?</span>
+              <span class="faq-icon-box" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-body-inner">
+                <p>
+                  Your team is backed by a dedicated, named SRE pod with automated PagerDuty escalation and an active Slack/Microsoft Teams war room. We maintain a contractual sub-2 minute triage SLA, with authority to execute pre-approved runbooks and mitigate runtime threats instantly.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 5 -->
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              <span class="faq-q-text">Are our engineers locked into Stackly proprietary tooling or licenses?</span>
+              <span class="faq-icon-box" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-body-inner">
+                <p>
+                  Zero vendor lock-in. Everything Stackly designs is 100% open-standard, industry-verified Infrastructure as Code (Terraform, Kubernetes, Helm, OpenTelemetry). If you ever choose to manage the platform in-house, your team owns the complete repositories and documentation from day one.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       STACKLY FOOTER SECTION (Matching index.html)
+       ========================================================================== -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-container">
+
+      <!-- 4-Column Grid -->
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand -->
+        <div class="footer-col footer-col-brand" data-aos="fade-up" data-aos-duration="800">
+          <a href="index.html" class="footer-brand-logo" aria-label="Stackly Homepage">
+            <img 
+              src="images/logo.webp" 
+              alt="Stackly Logo" 
+              class="footer-logo-img" 
+              onerror="this.src='images/logo.webp'">
+          </a>
+          <p class="footer-brand-desc">
+            A warm signal through the cloud layer - complexity turned into a route your team can walk.
+          </p>
+        </div>
+
+        <!-- Column 2: Company -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-link-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="service.html" class="footer-link">Our Solutions</a></li>
+            <li><a href="404.html?from=footer&amp;return_page=service.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links -->
+        <div class="footer-col footer-col-links" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-link-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="service.html" class="footer-link active">Services</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="blog.html" class="footer-link">Blogs</a></li>
+            <li><a href="login.html" class="footer-link">Sign In</a></li>
+            <li><a href="contact.html" class="footer-link">Book a Consult</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-col footer-col-contact" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-info">
+            <a href="404.html?from=footer&amp;return_page=service.html" class="footer-contact-item">
+              <i class="fa-regular fa-envelope footer-contact-icon" aria-hidden="true"></i>
+              <span>hello@Stackly.net.in</span>
+            </a>
+            <a href="404.html?from=footer&amp;return_page=service.html" class="footer-contact-item">
+              <i class="fa-solid fa-phone footer-contact-icon" aria-hidden="true"></i>
+              <span>+91 89052 46537</span>
+            </a>
+            <div class="footer-contact-item footer-contact-address">
+              <i class="fa-solid fa-location-dot footer-contact-icon" aria-hidden="true"></i>
+              <span>MMR Complex, China Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animated Divider Line -->
+      <div class="footer-divider-wrap">
+        <div class="footer-divider-line" id="footerDivider"></div>
+      </div>
+
+      <!-- Bottom Footer: Copyright & Socials -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2026 Stackly Technologies. All rights reserved.
+        </p>
+        
+        <div class="footer-social-links" aria-label="Social Media">
+          <a href="404.html?from=footer&amp;return_page=service.html" class="footer-social-btn" aria-label="Stackly on LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=service.html" class="footer-social-btn" aria-label="Stackly on Twitter / X" title="Twitter / X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="404.html?from=footer&amp;return_page=service.html" class="footer-social-btn" aria-label="Stackly on Instagram" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+
