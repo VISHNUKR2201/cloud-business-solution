@@ -3594,9 +3594,16 @@ button {
 
 .star-rating {
   font-size: 0.95rem;
-  letter-spacing: 2px;
   color: #f59e0b;
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.star-rating i {
+  color: #f59e0b;
+  font-size: 0.85rem;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.45));
 }
 
 /* Testimonial Quote Body */
